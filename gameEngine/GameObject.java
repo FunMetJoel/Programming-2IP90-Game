@@ -3,29 +3,40 @@ package gameEngine;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class GameObject {
-    protected ArrayList<GameObject> gameObjects;
-    protected Vector2<Double> position = new Vector2<Double>(0.0,0.0);
+public abstract class GameObject {
+    protected ArrayList<GameObject> children;
+    protected Vector2<Double> position = new Vector2<Double>(0.0, 0.0);
     protected Vector2<Double> scale = new Vector2<Double>(1.0, 1.0);
 
+    public void paint(
+        Graphics graphics, 
+        Vector2<Integer> centerScreenCords, 
+        Vector2<Double> scale
+    ) {
+
+    }
+
+    public void update() {
+
+    }
+
+
     public GameObject() {
-        gameObjects = new ArrayList<GameObject>();
+        children = new ArrayList<GameObject>();
     }
 
     public GameObject(Vector2<Double> position) {
-        gameObjects = new ArrayList<GameObject>();
+        children = new ArrayList<GameObject>();
         this.position = position;
     }
 
     public GameObject(Vector2<Double> position, Vector2<Double> scale) {
-        gameObjects = new ArrayList<GameObject>();
+        children = new ArrayList<GameObject>();
         this.position = position;
         this.scale = scale;
     }
 
-    public void paint(Graphics graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
-        
-    }
+    
 
     public void draw(Graphics graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
 
@@ -41,12 +52,16 @@ public class GameObject {
 
         this.paint(graphics, newCenterScreenCords, newScale);
 
-        for (GameObject gameObject : gameObjects) {
+        for (GameObject gameObject : children) {
             gameObject.draw(graphics, newCenterScreenCords, newScale);
         }
     }
 
-    public void update() {
+    public void updateAll() {
+        this.update();
 
+        for (GameObject gameObject : children) {
+            gameObject.updateAll();
+        }
     }
 }

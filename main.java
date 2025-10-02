@@ -4,6 +4,7 @@ import java.awt.Point;
 import javax.swing.JFrame;
 
 import gameEngine.*;
+import gameEngine.dummyObjects.Circle;
 import gameEngine.dummyObjects.Square;
 
 public class main {
@@ -13,9 +14,9 @@ public class main {
         window.setTitle("HOW DO WE CALL OUR GAME");
 
         GameCanvas gameCanvas = new GameCanvas();
-        window.add(gameCanvas);
+        window.add(InputManager.get());
 
-        
+        window.add(gameCanvas);
 
         for (int i = -3; i <= 3; i++) {
             for (int j = -3; j <= 3; j++) {
@@ -28,7 +29,19 @@ public class main {
                 gameCanvas.addObject(square);
             }
         }
+
+        Player player = new Player(
+            new Vector2<Double>(0.0, 0.0), 
+            new Vector2<Double>(0.8, 0.8)
+        );
+
+        gameCanvas.addObject(player);
+        player.camera = gameCanvas;
+
         
+        Thread thread = new Thread(gameCanvas);
+        thread.start();
+
         window.pack();
 
         window.setLocationRelativeTo(null);

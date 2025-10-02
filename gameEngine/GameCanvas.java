@@ -3,21 +3,19 @@ package gameEngine;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.lang.foreign.PaddingLayout;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class GameCanvas extends JPanel implements MouseListener, MouseMotionListener, Runnable {
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
-    Vector2<Double> cameraPosition = new Vector2<Double>(0.0, 0.0);
+    public Vector2<Double> cameraPosition = new Vector2<Double>(0.0, 0.0);
     double zoom = 1; // 1 pixel is 1 pixel
 
     public GameCanvas() {
         this.setPreferredSize(new Dimension(800, 600));
         this.setDoubleBuffered(true);
         this.setBackground(Color.black);
-
-        Thread thread = new Thread(this);
-        thread.start();
     }
 
     public void run() {
@@ -51,28 +49,36 @@ public class GameCanvas extends JPanel implements MouseListener, MouseMotionList
     }
 
     public void update() {
-        // for (GameObject gameObject: gameObjects) {
-        //     gameObject.update();
-        // }
+        for (GameObject gameObject: gameObjects) {
+            gameObject.updateAll();
+        }
         // System.out.println(this.zoom);
 
         // this.zoom = zoom * 1;
 
         // cameraPosition.x -= 0.00001;
         // System.out.println(cameraPosition);
+
+        if (InputManager.isPressed(KeyEvent.VK_W)) {
+            this.cameraPosition.y -= 0.000001;
+        }
+        if (InputManager.isPressed(KeyEvent.VK_S)) {
+            this.cameraPosition.y += 0.000001;
+        }
+        if (InputManager.isPressed(KeyEvent.VK_A)) {
+            this.cameraPosition.x -= 0.000001;
+        }
+        if (InputManager.isPressed(KeyEvent.VK_D)) {
+            this.cameraPosition.x += 0.000001;
+        }
     }
 
     public void addObject(GameObject object) {
         gameObjects.add(object);
-        System.out.println("Printing Objects");
-        for (GameObject gameObject : gameObjects) {
-            System.out.println(object);
-        }
+
     }
 
     public void mouseClicked(MouseEvent e) {
-        cameraPosition.x += 1;
-        System.out.println(cameraPosition.x);
     }
 
     public void mouseMoved(MouseEvent e) {
@@ -98,4 +104,6 @@ public class GameCanvas extends JPanel implements MouseListener, MouseMotionList
     public void mousePressed(MouseEvent e) {
 
     }
+
+    
 }
