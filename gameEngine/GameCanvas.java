@@ -37,8 +37,8 @@ public class GameCanvas extends JPanel implements MouseListener, MouseMotionList
         );
 
         Vector2<Integer> centerScreenCords = new Vector2<Integer>(
-            (int) Math.round((this.getWidth() / 2) + scale.x * cameraPosition.x),
-            (int) Math.round((this.getHeight() / 2) + scale.y * cameraPosition.y)
+            (int) Math.round((this.getWidth() / 2) - scale.x * cameraPosition.x),
+            (int) Math.round((this.getHeight() / 2) - scale.y * cameraPosition.y)
         );
         
         for (GameObject gameObject : gameObjects) {

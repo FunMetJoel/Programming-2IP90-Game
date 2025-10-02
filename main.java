@@ -22,13 +22,20 @@ public class main {
             for (int j = -3; j <= 3; j++) {
                 Square square = new Square(
                     new Vector2<Double>((double) i, (double) j), 
-                    new Vector2<Double>(0.9, 0.9),
+                    new Vector2<Double>(1.0, 1.0),
                     new Color(36 * (i + 4), 36 * (j + 4), 0),
                     Color.white
                 );
                 gameCanvas.addObject(square);
             }
         }
+
+        gameCanvas.addObject(
+            new Circle(new Vector2<Double>(0.0, 0.0), new Vector2<Double>(1.0, 1.0), Color.red, null)
+        );
+        gameCanvas.addObject(
+            new Circle(new Vector2<Double>(1.0, 0.0), new Vector2<Double>(0.8, 0.8), Color.red, null)
+        );
 
         Player player = new Player(
             new Vector2<Double>(0.0, 0.0), 
