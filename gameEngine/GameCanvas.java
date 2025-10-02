@@ -4,29 +4,62 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Vector;
 
-public class GameCanvas extends JFrame implements MouseListener, MouseMotionListener{
-    Canvas c;
+public class GameCanvas extends JPanel implements MouseListener, MouseMotionListener, Runnable {
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+    Vector2<Double> cameraPosition = new Vector2<Double>(0.0, 0.0);
+    double zoom = 1; // 1 pixel is 1 pixel
 
-    public GameCanvas(String windowName) {
-        super(windowName);
+    public GameCanvas() {
+        this.setPreferredSize(new Dimension(800, 600));
+        this.setDoubleBuffered(true);
+        this.setBackground(Color.black);
 
-        Canvas canvas = new Canvas() {
-            public void paint(Graphics graphics) {
-                for (GameObject gameObject : gameObjects) {
-                    gameObject.paint(graphics);
-                }
-            }
-        };
-        canvas.setBackground(Color.black);
-        
-        add(canvas);
-        setSize(500, 500);
-        setVisible(true);
+        Thread thread = new Thread(this);
+        thread.start();
     }
+
     public void run() {
-        // TODO: start loops and stuff
+        while (true) {
+            update();
+            repaint();
+        }
+
+    }
+
+    public void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+
+        Graphics2D graphics2D = (Graphics2D)graphics;
+
+        Vector2<Double> scale = new Vector2<Double>(
+            zoom * this.getWidth() / 10.0, 
+            zoom * this.getWidth() / 10.0
+        );
+
+        Vector2<Integer> centerScreenCords = new Vector2<Integer>(
+            (int) Math.round((this.getWidth() / 2) + scale.x * cameraPosition.x),
+            (int) Math.round((this.getHeight() / 2) + scale.y * cameraPosition.y)
+        );
+        
+        for (GameObject gameObject : gameObjects) {
+            gameObject.draw(graphics2D, centerScreenCords, scale);
+        }
+
+        graphics2D.dispose();
+    }
+
+    public void update() {
+        // for (GameObject gameObject: gameObjects) {
+        //     gameObject.update();
+        // }
+        // System.out.println(this.zoom);
+
+        // this.zoom = zoom * 1;
+
+        // cameraPosition.x -= 0.00001;
+        // System.out.println(cameraPosition);
     }
 
     public void addObject(GameObject object) {
@@ -38,7 +71,8 @@ public class GameCanvas extends JFrame implements MouseListener, MouseMotionList
     }
 
     public void mouseClicked(MouseEvent e) {
-
+        cameraPosition.x += 1;
+        System.out.println(cameraPosition.x);
     }
 
     public void mouseMoved(MouseEvent e) {
