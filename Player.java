@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.event.*;
+import java.time.Instant;
+import java.time.Duration;
 
 import gameEngine.GameCanvas;
 import gameEngine.GameObject;
@@ -10,6 +12,10 @@ import gameEngine.dummyObjects.Circle;
 public class Player extends GameObject{
 
     GameCanvas camera;
+    int gridX = 0;
+    int gridY = 0;
+
+    Instant lastMovement = Instant.now();
 
     Player(Vector2<Double> position, Vector2<Double> scale) {
         super(position, scale);
@@ -21,24 +27,42 @@ public class Player extends GameObject{
 
     @Override
     public void update() {
-        if (InputManager.isPressed(KeyEvent.VK_W)) {
-            this.position.y -= 0.000001;
-            this.position.y = -1.0;
-        }
-        if (InputManager.isPressed(KeyEvent.VK_S)) {
-            this.position.y += 0.000001;
-            this.position.y = 1.0;
-        }
-        if (InputManager.isPressed(KeyEvent.VK_A)) {
-            this.position.x -= 0.000001;
-            this.position.x = -1.0;
-        }
-        if (InputManager.isPressed(KeyEvent.VK_D)) {
-            this.position.x += 0.000001;
-            this.position.x = 1.0;
-        }
+        
+        handleMovement();
 
         camera.cameraPosition = position;
     }
 
+
+    void handleMovement() {
+
+        if (Duration.between(lastMovement, Instant.now()).toMillis() < 100) {
+            return;
+        }
+        lastMovement = Instant.now();
+
+        this.position = new Vector2<Double>((double) gridX, (double) gridY);
+
+        if (InputManager.isPressed(KeyEvent.VK_W)) {
+            this.gridY -= 1;
+        }
+        if (InputManager.isPressed(KeyEvent.VK_S)) {
+            this.gridY += 1;
+        }
+        if (InputManager.isPressed(KeyEvent.VK_A)) {
+            this.gridX -= 1;
+        }
+        if (InputManager.isPressed(KeyEvent.VK_D)) {
+            this.gridX += 1;
+        }
+
+        Vector2<Double> direction = new Vector2<Double>(
+            Math.signum(gridX - position.x), 
+            Math.signum(gridY - position.y)
+        );
+
+        // this.position.
+
+        this.position = new Vector2<Double>((double) gridX, (double) gridY);
+    }
 }

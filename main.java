@@ -18,12 +18,12 @@ public class main {
 
         window.add(gameCanvas);
 
-        for (int i = -3; i <= 3; i++) {
-            for (int j = -3; j <= 3; j++) {
+        for (int i = -30; i <= 30; i++) {
+            for (int j = -30; j <= 30; j++) {
                 Square square = new Square(
                     new Vector2<Double>((double) i, (double) j), 
                     new Vector2<Double>(1.0, 1.0),
-                    new Color(36 * (i + 4), 36 * (j + 4), 0),
+                    new Color(1 * (i + 100), 1 * (j + 100), 0),
                     Color.white
                 );
                 gameCanvas.addObject(square);
