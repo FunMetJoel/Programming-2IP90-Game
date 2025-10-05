@@ -7,17 +7,14 @@ import java.util.BitSet;
 
 import javax.swing.ImageIcon;
 
-public class GridItem extends GameObject {
-
-    static Image image = new ImageIcon("assets/grasstop.png").getImage();
+public abstract class GridItem extends GameObject {
+    public boolean canEnter;
 
     public GridItem(Vector2<Double> position, Vector2<Double> scale) {
         super(position, scale);
     }
 
-    public Image getTexture(byte situation) {
-        return image;
-    }
+    public abstract Image getTexture(byte situation);
 
     @Override
     public void paint(Graphics graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {

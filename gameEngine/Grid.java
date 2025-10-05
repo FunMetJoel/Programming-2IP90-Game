@@ -3,22 +3,42 @@ package gameEngine;
 import java.awt.Graphics;
 
 public class Grid extends GameObject {
-    int gridSize = 51;
+    public final int gridSize = 51;
     GridItem[][] gridData = new GridItem[gridSize][gridSize];
 
     public Grid() {
-        for (int i = 0; i < gridSize; i++) {
-            for (int j = 0; j < gridSize; j++) {
-                Vector2<Double> newPos = new Vector2<Double>(
-                    (double) i - gridSize / 2, 
-                    (double) j - gridSize / 2
-                );
+        // // TODO: remove this, this is only for testing
+        // for (int i = 0; i < gridSize; i++) {
+        //     for (int j = 0; j < gridSize; j++) {
+        //         Vector2<Integer> newGridPos = getGridPos(i, j);
+        //         Vector2<Double> newPos = new Vector2<Double>(
+        //             (double) newGridPos.x, 
+        //             (double) newGridPos.y
+        //         );
 
-                System.out.println(newPos);
+        //         System.out.println(newPos);
 
-                gridData[i][j] = new GridItem(newPos, scale);
-            }
-        }
+        //         gridData[i][j] = new GridItem(newPos, scale);
+        //     }
+        // }
+    }
+
+    protected Vector2<Integer> getArrayPos(int gridX, int gridY) {
+        return new Vector2<Integer>(
+            gridX + gridSize / 2, 
+            gridY + gridSize / 2
+        );
+    }
+
+    protected Vector2<Integer> getGridPos(int arrayX, int arrayY) {
+        return new Vector2<Integer>(
+            arrayX - gridSize / 2, 
+            arrayY - gridSize / 2
+        );
+    }
+
+    public void setTile(GridItem tile, int arrayX, int arrayY) {
+        gridData[arrayX][arrayY] = tile;
     }
 
     @Override

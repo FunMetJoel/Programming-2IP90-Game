@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import gameEngine.*;
 import gameEngine.dummyObjects.Circle;
 import gameEngine.dummyObjects.Square;
+import level.Level;
 
 public class main {
     public static void main(String[] args) {
@@ -18,25 +19,8 @@ public class main {
 
         window.add(gameCanvas);
 
-        // for (int i = -30; i <= 30; i++) {
-        //     for (int j = -30; j <= 30; j++) {
-        //         Square square = new Square(
-        //             new Vector2<Double>((double) i, (double) j), 
-        //             new Vector2<Double>(1.0, 1.0),
-        //             new Color(1 * (i + 100), 1 * (j + 100), 0),
-        //             Color.white
-        //         );
-
-        //         GridItem gridItem = new GridItem(
-        //             new Vector2<Double>((double) i, (double) j), 
-        //             new Vector2<Double>(1.0, 1.0)
-        //         );
-        //         gameCanvas.addObject(gridItem);
-        //     }
-        // }
-
         gameCanvas.addObject(
-            new Grid()
+            new Level()
         );
 
         gameCanvas.addObject(
