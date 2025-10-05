@@ -26,7 +26,12 @@ public class main {
                     new Color(1 * (i + 100), 1 * (j + 100), 0),
                     Color.white
                 );
-                gameCanvas.addObject(square);
+
+                GridItem gridItem = new GridItem(
+                    new Vector2<Double>((double) i, (double) j), 
+                    new Vector2<Double>(1.0, 1.0)
+                );
+                gameCanvas.addObject(gridItem);
             }
         }
 
@@ -43,6 +48,7 @@ public class main {
         );
 
         gameCanvas.addObject(player);
+
         player.camera = gameCanvas;
 
         
