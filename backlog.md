@@ -3,7 +3,7 @@
 # Topics of chocice:
 1. Pathfinding algorithm
 2. Mastering git
-3. Procedural generation (Perlin noise)
+3. Procedural generation of the obstacles (Perlin noise)
 
 ## Rendering the game 
 1. Start the application, click "New Game" button and the game field will launch and the game will start.
@@ -15,7 +15,7 @@
 
 ## Movement of the player
 1. After the game launches, the player is able to move in directions (NSWE) inside the game field using some key input (to be decided later).
-2. no remark yet
+2. No remarks yet.
 
 ## Structural generation of the obstacles
 1. After the launch of the game, obstacles are generated in the game field. These are barriers, impenetrable by any game entity. Each time there should be a different setting of them.
@@ -27,8 +27,24 @@
 
 ## Player lifetime counter
 1. After the game launches, a Player lifetime counter should appear somewhere in the game field (without obstructing the field). It should be set to a default value (TBD).
-2. no remark yet
+2. No remarks yet.
 
-## Make game environment
+## End game screen
+1. After the player is caught by an enemy or runs out of time, the game should and and a short message with a score should be displayed
+2. We can also add an option to play again.
 
-## 
+## Textures of the gamefield, player and enemies
+1. Throught the gameplay there should be visible textures of diverse game entities.
+2. No remarks yet.
+
+## Reading the input
+1. Player will interact with the game using keyboard keys.
+2. No remarks yet.
+
+## Initial postion of the opponents
+1. After the game is launched, opponents should be evenly distributed on the map.
+2. No remarks yet.
+
+## Initial position of the player
+1. After the game is launched, the player should be generated in a start position, giving it an opportunity to run away from the enemies.
+2. No remarks yet.
