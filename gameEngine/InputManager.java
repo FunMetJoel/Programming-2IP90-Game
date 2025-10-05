@@ -28,7 +28,6 @@ public class InputManager extends JPanel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("Key Pressed: " + KeyEvent.getKeyText(keyCode) + ": " + keyCode);
         pressedKeyCodes.add(keyCode);
     }
 
@@ -36,7 +35,6 @@ public class InputManager extends JPanel implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("Key Released: " + KeyEvent.getKeyText(keyCode));
         pressedKeyCodes.remove(keyCode);
     }
 

@@ -17,6 +17,8 @@ public class Player extends GameObject{
 
     Instant lastMovement = Instant.now();
 
+    Vector2<Double> direction = new Vector2<Double>(0.0, 0.0);
+
     Player(Vector2<Double> position, Vector2<Double> scale) {
         super(position, scale);
 
@@ -30,18 +32,24 @@ public class Player extends GameObject{
         
         handleMovement();
 
-        camera.cameraPosition = position;
+        camera.cameraPosition.x = position.x;
+        camera.cameraPosition.y = position.y;
     }
 
 
     void handleMovement() {
 
-        if (Duration.between(lastMovement, Instant.now()).toMillis() < 100) {
+        double deltaTime = (double) Duration.between(lastMovement, Instant.now()).toMillis();
+
+        this.position.x = ((double) gridX - direction.x) + (deltaTime / 100) * direction.x;
+        this.position.y = ((double) gridY - direction.y) + (deltaTime / 100) * direction.y;
+
+        if (deltaTime < 100) {
             return;
         }
         lastMovement = Instant.now();
-
-        this.position = new Vector2<Double>((double) gridX, (double) gridY);
+        this.position.x = (double) gridX;
+        this.position.y = (double) gridY;
 
         if (InputManager.isPressed(KeyEvent.VK_W)) {
             this.gridY -= 1;
@@ -56,13 +64,9 @@ public class Player extends GameObject{
             this.gridX += 1;
         }
 
-        Vector2<Double> direction = new Vector2<Double>(
+        direction = new Vector2<Double>(
             Math.signum(gridX - position.x), 
             Math.signum(gridY - position.y)
         );
-
-        // this.position.
-
-        this.position = new Vector2<Double>((double) gridX, (double) gridY);
     }
 }
