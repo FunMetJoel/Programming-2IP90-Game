@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.*;
 import java.time.Instant;
 import java.time.Duration;
@@ -15,6 +16,8 @@ public class Player extends GameObject{
     int gridX = 0;
     int gridY = 0;
 
+    public level.Level level;
+
     Instant lastMovement = Instant.now();
 
     Vector2<Double> direction = new Vector2<Double>(0.0, 0.0);
@@ -22,9 +25,28 @@ public class Player extends GameObject{
     Player(Vector2<Double> position, Vector2<Double> scale) {
         super(position, scale);
 
-        Circle circle = new Circle(new Vector2<Double>(0.0, 0.0), new Vector2<Double>(1.0, 1.0), Color.blue, Color.blue);
+        // Circle circle = new Circle(new Vector2<Double>(0.0, 0.0), new Vector2<Double>(1.0, 1.0), Color.blue, Color.blue);
 
-        children.add(circle);
+        // children.add(circle);
+    }
+
+    public void paint(Graphics graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
+        graphics.setColor(Color.red);
+
+        graphics.fillOval(
+            centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
+            centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
+            (int) Math.round(scale.x), 
+            (int) Math.round(scale.y)
+        );
+
+        graphics.setColor(Color.BLACK);
+        graphics.drawOval(
+            centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
+            centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
+            (int) Math.round(scale.x), 
+            (int) Math.round(scale.y)
+        );
     }
 
     @Override
@@ -52,16 +74,24 @@ public class Player extends GameObject{
         this.position.y = (double) gridY;
 
         if (InputManager.isPressed(KeyEvent.VK_W)) {
-            this.gridY -= 1;
+            if (level.canEnter(gridX, gridY - 1)) {
+                this.gridY -= 1;
+            }
         }
         if (InputManager.isPressed(KeyEvent.VK_S)) {
-            this.gridY += 1;
+            if (level.canEnter(gridX, gridY + 1)) {
+                this.gridY += 1;
+            }
         }
         if (InputManager.isPressed(KeyEvent.VK_A)) {
-            this.gridX -= 1;
+            if (level.canEnter(gridX - 1, gridY)) {
+                this.gridX -= 1;
+            }
         }
         if (InputManager.isPressed(KeyEvent.VK_D)) {
-            this.gridX += 1;
+            if (level.canEnter(gridX + 1, gridY)) {
+                this.gridX += 1;
+            }
         }
 
         direction = new Vector2<Double>(

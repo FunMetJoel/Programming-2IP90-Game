@@ -19,8 +19,10 @@ public class main {
 
         window.add(gameCanvas);
 
+        Level level = new Level();
+
         gameCanvas.addObject(
-            new Level()
+            level
         );
 
         gameCanvas.addObject(
@@ -34,6 +36,7 @@ public class main {
             new Vector2<Double>(0.0, 0.0), 
             new Vector2<Double>(0.8, 0.8)
         );
+        player.level = level;
 
         gameCanvas.addObject(player);
 

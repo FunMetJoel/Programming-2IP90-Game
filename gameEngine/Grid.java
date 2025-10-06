@@ -23,6 +23,17 @@ public class Grid extends GameObject {
         // }
     }
 
+    public boolean canEnter(int gridX, int gridY) {
+        Vector2<Integer> arrayPosition = getArrayPos(gridX, gridY);
+        if (arrayPosition.x < 0 || arrayPosition.y < 0) {
+            return false;
+        }
+        if (arrayPosition.x > gridSize || arrayPosition.y > gridSize) {
+            return false;
+        }
+        return gridData[arrayPosition.x][arrayPosition.y].canEnter;
+    }
+
     protected Vector2<Integer> getArrayPos(int gridX, int gridY) {
         return new Vector2<Integer>(
             gridX + gridSize / 2, 
@@ -65,5 +76,4 @@ public class Grid extends GameObject {
             }
         }
     }
-    
 }
