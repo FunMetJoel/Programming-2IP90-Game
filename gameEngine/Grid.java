@@ -2,38 +2,40 @@ package gameEngine;
 
 import java.awt.Graphics;
 
+/**
+ * A grid of GridItem tiles.
+ */
 public class Grid extends GameObject {
     public final int gridSize = 51;
     GridItem[][] gridData = new GridItem[gridSize][gridSize];
 
     public Grid() {
-        // // TODO: remove this, this is only for testing
-        // for (int i = 0; i < gridSize; i++) {
-        //     for (int j = 0; j < gridSize; j++) {
-        //         Vector2<Integer> newGridPos = getGridPos(i, j);
-        //         Vector2<Double> newPos = new Vector2<Double>(
-        //             (double) newGridPos.x, 
-        //             (double) newGridPos.y
-        //         );
 
-        //         System.out.println(newPos);
-
-        //         gridData[i][j] = new GridItem(newPos, scale);
-        //     }
-        // }
     }
 
+    /**
+     * Checks if an object can enter a tile.
+     * @param gridX the x coordinate of the tile
+     * @param gridY the y coordinate of the tile
+     * @return if the tile is enterable
+     */
     public boolean canEnter(int gridX, int gridY) {
         Vector2<Integer> arrayPosition = getArrayPos(gridX, gridY);
         if (arrayPosition.x < 0 || arrayPosition.y < 0) {
             return false;
         }
-        if (arrayPosition.x > gridSize || arrayPosition.y > gridSize) {
+        if (arrayPosition.x >= gridSize || arrayPosition.y >= gridSize) {
             return false;
         }
         return gridData[arrayPosition.x][arrayPosition.y].canEnter;
     }
 
+    /**
+     * Calculates the position in the grid array from the worldPosition of the tile.
+     * @param gridX the world pos X of the tile
+     * @param gridY the world pos Y of the tile
+     * @return The x and y of the array object
+     */
     protected Vector2<Integer> getArrayPos(int gridX, int gridY) {
         return new Vector2<Integer>(
             gridX + gridSize / 2, 
@@ -41,6 +43,12 @@ public class Grid extends GameObject {
         );
     }
 
+    /**
+     * Gets the world position from a array element.
+     * @param arrayX the x in the array
+     * @param arrayY the y in the array
+     * @return The world x and y of the tile
+     */
     protected Vector2<Integer> getGridPos(int arrayX, int arrayY) {
         return new Vector2<Integer>(
             arrayX - gridSize / 2, 

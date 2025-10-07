@@ -3,7 +3,6 @@ package level;
 import java.util.Random;
 
 import gameEngine.Grid;
-import gameEngine.GridItem;
 import gameEngine.Vector2;
 
 public class Level extends Grid {
@@ -23,7 +22,7 @@ public class Level extends Grid {
                 );
 
                 // TODO: Make this a better generator function
-                if ((seed * new Random().nextInt()) % 2 == 0) {
+                if ((seed * new Random().nextInt()) % 5 != 0) {
                     setTile(
                         new Grass(newPos, scale), 
                         i, 
