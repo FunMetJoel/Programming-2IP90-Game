@@ -55,8 +55,8 @@ public class GameCanvas extends JPanel implements Runnable {
         }
 
         Vector2<Double> scale = new Vector2<Double>(
-            zoom * width / 10.0, 
-            zoom * width / 10.0
+            zoom * width / 15.0, 
+            zoom * width / 15.0
         );
 
         Vector2<Integer> centerScreenCords = new Vector2<Integer>(

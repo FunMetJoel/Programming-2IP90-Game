@@ -30,13 +30,23 @@ public class Grid extends GameObject {
         return gridData[arrayPosition.x][arrayPosition.y].canEnter;
     }
 
+    public boolean canEnterArrayPos(int arrayX, int arrayY) {
+        if (arrayX < 0 || arrayY < 0) {
+            return false;
+        }
+        if (arrayX >= gridSize || arrayY >= gridSize) {
+            return false;
+        }
+        return gridData[arrayX][arrayY].canEnter;
+    }
+
     /**
      * Calculates the position in the grid array from the worldPosition of the tile.
      * @param gridX the world pos X of the tile
      * @param gridY the world pos Y of the tile
      * @return The x and y of the array object
      */
-    protected Vector2<Integer> getArrayPos(int gridX, int gridY) {
+    public Vector2<Integer> getArrayPos(int gridX, int gridY) {
         return new Vector2<Integer>(
             gridX + gridSize / 2, 
             gridY + gridSize / 2
