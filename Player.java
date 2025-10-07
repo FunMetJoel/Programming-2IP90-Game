@@ -71,22 +71,14 @@ public class Player extends GameObject{
         this.position.x = (double) gridX;
         this.position.y = (double) gridY;
 
-        if (InputManager.isPressed(KeyEvent.VK_W)) {
-            if (level.canEnter(gridX, gridY - 1)) {
-                this.gridY -= 1;
-            }
-        } else if (InputManager.isPressed(KeyEvent.VK_S)) {
-            if (level.canEnter(gridX, gridY + 1)) {
-                this.gridY += 1;
-            }
-        } else if (InputManager.isPressed(KeyEvent.VK_A)) {
-            if (level.canEnter(gridX - 1, gridY)) {
-                this.gridX -= 1;
-            }
-        } else if (InputManager.isPressed(KeyEvent.VK_D)) {
-            if (level.canEnter(gridX + 1, gridY)) {
-                this.gridX += 1;
-            }
+        if (InputManager.isPressed(KeyEvent.VK_W) && level.canEnter(gridX, gridY - 1)) {
+            this.gridY -= 1;
+        } else if (InputManager.isPressed(KeyEvent.VK_S) && level.canEnter(gridX, gridY + 1)) {
+            this.gridY += 1;
+        } else if (InputManager.isPressed(KeyEvent.VK_A) && level.canEnter(gridX - 1, gridY)) {
+            this.gridX -= 1;
+        } else if (InputManager.isPressed(KeyEvent.VK_D) && level.canEnter(gridX + 1, gridY)) {
+            this.gridX += 1;
         }
 
         direction = new Vector2<Double>(

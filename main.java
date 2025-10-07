@@ -24,13 +24,6 @@ public class main {
             level
         );
 
-        gameCanvas.addObject(
-            new Circle(new Vector2<Double>(0.0, 0.0), new Vector2<Double>(1.0, 1.0), Color.red, null)
-        );
-        gameCanvas.addObject(
-            new Circle(new Vector2<Double>(1.0, 0.0), new Vector2<Double>(0.8, 0.8), Color.red, null)
-        );
-
         Player player = new Player(
             new Vector2<Double>(0.0, 0.0), 
             new Vector2<Double>(0.8, 0.8)
@@ -42,8 +35,10 @@ public class main {
         player.camera = gameCanvas;
 
         GameManager gameManager = new GameManager(player, level, gameCanvas);
-
         gameCanvas.addObject(gameManager);
+
+        Enemy enemy = new Enemy(new Vector2<Double>(10.0, 10.0), gameManager);
+        gameCanvas.addObject(enemy);
 
         
         Thread thread = new Thread(gameCanvas);

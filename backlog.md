@@ -2,12 +2,17 @@
 
 # Topics of chocice:
 1. Pathfinding algorithm
-2. Mastering git
-3. Procedural generation of the obstacles (Perlin noise)
+2. Procedural generation of the obstacles (Perlin noise)
+3. Mastering git
 
-## Rendering the game 
-1. Start the application, click "New Game" button and the game field will launch and the game will start.
-2. If we have time, we can add different difficulties, difficulty menu will appear after pressing "New Game".
+## Rendering the game
+1. The application should render sprites to the screen
+2. Things on the front should be rendered for thing in the background
+3. The camera should be able to move around
+
+## Launching the game
+4. Start the application, click "New Game" button and the game field will launch and the game will start.
+5. If we have time, we can add different difficulties, difficulty menu will appear after pressing "New Game".
 
 ## Movement of the opponents
 1. After the game launches, opponents try to catch the player and end the game, using a pathfinding algotithm.
@@ -20,6 +25,7 @@
 ## Structural generation of the obstacles
 1. After the launch of the game, obstacles are generated in the game field. These are barriers, impenetrable by any game entity. Each time there should be a different setting of them.
 2. There is a fixed number and shape of obstacles that always appear in the level.
+3. If there is time, some special tiles with special properties should be created
 
 ## Generating the fuel canisters
 1. After the game launches, there should be constantly generated fuel canisters in the game field in random tiles, which upon collection by the player extend the player's life length.
