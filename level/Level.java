@@ -1,5 +1,7 @@
 package level;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
 
 import gameEngine.Grid;
@@ -39,6 +41,18 @@ public class Level extends Grid {
                 
             }
         }
+    }
+
+    @Override
+    public void paint(Graphics graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
+        graphics.setColor(Color.DARK_GRAY);
+        
+        graphics.fillRect(
+            centerScreenCords.x - (int) Math.round(scale.x * 0.5 * this.gridSize), 
+            centerScreenCords.y - (int) Math.round(scale.y * 0.5 * this.gridSize), 
+            (int) Math.round(scale.x * this.gridSize), 
+            (int) Math.round(scale.y * this.gridSize)
+        );
     }
 
 

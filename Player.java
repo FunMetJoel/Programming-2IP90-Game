@@ -51,11 +51,7 @@ public class Player extends GameObject{
 
     @Override
     public void update() {
-        
         handleMovement();
-
-        camera.cameraPosition.x = position.x;
-        camera.cameraPosition.y = position.y;
     }
 
 

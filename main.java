@@ -41,6 +41,10 @@ public class main {
 
         player.camera = gameCanvas;
 
+        GameManager gameManager = new GameManager(player, level, gameCanvas);
+
+        gameCanvas.addObject(gameManager);
+
         
         Thread thread = new Thread(gameCanvas);
         thread.start();

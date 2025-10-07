@@ -10,7 +10,7 @@ import javax.swing.*;
 public class GameCanvas extends JPanel implements Runnable {
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     public Vector2<Double> cameraPosition = new Vector2<Double>(0.0, 0.0);
-    double zoom = 1; // 1 pixel is 1 pixel
+    public double zoom = 1; // 1 pixel is 1 pixel
 
     /**
      * Creates a default game canvas.
@@ -73,5 +73,13 @@ public class GameCanvas extends JPanel implements Runnable {
      */
     public void addObject(GameObject object) {
         gameObjects.add(object);
+    }
+
+    /**
+     * Removes an object from the canvas.
+     * @param object the object to remove
+     */
+    public void removeObject(GameObject object) {
+        gameObjects.remove(object);
     }
 }

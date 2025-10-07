@@ -94,4 +94,8 @@ public abstract class GameObject {
             gameObject.updateAll();
         }
     }
+
+    public Vector2<Double> getPosition() {
+        return this.position;
+    }
 }
