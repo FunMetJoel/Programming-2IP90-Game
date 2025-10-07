@@ -54,13 +54,13 @@ public class GameCanvas extends JPanel implements Runnable {
         }
 
         Vector2<Double> scale = new Vector2<Double>(
-            zoom * this.getWidth() / 10.0, 
-            zoom * this.getWidth() / 10.0
+            zoom * width / 10.0, 
+            zoom * width / 10.0
         );
 
         Vector2<Integer> centerScreenCords = new Vector2<Integer>(
-            (int) Math.round((this.getWidth() / 2) - scale.x * cameraPosition.x),
-            (int) Math.round((this.getHeight() / 2) - scale.y * cameraPosition.y)
+            (int) Math.round((width / 2) - scale.x * cameraPosition.x),
+            (int) Math.round((height / 2) - scale.y * cameraPosition.y)
         );
         
         for (GameObject gameObject : gameObjects) {

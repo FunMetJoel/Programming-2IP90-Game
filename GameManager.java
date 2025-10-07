@@ -58,6 +58,9 @@ public class GameManager extends GameObject {
             canvas.zoom = 1;
             canvas.cameraPosition = player.getPosition();
         }
+
+        player.screenMiddle.x = (canvas.getWidth() / 2);
+        player.screenMiddle.y = (canvas.getHeight() / 2);
     }
 
 

@@ -1,7 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.*;
 import java.time.Instant;
+
+import javax.swing.ImageIcon;
+
 import java.time.Duration;
 
 import gameEngine.GameCanvas;
@@ -9,12 +13,18 @@ import gameEngine.GameObject;
 import gameEngine.InputManager;
 import gameEngine.Vector2;
 import gameEngine.dummyObjects.Circle;
+import java.awt.Image;
+
 
 public class Player extends GameObject{
 
     GameCanvas camera;
     int gridX = 0;
     int gridY = 0;
+
+    public Vector2<Integer> screenMiddle = new Vector2<Integer>(0, 0);
+
+    static Image image = new ImageIcon("assets/TempPlayer.png").getImage();
 
     public level.Level level;
 
@@ -31,21 +41,13 @@ public class Player extends GameObject{
     }
 
     public void paint(Graphics[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
-        graphics[1].setColor(Color.red);
-
-        graphics[1].fillOval(
-            centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
-            centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
+        graphics[1].drawImage(
+            image,
+            screenMiddle.x - (int) Math.round(scale.x * 0.5), 
+            screenMiddle.y - (int) Math.round(scale.y * 0.5), 
             (int) Math.round(scale.x), 
-            (int) Math.round(scale.y)
-        );
-
-        graphics[1].setColor(Color.BLACK);
-        graphics[1].drawOval(
-            centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
-            centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
-            (int) Math.round(scale.x), 
-            (int) Math.round(scale.y)
+            (int) Math.round(scale.y),
+            null
         );
     }
 
