@@ -17,7 +17,7 @@ public abstract class GridItem extends GameObject {
 
     @Override
     public void paint(
-        Graphics graphics, 
+        Graphics[] graphics, 
         Vector2<Integer> centerScreenCords, 
         Vector2<Double> scale
     ) {
@@ -32,7 +32,7 @@ public abstract class GridItem extends GameObject {
      * @param situation which tiles of the same type it lays between
      */
     public void paint(
-        Graphics graphics, 
+        Graphics[] graphics, 
         Vector2<Integer> centerScreenCords, 
         Vector2<Double> scale, 
         byte situation
@@ -42,7 +42,16 @@ public abstract class GridItem extends GameObject {
             (int) Math.round(centerScreenCords.y + (this.position.y * scale.y))
         );
 
-        graphics.drawImage(
+        graphics[0].drawImage(
+            getTexture(situation),
+            screenPos.x - (int) Math.round(scale.x * 0.52), 
+            screenPos.y - (int) Math.round(scale.y * 0.52), 
+            (int) Math.round(scale.x * 1.04), 
+            (int) Math.round(scale.y * 1.04),
+            null
+        );
+
+        graphics[1].drawImage(
             getTexture(situation),
             screenPos.x - (int) Math.round(scale.x * 0.5), 
             screenPos.y - (int) Math.round(scale.y * 0.5), 

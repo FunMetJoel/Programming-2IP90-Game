@@ -1,6 +1,7 @@
 package gameEngine;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -18,7 +19,7 @@ public class GameCanvas extends JPanel implements Runnable {
     public GameCanvas() {
         this.setPreferredSize(new Dimension(800, 600));
         this.setDoubleBuffered(true);
-        this.setBackground(Color.black);
+        this.setSize(getPreferredSize());
     }
 
     /**
@@ -39,7 +40,18 @@ public class GameCanvas extends JPanel implements Runnable {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
 
-        Graphics2D graphics2D = (Graphics2D) graphics;
+        int width = this.getWidth();
+        int height = this.getHeight();
+        
+        BufferedImage bufferedImages[] = new BufferedImage[5];
+        for (int i = 0; i < bufferedImages.length; i++) {
+            bufferedImages[i] = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        }
+
+        Graphics2D graphicsLayers[] = new Graphics2D[bufferedImages.length];
+        for (int j = 0; j < graphicsLayers.length; j++) {
+            graphicsLayers[j] = bufferedImages[j].createGraphics();
+        }
 
         Vector2<Double> scale = new Vector2<Double>(
             zoom * this.getWidth() / 10.0, 
@@ -52,7 +64,14 @@ public class GameCanvas extends JPanel implements Runnable {
         );
         
         for (GameObject gameObject : gameObjects) {
-            gameObject.draw(graphics2D, centerScreenCords, scale);
+            gameObject.draw(graphicsLayers, centerScreenCords, scale);
+        }
+
+        // Draw all layers to screen
+        Graphics2D graphics2D = (Graphics2D) graphics;
+
+        for (BufferedImage bufferedImage: bufferedImages) {
+            graphics2D.drawImage(bufferedImage, null, 0, 0);
         }
 
         graphics2D.dispose();

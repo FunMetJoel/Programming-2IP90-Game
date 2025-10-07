@@ -18,7 +18,7 @@ public abstract class GameObject {
      * @param scale the scale of the element
      */
     public void paint(
-        Graphics graphics, 
+        Graphics[] graphics, 
         Vector2<Integer> centerScreenCords, 
         Vector2<Double> scale
     ) {
@@ -65,7 +65,7 @@ public abstract class GameObject {
      * @param centerScreenCords the center of the parent object in screen cords
      * @param scale the scale of the parent object
      */
-    public void draw(Graphics graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
+    public void draw(Graphics[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
 
         Vector2<Double> newScale = new Vector2<Double>(
             scale.x * this.scale.x,

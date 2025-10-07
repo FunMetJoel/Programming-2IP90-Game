@@ -28,21 +28,21 @@ public class Circle extends GameObject {
 
     @Override
     public void paint(
-        Graphics graphics, 
+        Graphics[] graphics, 
         Vector2<Integer> centerScreenCords, 
         Vector2<Double> scale
     ) {
-        graphics.setColor(this.fill);
+        graphics[1].setColor(this.fill);
 
-        graphics.fillOval(
+        graphics[1].fillOval(
             centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
             centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
             (int) Math.round(scale.x), 
             (int) Math.round(scale.y)
         );
 
-        graphics.setColor(this.border);
-        graphics.drawOval(
+        graphics[1].setColor(this.border);
+        graphics[1].drawOval(
             centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
             centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
             (int) Math.round(scale.x), 

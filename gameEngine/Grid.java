@@ -61,7 +61,7 @@ public class Grid extends GameObject {
     }
 
     @Override
-    public void draw(Graphics graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
+    public void draw(Graphics[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
 
         Vector2<Double> newScale = new Vector2<Double>(
             scale.x * this.scale.x,

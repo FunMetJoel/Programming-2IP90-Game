@@ -30,18 +30,18 @@ public class Player extends GameObject{
         // children.add(circle);
     }
 
-    public void paint(Graphics graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
-        graphics.setColor(Color.red);
+    public void paint(Graphics[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
+        graphics[1].setColor(Color.red);
 
-        graphics.fillOval(
+        graphics[1].fillOval(
             centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
             centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
             (int) Math.round(scale.x), 
             (int) Math.round(scale.y)
         );
 
-        graphics.setColor(Color.BLACK);
-        graphics.drawOval(
+        graphics[1].setColor(Color.BLACK);
+        graphics[1].drawOval(
             centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
             centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
             (int) Math.round(scale.x), 
@@ -73,18 +73,15 @@ public class Player extends GameObject{
             if (level.canEnter(gridX, gridY - 1)) {
                 this.gridY -= 1;
             }
-        }
-        if (InputManager.isPressed(KeyEvent.VK_S)) {
+        } else if (InputManager.isPressed(KeyEvent.VK_S)) {
             if (level.canEnter(gridX, gridY + 1)) {
                 this.gridY += 1;
             }
-        }
-        if (InputManager.isPressed(KeyEvent.VK_A)) {
+        } else if (InputManager.isPressed(KeyEvent.VK_A)) {
             if (level.canEnter(gridX - 1, gridY)) {
                 this.gridX -= 1;
             }
-        }
-        if (InputManager.isPressed(KeyEvent.VK_D)) {
+        } else if (InputManager.isPressed(KeyEvent.VK_D)) {
             if (level.canEnter(gridX + 1, gridY)) {
                 this.gridX += 1;
             }
