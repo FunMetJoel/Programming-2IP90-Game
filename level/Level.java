@@ -37,8 +37,6 @@ public class Level extends Grid {
                         j
                     );
                 }
-
-                
             }
         }
 

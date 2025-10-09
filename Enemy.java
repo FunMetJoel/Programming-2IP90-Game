@@ -18,7 +18,7 @@ public class Enemy extends GameObject {
 
     int costs[][];
     boolean checked[][];
-    boolean route[][];
+    Vector2<Integer> nextMove = new Vector2<Integer>(0, 0);
 
     Instant lastMovement = Instant.now();
 
@@ -32,9 +32,10 @@ public class Enemy extends GameObject {
         costs = new int[gridSize][gridSize];
         checked = new boolean[gridSize][gridSize];
 
-        calculateCost();
+        // calculateCost();
     }
 
+    // TODO: Fix terrible code
     public void calculateCost() {
         // TODO: Make this be part of the tile
         int movementCost = 1;
@@ -42,19 +43,20 @@ public class Enemy extends GameObject {
         Player player = this.gameManager.player;
         Level level = this.gameManager.currentLevel;
 
-        // Set costs to realy big
+        // Set costs to really big
         for (int i = 0; i < costs.length; i++) {
             for (int j = 0; j < costs.length; j++) {
                 costs[i][j] = Integer.MAX_VALUE;
+                checked[i][j] = false;
             }
         }
 
-        Vector2<Integer> EnemyArrayPos = gameManager.currentLevel.getArrayPos(gridX, gridY);
-        Vector2<Integer> TargetArrayPos = gameManager.currentLevel.getArrayPos(player.gridX, player.gridY);
+        Vector2<Integer> enemyArrayPos = gameManager.currentLevel.getArrayPos(gridX, gridY);
+        Vector2<Integer> targetArrayPos = gameManager.currentLevel.getArrayPos(player.gridX, player.gridY);
 
-        costs[EnemyArrayPos.x][EnemyArrayPos.y] = 0;
+        costs[enemyArrayPos.x][enemyArrayPos.y] = 0;
 
-        while (costs[TargetArrayPos.x][TargetArrayPos.y] == Integer.MAX_VALUE) {
+        while (costs[targetArrayPos.x][targetArrayPos.y] == Integer.MAX_VALUE) {
             int lowestValue = Integer.MAX_VALUE;
             Vector2<Integer> lowestValuePosition = null;
 
@@ -69,19 +71,21 @@ public class Enemy extends GameObject {
 
             
             if (lowestValuePosition == null) {
-                for (int i = 0; i < costs.length; i++) {
-                    for (int j = 0; j < costs.length; j++) {
-                        if (costs[i][j] == Integer.MAX_VALUE) {
-                            System.out.print("inf");
-                        } else {
-                            System.out.print(String.format("%1$3s", costs[i][j]) );
-                        }
-                        System.out.print(" ");
-                    }
-                    System.out.println("");
-                }
-
-                throw new RuntimeException("PathFinding not working");
+                // for (int i = 0; i < costs.length; i++) {
+                //     for (int j = 0; j < costs.length; j++) {
+                //         if (costs[i][j] == Integer.MAX_VALUE) {
+                //             System.out.print("inf");
+                //         } else {
+                //             System.out.print(String.format("%1$3s", costs[i][j]) );
+                //         }
+                //         System.out.print(" ");
+                //     }
+                //     System.out.println("");
+                // }
+                nextMove.x = 0;
+                nextMove.y = 0;
+                return;
+                // throw new RuntimeException("PathFinding not working");
             }
 
             int x = lowestValuePosition.x;
@@ -103,18 +107,43 @@ public class Enemy extends GameObject {
             checked[x][y] = true;
         }
 
-        for (int i = 0; i < costs.length; i++) {
-            for (int j = 0; j < costs.length; j++) {
-                if (costs[i][j] == Integer.MAX_VALUE) {
-                    System.out.print("inf");
-                } else {
-                    System.out.print(costs[i][j]);
-                }
-                System.out.print(" ");
-            }
-            System.out.println("");
-        }
+        // for (int i = 0; i < costs.length; i++) {
+        //     for (int j = 0; j < costs.length; j++) {
+        //         if (costs[i][j] == Integer.MAX_VALUE) {
+        //             System.out.print("inf");
+        //         } else {
+        //             System.out.print(String.format("%1$3s", costs[i][j]) );
+        //         }
+        //         System.out.print(" ");
+        //     }
+        //     System.out.println("");
+        // }
         
+        Vector2<Integer> nextPosition = new Vector2<Integer>(targetArrayPos.x, targetArrayPos.y);
+        Vector2<Integer> currentPosition = new Vector2<Integer>(targetArrayPos.x, targetArrayPos.y);
+        while ((!(enemyArrayPos.equals(nextPosition))) && (costs[nextPosition.x][nextPosition.y] != 0)) {
+            currentPosition.x = nextPosition.x;
+            currentPosition.y = nextPosition.y;
+            int x = currentPosition.x;
+            int y = currentPosition.y;
+            int lowestValue = costs[x][y];
+
+            if ((x+1 < checked.length) && (costs[x+1][y] <= lowestValue)) {
+                lowestValue = costs[x+1][y];
+                nextPosition.x = x + 1;
+            } else if ((x-1 > 0) && (costs[x-1][y] <= lowestValue)) {
+                lowestValue = costs[x-1][y];
+                nextPosition.x = x - 1;
+            } else if ((y+1 < checked.length) && (costs[x][y+1] <= lowestValue)) {
+                lowestValue = costs[x][y+1];
+                nextPosition.y = y + 1; 
+            } else if ((y-1 > 0) && (costs[x][y-1] <= lowestValue)) {
+                lowestValue = costs[x][y-1];
+                nextPosition.y = y - 1; 
+            }
+        }
+        nextMove.x = currentPosition.x - enemyArrayPos.x;
+        nextMove.y = currentPosition.y - enemyArrayPos.y;
     }
 
     @Override
@@ -129,18 +158,7 @@ public class Enemy extends GameObject {
         );
     }
 
-    @Override
-    public void update() {
-        double deltaTime = (double) Duration.between(lastMovement, Instant.now()).toMillis();
-
-        // this.position.x = ((double) gridX - direction.x) + (deltaTime / 100) * direction.x;
-        // this.position.y = ((double) gridY - direction.y) + (deltaTime / 100) * direction.y;
-
-        if (deltaTime < 200) {
-            return;
-        }
-        lastMovement = Instant.now();
-
+    public void handleMovement() {
         Level level = this.gameManager.currentLevel;
         Player player = this.gameManager.player;
         if ((player.gridY < this.gridY) && level.canEnter(gridX, gridY - 1)) {
@@ -155,5 +173,25 @@ public class Enemy extends GameObject {
 
         this.position.x = (double) gridX;
         this.position.y = (double) gridY;
+    }
+
+    @Override
+    public void update() {
+        double deltaTime = (double) Duration.between(lastMovement, Instant.now()).toMillis();
+
+        this.position.x = ((double) gridX - nextMove.x) + (deltaTime / 200) * nextMove.x;
+        this.position.y = ((double) gridY - nextMove.y) + (deltaTime / 200) * nextMove.y;
+
+        if (deltaTime < 200) {
+            return;
+        }
+        lastMovement = Instant.now();
+        calculateCost();
+
+        this.gridX = gridX + nextMove.x;
+        this.gridY = gridY + nextMove.y;
+
+        // this.position.x = (double) gridX;
+        // this.position.y = (double) gridY;
     }
 }

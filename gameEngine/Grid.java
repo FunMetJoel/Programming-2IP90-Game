@@ -30,6 +30,12 @@ public class Grid extends GameObject {
         return gridData[arrayPosition.x][arrayPosition.y].canEnter;
     }
 
+    /**
+     * Check if an array position is enterable, not a obstacle and not outside the grid.
+     * @param arrayX the array X position of the tile
+     * @param arrayY the array Y position of the tile
+     * @return if the tile is enterable
+     */
     public boolean canEnterArrayPos(int arrayX, int arrayY) {
         if (arrayX < 0 || arrayY < 0) {
             return false;
