@@ -50,9 +50,9 @@ public class GameManager extends GameObject {
             canvas.cameraPosition.y = 0.0;
             double fixedTime = ((double) millisSinceStart - 2000.0) / 1000.0;
             if (millisSinceStart > 2000) {
-                canvas.zoom = Math.pow(fixedTime, 4) - 3.75 * Math.pow(fixedTime, 3) + 3.625 * Math.pow(fixedTime, 2) + 0.125;
+                canvas.zoom =  0.9 * (Math.pow(fixedTime, 4) - 3.75 * Math.pow(fixedTime, 3) + 3.625 * Math.pow(fixedTime, 2) + 0.125) + 0.1;
             } else {
-                canvas.zoom = 0.125;
+                canvas.zoom = 0.2125;
             }
         } else {
             canvas.zoom = 1;

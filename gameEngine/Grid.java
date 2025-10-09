@@ -31,12 +31,28 @@ public class Grid extends GameObject {
     }
 
     /**
+     * Check if an array position is enterable, not a obstacle and not outside the grid.
+     * @param arrayX the array X position of the tile
+     * @param arrayY the array Y position of the tile
+     * @return if the tile is enterable
+     */
+    public boolean canEnterArrayPos(int arrayX, int arrayY) {
+        if (arrayX < 0 || arrayY < 0) {
+            return false;
+        }
+        if (arrayX >= gridSize || arrayY >= gridSize) {
+            return false;
+        }
+        return gridData[arrayX][arrayY].canEnter;
+    }
+
+    /**
      * Calculates the position in the grid array from the worldPosition of the tile.
      * @param gridX the world pos X of the tile
      * @param gridY the world pos Y of the tile
      * @return The x and y of the array object
      */
-    protected Vector2<Integer> getArrayPos(int gridX, int gridY) {
+    public Vector2<Integer> getArrayPos(int gridX, int gridY) {
         return new Vector2<Integer>(
             gridX + gridSize / 2, 
             gridY + gridSize / 2

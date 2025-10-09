@@ -1,7 +1,4 @@
 package level;
-
-import java.awt.Color;
-import java.awt.Graphics;
 import java.util.Random;
 
 import gameEngine.Grid;
@@ -37,9 +34,10 @@ public class Level extends Grid {
                         j
                     );
                 }
-
-                
             }
         }
+
+
+        setTile(new Grass(new Vector2<Double>(0.0, 0.0), scale), 25, 25);
     }
 }
