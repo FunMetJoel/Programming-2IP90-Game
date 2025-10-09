@@ -34,10 +34,6 @@ public class Player extends GameObject{
 
     Player(Vector2<Double> position, Vector2<Double> scale) {
         super(position, scale);
-
-        // Circle circle = new Circle(new Vector2<Double>(0.0, 0.0), new Vector2<Double>(1.0, 1.0), Color.blue, Color.blue);
-
-        // children.add(circle);
     }
 
     public void paint(Graphics[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
