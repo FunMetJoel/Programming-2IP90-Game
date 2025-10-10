@@ -108,7 +108,9 @@ public abstract class GameObject {
      * Runs the update function of this object and every child object.
      */
     public void updateAll() {
+        // TODO: Remove this when the time is ready
         this.update();
+        
         this.updateBehaviors();
 
         for (GameObject gameObject : children) {
@@ -116,14 +118,12 @@ public abstract class GameObject {
         }
     }
 
-    // Todo: make this copy position?
     public Vector2<Double> getPosition() {
-        return this.position;
+        return this.position.copy();
     }
 
-    // Todo: make this copy scale?
     public Vector2<Double> getScale() {
-        return this.scale;
+        return this.scale.copy();
     }
 
 }
