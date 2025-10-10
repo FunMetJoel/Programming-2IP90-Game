@@ -11,7 +11,7 @@ public abstract class Behavior {
     /**
      * Function that gets run at the start of the game.
      */
-    public abstract void start();
+    public abstract void setup();
 
     /**
      * Function that runs every game tick.

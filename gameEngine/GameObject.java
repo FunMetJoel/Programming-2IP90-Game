@@ -10,6 +10,7 @@ public abstract class GameObject {
     protected ArrayList<GameObject> children;
     protected Vector2<Double> position = new Vector2<Double>(0.0, 0.0);
     protected Vector2<Double> scale = new Vector2<Double>(1.0, 1.0);
+    protected ArrayList<Behavior> behaviors = new ArrayList<Behavior>();
 
     /**
      * Paints the component to screen.
@@ -27,9 +28,29 @@ public abstract class GameObject {
 
     /**
      * Runs in a loop.
+     * @deprecated use behaviors.
      */
+    @Deprecated 
     public void update() {
 
+    }
+
+    /**
+     * Sets up all behaviors.
+     */
+    private void setupBehaviors() {
+        for (Behavior behavior : behaviors) {
+            behavior.setup();
+        }
+    }
+
+    /**
+     * Updates the gameObjects behaviors.
+     */
+    private void updateBehaviors() {
+        for (Behavior behavior : behaviors) {
+            behavior.update();
+        }
     }
 
     /**
@@ -44,7 +65,7 @@ public abstract class GameObject {
      * @param position the relative position of the gameObject
      */
     public GameObject(Vector2<Double> position) {
-        children = new ArrayList<GameObject>();
+        this();
         this.position = position;
     }
 
@@ -54,8 +75,7 @@ public abstract class GameObject {
      * @param scale the scale of the gameObject
      */
     public GameObject(Vector2<Double> position, Vector2<Double> scale) {
-        children = new ArrayList<GameObject>();
-        this.position = position;
+        this(position);
         this.scale = scale;
     }
 
@@ -89,13 +109,21 @@ public abstract class GameObject {
      */
     public void updateAll() {
         this.update();
+        this.updateBehaviors();
 
         for (GameObject gameObject : children) {
             gameObject.updateAll();
         }
     }
 
+    // Todo: make this copy position?
     public Vector2<Double> getPosition() {
         return this.position;
     }
+
+    // Todo: make this copy scale?
+    public Vector2<Double> getScale() {
+        return this.scale;
+    }
+
 }
