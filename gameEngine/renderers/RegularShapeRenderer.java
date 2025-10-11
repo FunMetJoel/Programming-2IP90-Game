@@ -22,18 +22,18 @@ public class RegularShapeRenderer extends Renderer{
     public void render(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> screenScale) {
         graphics[1].setColor(fillColor);
         graphics[1].fillOval(
-            centerScreenCords.x - (int) Math.round(gameObject.getScale().x * 0.5), 
-            centerScreenCords.y - (int) Math.round(gameObject.getScale().y * 0.5), 
-            (int) Math.round(gameObject.getScale().x), 
-            (int) Math.round(gameObject.getScale().y)
+            centerScreenCords.x - (int) Math.round(screenScale.x * 0.5), 
+            centerScreenCords.y - (int) Math.round(screenScale.y * 0.5), 
+            (int) Math.round(screenScale.x), 
+            (int) Math.round(screenScale.y)
         );
 
         graphics[1].setColor(borderColor);
         graphics[1].drawOval(
-            centerScreenCords.x - (int) Math.round(gameObject.getScale().x * 0.5), 
-            centerScreenCords.y - (int) Math.round(gameObject.getScale().y * 0.5), 
-            (int) Math.round(gameObject.getScale().x), 
-            (int) Math.round(gameObject.getScale().y)
+            centerScreenCords.x - (int) Math.round(screenScale.x * 0.5), 
+            centerScreenCords.y - (int) Math.round(screenScale.y * 0.5), 
+            (int) Math.round(screenScale.x), 
+            (int) Math.round(screenScale.y)
         );
     }
 }
