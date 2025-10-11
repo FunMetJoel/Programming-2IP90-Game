@@ -18,9 +18,9 @@ public class RegularShapeRenderer extends Renderer{
     public enum Shape {
         rectangle,
         oval,
-        triangle,
-        pentagon,
-        hexagon
+        // triangle,
+        // pentagon,
+        // hexagon
     }
 
     public RegularShapeRenderer(GameObject gameObject) {
@@ -32,6 +32,43 @@ public class RegularShapeRenderer extends Renderer{
         Vector2<Integer> upperCorner = getUpperCorner(centerScreenCords, screenScale);
         Vector2<Integer> lowerCorner = screenScale.round();
         
+        switch (shape) {
+            case Shape.rectangle -> {
+                renderRect(graphics, upperCorner, lowerCorner);
+            }
+
+            case Shape.oval -> {
+                renderOval(graphics, upperCorner, lowerCorner);
+            }
+
+            default -> {
+                Logger logger = Logger.getLogger(SpriteRenderer.class.getName());
+                logger.setLevel(Level.WARNING);
+                logger.warning("Shape is null");
+            }
+        }
+        
+    }
+
+    private void renderRect(Graphics2D[] graphics, Vector2<Integer> upperCorner, Vector2<Integer> lowerCorner) {
+        graphics[1].setColor(fillColor);
+        graphics[1].fillRect(
+            upperCorner.x, 
+            upperCorner.y, 
+            lowerCorner.x, 
+            lowerCorner.y
+        );
+
+        graphics[1].setColor(borderColor);
+        graphics[1].drawRect(
+            upperCorner.x, 
+            upperCorner.y, 
+            lowerCorner.x, 
+            lowerCorner.y
+        );
+    }
+
+    private void renderOval(Graphics2D[] graphics, Vector2<Integer> upperCorner, Vector2<Integer> lowerCorner) {
         graphics[1].setColor(fillColor);
         graphics[1].fillOval(
             upperCorner.x, 

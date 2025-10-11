@@ -2,6 +2,8 @@ package gameEngine.dummyObjects;
 
 import gameEngine.GameObject;
 import gameEngine.Vector2;
+import gameEngine.renderers.RegularShapeRenderer;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,10 +12,6 @@ import java.awt.Graphics2D;
  * A square gameObject.
  */
 public class Square extends GameObject {
-
-    Color fill;
-    Color border;
-
     /**
      * Creates a new square with a position, scale, color and borderColor.
      * @param position the relative position of the circle
@@ -23,31 +21,11 @@ public class Square extends GameObject {
      */
     public Square(Vector2<Double> position, Vector2<Double> scale, Color fill, Color border) {
         super(position, scale);
-        this.fill = fill;
-        this.border = border;
-    }
-
-    @Override
-    public void paint(
-        Graphics2D[] graphics, 
-        Vector2<Integer> centerScreenCords, 
-        Vector2<Double> scale
-    ) {
-        graphics[1].setColor(this.fill);
-
-        graphics[1].fillRect(
-            centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
-            centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
-            (int) Math.round(scale.x), 
-            (int) Math.round(scale.y)
-        );
-
-        graphics[1].setColor(this.border);
-        graphics[1].drawRect(
-            centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
-            centerScreenCords.y - (int) Math.round(scale.y * 0.5), 
-            (int) Math.round(scale.x), 
-            (int) Math.round(scale.y)
-        );
+        
+        RegularShapeRenderer renderer = new RegularShapeRenderer(this);
+        renderer.shape = RegularShapeRenderer.Shape.rectangle;
+        renderer.fillColor = fill;
+        renderer.borderColor = border;
+        this.renderer = renderer;
     }
 }

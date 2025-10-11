@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 
@@ -39,9 +40,6 @@ public class main {
 
         Enemy enemy = new Enemy(new Vector2<Double>(10.0, 10.0), gameManager);
         gameCanvas.addObject(enemy);
-
-        Circle circle = new Circle(new Vector2<Double>(1.0, 0.0), new Vector2<Double>(1.0, 1.0), Color.BLUE, Color.ORANGE);
-        gameCanvas.addObject(circle);
         
         Thread thread = new Thread(gameCanvas);
         thread.start();

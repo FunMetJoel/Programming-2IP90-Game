@@ -25,6 +25,7 @@ public class Circle extends GameObject {
         super(position, scale);
         
         RegularShapeRenderer renderer = new RegularShapeRenderer(this);
+        renderer.shape = RegularShapeRenderer.Shape.oval;
         renderer.fillColor = fill;
         renderer.borderColor = border;
         this.renderer = renderer;
