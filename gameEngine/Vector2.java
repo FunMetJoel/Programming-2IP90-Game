@@ -21,4 +21,19 @@ public class Vector2<T extends Number> {
     public String toString() {
         return "(" + x + ", " + y + ")";
     }
+
+    public Vector2<T> copy() {
+        return new Vector2<T>(x, y);
+    }
+
+    /**
+     * Rounds vector to a int.
+     * @return rounded vector
+     */
+    public Vector2<Integer> round() {
+        return new Vector2<Integer>(
+            Math.round(x.floatValue()),
+            Math.round(y.floatValue())
+        );
+    }
 }
