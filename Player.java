@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.*;
 import java.time.Instant;
@@ -36,7 +37,7 @@ public class Player extends GameObject{
         super(position, scale);
     }
 
-    public void paint(Graphics[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
+    public void paint(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
         graphics[1].drawImage(
             image,
             screenMiddle.x - (int) Math.round(scale.x * 0.5), 

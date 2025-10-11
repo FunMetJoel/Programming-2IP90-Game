@@ -4,6 +4,7 @@ import gameEngine.GameObject;
 import gameEngine.Vector2;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  * A square gameObject.
@@ -28,7 +29,7 @@ public class Square extends GameObject {
 
     @Override
     public void paint(
-        Graphics[] graphics, 
+        Graphics2D[] graphics, 
         Vector2<Integer> centerScreenCords, 
         Vector2<Double> scale
     ) {

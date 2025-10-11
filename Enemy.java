@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.time.Duration;
 import java.time.Instant;
@@ -146,7 +147,7 @@ public class Enemy extends GameObject {
     }
 
     @Override
-    public void paint(Graphics[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
+    public void paint(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
         graphics[1].drawImage(
             image,
             centerScreenCords.x - (int) Math.round(scale.x * 0.5), 
