@@ -7,6 +7,8 @@ import java.time.Instant;
 
 import javax.swing.ImageIcon;
 
+import behaviors.GridMovement;
+
 import java.time.Duration;
 
 import gameEngine.GameCanvas;
@@ -33,8 +35,11 @@ public class Player extends GameObject{
 
     Vector2<Double> direction = new Vector2<Double>(0.0, 0.0);
 
-    Player(Vector2<Double> position, Vector2<Double> scale) {
+    Player(Vector2<Double> position, Vector2<Double> scale, level.Level level) {
         super(position, scale);
+        this.behaviors.add(
+            new GridMovement(this, level)
+        );
     }
 
     public void paint(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
@@ -55,32 +60,19 @@ public class Player extends GameObject{
 
 
     void handleMovement() {
-
-        double deltaTime = (double) Duration.between(lastMovement, Instant.now()).toMillis();
-
-        this.position.x = ((double) gridX - direction.x) + (deltaTime / 100) * direction.x;
-        this.position.y = ((double) gridY - direction.y) + (deltaTime / 100) * direction.y;
-
-        if (deltaTime < 100) {
+        GridMovement gridMovement = (GridMovement) this.getBehavior(GridMovement.class);
+        if (!gridMovement.canMove()) {
             return;
         }
-        lastMovement = Instant.now();
-        this.position.x = (double) gridX;
-        this.position.y = (double) gridY;
 
-        if (InputManager.isPressed(KeyEvent.VK_W) && level.canEnter(gridX, gridY - 1)) {
-            this.gridY -= 1;
-        } else if (InputManager.isPressed(KeyEvent.VK_S) && level.canEnter(gridX, gridY + 1)) {
-            this.gridY += 1;
-        } else if (InputManager.isPressed(KeyEvent.VK_A) && level.canEnter(gridX - 1, gridY)) {
-            this.gridX -= 1;
-        } else if (InputManager.isPressed(KeyEvent.VK_D) && level.canEnter(gridX + 1, gridY)) {
-            this.gridX += 1;
+        if (InputManager.isPressed(KeyEvent.VK_W) && gridMovement.canMoveBy(0, -1)) {
+            gridMovement.move(0, -1);
+        } else if (InputManager.isPressed(KeyEvent.VK_S) && gridMovement.canMoveBy(0, 1)) {
+            gridMovement.move(0, 1);
+        } else if (InputManager.isPressed(KeyEvent.VK_A) && gridMovement.canMoveBy(-1, 0)) {
+            gridMovement.move(-1, 0);
+        } else if (InputManager.isPressed(KeyEvent.VK_D) && gridMovement.canMoveBy(1, 0)) {
+            gridMovement.move(1, 0);
         }
-
-        direction = new Vector2<Double>(
-            Math.signum(gridX - position.x), 
-            Math.signum(gridY - position.y)
-        );
     }
 }

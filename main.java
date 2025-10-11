@@ -27,7 +27,8 @@ public class main {
 
         Player player = new Player(
             new Vector2<Double>(0.0, 0.0), 
-            new Vector2<Double>(0.8, 0.8)
+            new Vector2<Double>(0.8, 0.8),
+            level
         );
         player.level = level;
 

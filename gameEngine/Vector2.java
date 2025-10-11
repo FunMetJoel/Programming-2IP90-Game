@@ -72,4 +72,27 @@ public class Vector2<T extends Number> {
             y.doubleValue() + vector.y
         );
     }
+    
+    /**
+     * Subtracts a vector from another.
+     * @param vector the vector to subtract.
+     * @return a new vector with one vector subtracted from the other
+     */
+    public Vector2<Double> subtractVector(Vector2<Double> vector) {
+        return new Vector2<Double>(
+            x.doubleValue() - vector.x,
+            y.doubleValue() - vector.y
+        );
+    }
+
+    /**
+     * Turns the vector in to a double vector.
+     * @return a new vector with double values
+     */
+    public Vector2<Double> toDouble() {
+        return new Vector2<Double>(
+            x.doubleValue(),
+            y.doubleValue()
+        );
+    }
 }

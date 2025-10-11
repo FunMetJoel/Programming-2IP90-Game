@@ -2,6 +2,10 @@ package gameEngine;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import gameEngine.renderers.SpriteRenderer;
 
 /**
  * An object that exist in the game world.
@@ -135,8 +139,39 @@ public abstract class GameObject {
         return this.position.copy();
     }
 
+    /**
+     * Sets the position of the object.
+     * @param x the x position
+     * @param y the y position
+     */
+    public void setPosition(double x, double y) {
+        this.position.x = x;
+        this.position.y = y;
+    }
+
+    /**
+     * Sets the position of the object.
+     * @param position the position
+     */
+    public void setPosition(Vector2<Double> position) {
+        this.position = position;
+    }
+
     public Vector2<Double> getScale() {
         return this.scale.copy();
+    }
+
+    public Behavior getBehavior(Class<? extends Behavior> searchClass) {
+        for (Behavior behavior : behaviors) {
+            if (searchClass.isInstance(behavior)) {
+                return behavior;
+            }
+        }
+
+        Logger logger = Logger.getLogger(SpriteRenderer.class.getName());
+        logger.setLevel(Level.WARNING);
+        logger.warning(this + " does not have a behavior of type " + searchClass.getName());
+        return null;
     }
 
 }

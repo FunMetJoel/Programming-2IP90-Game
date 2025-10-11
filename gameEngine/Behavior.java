@@ -6,7 +6,7 @@ package gameEngine;
  */
 public abstract class Behavior {
 
-    private final GameObject gameObject;
+    protected final GameObject gameObject;
 
     /**
      * Function that gets run at the start of the game.
