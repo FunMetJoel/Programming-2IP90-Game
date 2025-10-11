@@ -18,7 +18,6 @@ public class PseudoRandomGenerator {
      * @return float in range (0, 1]
      */
     public float generatePseudoRandom() {
-        System.out.println(value);
         value = value * 16807;
         value = value % Integer.MAX_VALUE;
 

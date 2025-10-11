@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PseudoArrayGeneration {
     ArrayList<Float> pseudoArray = new ArrayList<Float>();
-    PseudoRandomGenerator prg = new PseudoRandomGenerator(1234);
+    PseudoRandomGenerator prg = new PseudoRandomGenerator(534653652);
 
     int seed = prg.getSeed();
 
@@ -16,6 +16,12 @@ public class PseudoArrayGeneration {
             pseudoArray.add(nextElement);
         }
     }
+
+    ArrayList<Float> getArray() {
+        generateArray();
+        return pseudoArray;
+    }
+
 
     @Override
     public String toString() {
