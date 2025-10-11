@@ -93,6 +93,7 @@ public abstract class GameObject {
         Vector2<Double> deltaPos = this.position.newScaledVector(scale);
         Vector2<Integer> newCenterScreenCords = centerScreenCords.addVector(deltaPos).round();
 
+        // TODO: Remove this when the time is ready
         this.paint(graphics, newCenterScreenCords, newScale);
         
         if (this.renderer != null) {
