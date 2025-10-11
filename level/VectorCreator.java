@@ -12,4 +12,8 @@ public class VectorCreator {
     double dotProduct(double otherX, double otherY) {
         return x * otherX + y * otherY;
     }
+
+    double dotProductVector(VectorCreator v) {
+        return x * v.x + y * v.y;
+    }
 }

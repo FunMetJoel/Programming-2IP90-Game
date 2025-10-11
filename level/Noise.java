@@ -1,15 +1,15 @@
 package level;
 
 public class Noise {
-    float x;
-    float y;
+    double x;
+    double y;
     
-    public Noise(float x, float y) {
+    public Noise(double x, double y) {
         this.x = x;
         this.y = y;
     }
-
-    float calculateNoise() {
+    
+    double calculateNoise() {
         final int indexX = (int) Math.floor(x) & 255;
         final int indexY = (int) Math.floor(y) & 255;
 
@@ -29,6 +29,30 @@ public class Noise {
         final int valueLowerRight = permutationArray[permutationArray[indexX + 1] + indexY];
         final int valueLowerLeft = permutationArray[permutationArray[indexX] + indexY];
 
-        final double dotUpperRight = upperLeftCorner.dotProduct(valueLowerRight, valueLowerLeft)
+        final VectorCreator constantUpperRight = new ConstantVector().makeConstantVector(valueUpperRight);
+        final VectorCreator constantUpperLeft = new ConstantVector().makeConstantVector(valueUpperLeft);
+        final VectorCreator constantLowerRight = new ConstantVector().makeConstantVector(valueLowerRight);
+        final VectorCreator constantLowerLeft = new ConstantVector().makeConstantVector(valueLowerLeft);
+
+        final double dotUpperRight = upperRightCorner.dotProductVector(constantUpperRight);
+        final double dotUpperLeft = upperLeftCorner.dotProductVector(constantUpperLeft);
+        final double dotLowerRight = lowerRightCorner.dotProductVector(constantLowerRight);
+        final double dotLowerLeft = lowerLeftCorner.dotProductVector(constantLowerLeft);
+
+        final double horizontalFade = new Fade(distX).calculateFade();
+        final double verticalFade = new Fade(distY).calculateFade();
+
+        final double firstInterpolation = new LinearInterpolation(verticalFade, dotLowerLeft, dotUpperLeft).doInteroplation();
+        final double secondInterpolation = new LinearInterpolation(verticalFade, dotLowerRight, dotUpperRight).doInteroplation();
+
+        final double noiseValue = new LinearInterpolation(horizontalFade, firstInterpolation, secondInterpolation).doInteroplation();
+
+        //System.out.println(noiseValue);
+
+        return noiseValue;
+    }
+
+    public static void main(String[] args) {
+        new Noise(1.532, 0.463).calculateNoise();
     }
 }
