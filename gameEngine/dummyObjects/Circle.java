@@ -3,12 +3,7 @@ package gameEngine.dummyObjects;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.RegularShapeRenderer;
-import gameEngine.renderers.ShapeRenderer;
-
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
 
 /**
  * A circle gameObject.

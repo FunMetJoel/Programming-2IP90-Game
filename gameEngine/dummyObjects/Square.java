@@ -3,10 +3,7 @@ package gameEngine.dummyObjects;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.RegularShapeRenderer;
-
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 /**
  * A square gameObject.

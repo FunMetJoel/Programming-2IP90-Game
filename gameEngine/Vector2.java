@@ -61,6 +61,11 @@ public class Vector2<T extends Number> {
         );
     }
 
+    /**
+     * Adds two vectors together.
+     * @param vector the other vector.
+     * @return a new vector with both vector values added together.
+     */
     public Vector2<Double> addVector(Vector2<Double> vector) {
         return new Vector2<Double>(
             x.doubleValue() + vector.x,

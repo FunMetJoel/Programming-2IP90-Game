@@ -86,8 +86,9 @@ public abstract class GameObject {
      * @param centerScreenCords the center of the parent object in screen cords
      * @param scale the scale of the parent object
      */
-    public void draw(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
-
+    public void draw(
+        Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale
+    ) {
         Vector2<Double> newScale = this.scale.newScaledVector(scale);
 
         Vector2<Double> deltaPos = this.position.newScaledVector(scale);
@@ -116,6 +117,17 @@ public abstract class GameObject {
 
         for (GameObject gameObject : children) {
             gameObject.updateAll();
+        }
+    }
+
+    /**
+     * Runs setup on all behavior's of this object and its children.
+     */
+    public void setupAll() {
+        this.setupBehaviors();
+
+        for (GameObject gameObject : children) {
+            gameObject.setupAll();
         }
     }
 

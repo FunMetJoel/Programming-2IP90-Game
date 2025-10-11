@@ -1,16 +1,17 @@
 package gameEngine.renderers;
 
+import gameEngine.GameObject;
+import gameEngine.Renderer;
+import gameEngine.Vector2;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Paint;
 import java.awt.Shape;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import gameEngine.GameObject;
-import gameEngine.Renderer;
-import gameEngine.Vector2;
-
+/**
+ * A renderer for shapes.
+ */
 public class ShapeRenderer extends Renderer {
 
     public Shape shape;
@@ -22,7 +23,11 @@ public class ShapeRenderer extends Renderer {
     }
 
     @Override
-    public void render(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> screenScale) {
+    public void render(
+        Graphics2D[] graphics, 
+        Vector2<Integer> centerScreenCords, 
+        Vector2<Double> screenScale
+    ) {
         if (shape == null) {
             Logger logger = Logger.getLogger(SpriteRenderer.class.getName());
             logger.setLevel(Level.WARNING);
