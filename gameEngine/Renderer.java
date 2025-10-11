@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
  */
 public abstract class Renderer {
 
-    private GameObject gameObject;
+    protected GameObject gameObject;
 
     public Renderer(GameObject gameObject) {
         this.gameObject = gameObject;

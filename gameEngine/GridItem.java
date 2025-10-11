@@ -1,6 +1,7 @@
 package gameEngine;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 /**
@@ -17,7 +18,7 @@ public abstract class GridItem extends GameObject {
 
     @Override
     public void paint(
-        Graphics[] graphics, 
+        Graphics2D[] graphics, 
         Vector2<Integer> centerScreenCords, 
         Vector2<Double> scale
     ) {
@@ -32,7 +33,7 @@ public abstract class GridItem extends GameObject {
      * @param situation which tiles of the same type it lays between
      */
     public void paint(
-        Graphics[] graphics, 
+        Graphics2D[] graphics, 
         Vector2<Integer> centerScreenCords, 
         Vector2<Double> scale, 
         byte situation

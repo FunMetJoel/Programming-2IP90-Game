@@ -1,6 +1,7 @@
 package gameEngine;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  * A grid of GridItem tiles.
@@ -77,7 +78,7 @@ public class Grid extends GameObject {
     }
 
     @Override
-    public void draw(Graphics[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
+    public void draw(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
 
         Vector2<Double> newScale = new Vector2<Double>(
             scale.x * this.scale.x,

@@ -11,6 +11,7 @@ public abstract class GameObject {
     protected Vector2<Double> position = new Vector2<Double>(0.0, 0.0);
     protected Vector2<Double> scale = new Vector2<Double>(1.0, 1.0);
     protected ArrayList<Behavior> behaviors = new ArrayList<Behavior>();
+    protected Renderer renderer;
 
     /**
      * Paints the component to screen.
@@ -19,7 +20,7 @@ public abstract class GameObject {
      * @param scale the scale of the element
      */
     public void paint(
-        Graphics[] graphics, 
+        Graphics2D[] graphics, 
         Vector2<Integer> centerScreenCords, 
         Vector2<Double> scale
     ) {
@@ -85,7 +86,7 @@ public abstract class GameObject {
      * @param centerScreenCords the center of the parent object in screen cords
      * @param scale the scale of the parent object
      */
-    public void draw(Graphics[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
+    public void draw(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
 
         Vector2<Double> newScale = new Vector2<Double>(
             scale.x * this.scale.x,
@@ -98,6 +99,10 @@ public abstract class GameObject {
         );
 
         this.paint(graphics, newCenterScreenCords, newScale);
+        
+        if (this.renderer != null) {
+            this.renderer.render(graphics, newCenterScreenCords, newScale);
+        }
 
         for (GameObject gameObject : children) {
             gameObject.draw(graphics, newCenterScreenCords, newScale);
