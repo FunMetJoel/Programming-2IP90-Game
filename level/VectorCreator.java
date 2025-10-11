@@ -1,15 +1,15 @@
 package level;
 
 public class VectorCreator {
-    float x;
-    float y;
+    double x;
+    double y;
 
-    public VectorCreator(float x, float y) {
+    public VectorCreator(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    float dotProduct(float otherX, float otherY) {
+    double dotProduct(double otherX, double otherY) {
         return x * otherX + y * otherY;
     }
 }

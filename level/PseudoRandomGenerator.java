@@ -4,7 +4,7 @@ package level;
 //TODO javadoc
 public class PseudoRandomGenerator {
     int seed;
-    float value;
+    double value;
 
     public PseudoRandomGenerator(int seed) {
         this.seed = seed;
@@ -17,7 +17,7 @@ public class PseudoRandomGenerator {
      * @param seed an initial seed for the generator
      * @return float in range (0, 1]
      */
-    public float generatePseudoRandom() {
+    public double generatePseudoRandom() {
         value = value * 16807;
         value = value % Integer.MAX_VALUE;
 

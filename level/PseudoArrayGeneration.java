@@ -3,7 +3,7 @@ package level;
 import java.util.ArrayList;
 
 public class PseudoArrayGeneration {
-    ArrayList<Float> pseudoArray = new ArrayList<Float>();
+    ArrayList<Double> pseudoArray = new ArrayList<Double>();
     PseudoRandomGenerator prg = new PseudoRandomGenerator(534653652);
 
     int seed = prg.getSeed();
@@ -11,13 +11,13 @@ public class PseudoArrayGeneration {
     void generateArray() {
         for (int i = 0; i < 256; i++) {
             
-            float nextElement = prg.generatePseudoRandom();
+            double nextElement = prg.generatePseudoRandom();
 
             pseudoArray.add(nextElement);
         }
     }
 
-    ArrayList<Float> getArray() {
+    ArrayList<Double> getArray() {
         generateArray();
         return pseudoArray;
     }

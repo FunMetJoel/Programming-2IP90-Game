@@ -1,18 +1,18 @@
 package level;
 
 public class LinearInterpolation {
-    float factor;
-    float start;
-    float end;
+    double factor;
+    double start;
+    double end;
     
-    public LinearInterpolation(float factor, float start, float end) {
+    public LinearInterpolation(double factor, double start, double end) {
         this.factor = factor;
         this.start = start;
         this.end = end;
     }
 
-    public float doInteroplation(){
-        float value = start + factor * (end - start);
+    public double doInteroplation(){
+        double value = start + factor * (end - start);
 
         return value;
     }
