@@ -7,7 +7,7 @@ public class PermutationArrayGeneration {
 
     int[] permutations = new int[256];
 
-    ArrayList<Float> randomNumbers = new PseudoArrayGeneration().getArray();
+    ArrayList<Double> randomNumbers = new PseudoArrayGeneration().getArray();
 
     ArrayList<Integer> indicies = new ArrayList<Integer>();
 
@@ -20,8 +20,8 @@ public class PermutationArrayGeneration {
 
     public void createIndicies() {
         for (int i = 0; i < randomNumbers.size(); i++) {
-            float number = randomNumbers.get(i) * 1000;
-            int index = Math.round(number) % 256;
+            double number = randomNumbers.get(i) * 1000;
+            int index = (int) Math.round(number) % 256;
             indicies.add(index);
         }
     }
@@ -33,6 +33,13 @@ public class PermutationArrayGeneration {
             permutations[i] = permutations[index];
             permutations[index] = tmp;
         }
+    }
+
+    public int[] getPermutatedArray() {
+        createIndicies();
+        fillInitialArray();
+        shuffleArray();
+        return permutations;
     }
 
     @Override
