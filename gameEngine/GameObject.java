@@ -88,16 +88,12 @@ public abstract class GameObject {
      */
     public void draw(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
 
-        Vector2<Double> newScale = new Vector2<Double>(
-            scale.x * this.scale.x,
-            scale.y * this.scale.y
-        );
+        Vector2<Double> newScale = this.scale.newScaledVector(scale);
 
-        Vector2<Integer> newCenterScreenCords = new Vector2<Integer>(
-            (int) Math.round(centerScreenCords.x + (this.position.x * scale.x)),
-            (int) Math.round(centerScreenCords.y + (this.position.y * scale.y))
-        );
+        Vector2<Double> deltaPos = this.position.newScaledVector(scale);
+        Vector2<Integer> newCenterScreenCords = centerScreenCords.addVector(deltaPos).round();
 
+        // TODO: Remove this when the time is ready
         this.paint(graphics, newCenterScreenCords, newScale);
         
         if (this.renderer != null) {

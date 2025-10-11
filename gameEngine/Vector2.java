@@ -36,4 +36,35 @@ public class Vector2<T extends Number> {
             Math.round(y.floatValue())
         );
     }
+
+    /**
+     * Scales a vector by a certain amount.
+     * @param scaler the scalar to scale the vector with
+     * @return a new scaled vector
+     */
+    public Vector2<Double> newScaledVector(Double scaler) {
+        return new Vector2<Double>(
+            x.doubleValue() * scaler,
+            y.doubleValue() * scaler
+        );
+    }
+
+    /**
+     * Scales a vector by a certain amount.
+     * @param scaler the 2d vector with a scalar for the x and for the y
+     * @return a new scaled vector
+     */
+    public Vector2<Double> newScaledVector(Vector2<Double> scaler) {
+        return new Vector2<Double>(
+            x.doubleValue() * scaler.x,
+            y.doubleValue() * scaler.y
+        );
+    }
+
+    public Vector2<Double> addVector(Vector2<Double> vector) {
+        return new Vector2<Double>(
+            x.doubleValue() + vector.x,
+            y.doubleValue() + vector.y
+        );
+    }
 }

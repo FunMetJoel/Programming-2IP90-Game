@@ -24,4 +24,11 @@ public abstract class Renderer {
         Vector2<Integer> centerScreenCords, // TODO: This can also be a double, and then we can have it just round on render.
         Vector2<Double> screenScale
     );
+
+    public static Vector2<Integer> getUpperCorner(Vector2<Integer> centerScreenCords, Vector2<Double> screenScale) {
+        return new Vector2<Integer>(
+            centerScreenCords.x - (int) Math.round(screenScale.x * 0.5), 
+            centerScreenCords.y - (int) Math.round(screenScale.y * 0.5)
+        );
+    }
 }
