@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class PseudoArrayGeneration {
     ArrayList<Double> pseudoArray = new ArrayList<Double>();
-    PseudoRandomGenerator prg = new PseudoRandomGenerator(534653652);
+    PseudoRandomGenerator prg;
 
-    int seed = prg.getSeed();
+    public PseudoArrayGeneration(int seed) {
+        this.prg = new PseudoRandomGenerator(seed);
+    }
 
     void generateArray() {
         for (int i = 0; i < 256; i++) {
@@ -35,7 +37,7 @@ public class PseudoArrayGeneration {
     }
 
     public static void main(String[] args) {
-        PseudoArrayGeneration generate = new PseudoArrayGeneration();
+        PseudoArrayGeneration generate = new PseudoArrayGeneration(1254325334);
         generate.generateArray();
         System.out.println(generate);
     }

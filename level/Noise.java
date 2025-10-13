@@ -1,15 +1,13 @@
 package level;
 
 public class Noise {
-    double x;
-    double y;
+    int seed;
     
-    public Noise(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public Noise(int seed) {
+        this.seed = seed;
     }
     
-    double calculateNoise() {
+    double calculateNoise(int[] permutationArray, double x, double y) {
         final int indexX = (int) Math.floor(x) & 255;
         final int indexY = (int) Math.floor(y) & 255;
 
@@ -20,9 +18,6 @@ public class Noise {
         final VectorCreator upperLeftCorner = new VectorCreator(distX, distY - 1.0);
         final VectorCreator lowerRightCorner = new VectorCreator(distX - 1.0, distY);
         final VectorCreator lowerLeftCorner = new VectorCreator(distX, distY);
-
-        PermutationArrayGeneration permutation = new PermutationArrayGeneration();
-        int[] permutationArray = permutation.getPermutatedArray();
 
         final int valueUpperRight = permutationArray[permutationArray[indexX + 1] + indexY + 1];
         final int valueUpperLeft = permutationArray[permutationArray[indexX] + indexY + 1];
@@ -47,12 +42,12 @@ public class Noise {
 
         final double noiseValue = new LinearInterpolation(horizontalFade, firstInterpolation, secondInterpolation).doInteroplation();
 
-        //System.out.println(noiseValue);
+        System.out.println(noiseValue);
 
         return noiseValue;
     }
 
     public static void main(String[] args) {
-        new Noise(1.532, 0.463).calculateNoise();
+        // new Noise(23.532, 14.463, 12345).calculateNoise();
     }
 }

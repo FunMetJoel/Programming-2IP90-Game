@@ -3,13 +3,20 @@ package level;
 import java.util.ArrayList;
 
 public class PermutationArrayGeneration {
-    PseudoArrayGeneration generation = new PseudoArrayGeneration();
+    PseudoArrayGeneration generation;
 
-    int[] permutations = new int[256];
+    int size = 256;
 
-    ArrayList<Double> randomNumbers = new PseudoArrayGeneration().getArray();
+    int[] permutations = new int[size];
+
+    ArrayList<Double> randomNumbers;
 
     ArrayList<Integer> indicies = new ArrayList<Integer>();
+
+    public PermutationArrayGeneration(int seed) {
+        this.generation = new PseudoArrayGeneration(seed);
+        this.randomNumbers = generation.getArray();
+    }
 
     public void fillInitialArray() {
         for (int i = 0; i < 256; i++) {
@@ -42,6 +49,10 @@ public class PermutationArrayGeneration {
         return permutations;
     }
 
+    public int getSize() {
+        return this.size;
+    }
+
     @Override
     public String toString() {
         String arrayRepresentation = "";
@@ -54,7 +65,7 @@ public class PermutationArrayGeneration {
     }
 
     public static void main(String[] args) {
-        PermutationArrayGeneration generation = new PermutationArrayGeneration();
+        PermutationArrayGeneration generation = new PermutationArrayGeneration(446342);
         generation.createIndicies();
         generation.fillInitialArray();
         generation.shuffleArray();
