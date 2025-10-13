@@ -37,7 +37,7 @@ public class Noise {
 
         final double noiseValue = new LinearInterpolation(horizontalFade, firstInterpolation, secondInterpolation).doInteroplation();
 
-        System.out.println(noiseValue);
+        // System.out.println(noiseValue);
 
         return noiseValue;
     }

@@ -30,8 +30,59 @@ public class PerlinGrid {
         return perlinArray;
     }
 
+    double findAverage(double[][] array) {
+        double sum = 0.0;
+        int x = array.length;
+        int y = array[0].length;
+
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                sum += array[i][j];
+                // System.out.println("Element: " + array[i][j] + "    Sum: " + sum);
+            }
+        }   
+
+        // System.out.println("Average:" + sum / (x * y * 1.0) + "    " + sum);
+        return sum / (x * y * 1.0);
+    }
+
+    String[][] visualyRepresentedGrid(double average, double[][] grid) {
+        int x = grid.length;
+        int y = grid[0].length;
+
+        String[][] visual = new String[x][y];
+
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                if (grid[i][j] >= average) {
+                    visual[i][j] = "*";
+                } else {
+                    visual[i][j] = " ";
+                }
+            }
+        }
+
+        return visual;
+    }
+
+    void printStringArray(String[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[0].length; j++) {
+                System.out.print(array[i][j]);
+            }
+
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         PerlinGrid grid = new PerlinGrid(12132144);
-        double[][] array = grid.createGrid(50, 50);
+        double[][] array = grid.createGrid(200, 200);
+
+        double average = grid.findAverage(array);
+
+        String[][] vis = grid.visualyRepresentedGrid(average, array);
+
+        grid.printStringArray(vis);
     }
 }
