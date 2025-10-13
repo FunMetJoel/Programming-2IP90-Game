@@ -1,14 +1,17 @@
 package gameEngine.renderers;
 
+import gameEngine.GameObject;
+import gameEngine.Renderer;
+import gameEngine.Vector2;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import gameEngine.GameObject;
-import gameEngine.Renderer;
-import gameEngine.Vector2;
 
+/**
+ * A renderer for sprites (images).
+ */
 public class SpriteRenderer extends Renderer {
 
     public Image sprite;
@@ -18,7 +21,11 @@ public class SpriteRenderer extends Renderer {
     }
 
     @Override
-    public void render(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> screenScale) {
+    public void render(
+        Graphics2D[] graphics, 
+        Vector2<Integer> centerScreenCords, 
+        Vector2<Double> screenScale
+    ) {
         if (sprite == null) {
             Logger logger = Logger.getLogger(SpriteRenderer.class.getName());
             logger.setLevel(Level.WARNING);

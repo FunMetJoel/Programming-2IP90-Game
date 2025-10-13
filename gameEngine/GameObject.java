@@ -2,6 +2,10 @@ package gameEngine;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import gameEngine.renderers.SpriteRenderer;
 
 /**
  * An object that exist in the game world.
@@ -86,8 +90,9 @@ public abstract class GameObject {
      * @param centerScreenCords the center of the parent object in screen cords
      * @param scale the scale of the parent object
      */
-    public void draw(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
-
+    public void draw(
+        Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale
+    ) {
         Vector2<Double> newScale = this.scale.newScaledVector(scale);
 
         Vector2<Double> deltaPos = this.position.newScaledVector(scale);
@@ -119,12 +124,54 @@ public abstract class GameObject {
         }
     }
 
+    /**
+     * Runs setup on all behavior's of this object and its children.
+     */
+    public void setupAll() {
+        this.setupBehaviors();
+
+        for (GameObject gameObject : children) {
+            gameObject.setupAll();
+        }
+    }
+
     public Vector2<Double> getPosition() {
         return this.position.copy();
     }
 
+    /**
+     * Sets the position of the object.
+     * @param x the x position
+     * @param y the y position
+     */
+    public void setPosition(double x, double y) {
+        this.position.x = x;
+        this.position.y = y;
+    }
+
+    /**
+     * Sets the position of the object.
+     * @param position the position
+     */
+    public void setPosition(Vector2<Double> position) {
+        this.position = position;
+    }
+
     public Vector2<Double> getScale() {
         return this.scale.copy();
+    }
+
+    public Behavior getBehavior(Class<? extends Behavior> searchClass) {
+        for (Behavior behavior : behaviors) {
+            if (searchClass.isInstance(behavior)) {
+                return behavior;
+            }
+        }
+
+        Logger logger = Logger.getLogger(SpriteRenderer.class.getName());
+        logger.setLevel(Level.WARNING);
+        logger.warning(this + " does not have a behavior of type " + searchClass.getName());
+        return null;
     }
 
 }

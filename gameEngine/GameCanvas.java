@@ -44,12 +44,12 @@ public class GameCanvas extends JPanel implements Runnable {
         int width = this.getWidth();
         int height = this.getHeight();
         
-        BufferedImage bufferedImages[] = new BufferedImage[5];
+        BufferedImage[] bufferedImages = new BufferedImage[5];
         for (int i = 0; i < bufferedImages.length; i++) {
             bufferedImages[i] = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         }
 
-        Graphics2D graphicsLayers[] = new Graphics2D[bufferedImages.length];
+        Graphics2D[] graphicsLayers = new Graphics2D[bufferedImages.length];
         for (int j = 0; j < graphicsLayers.length; j++) {
             graphicsLayers[j] = bufferedImages[j].createGraphics();
         }

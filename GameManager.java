@@ -2,6 +2,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Random;
 
+import behaviors.GridMovement;
 import gameEngine.GameCanvas;
 import gameEngine.GameObject;
 import level.Level;
@@ -35,9 +36,13 @@ public class GameManager extends GameObject {
         this.canvas.removeObject(currentLevel);
         this.currentLevel = new Level(seed);
 
-        this.player.level = this.currentLevel;
-        this.player.gridX = 0;
-        this.player.gridY = 0;
+        // this.player.level = this.currentLevel;
+        // this.player.gridX = 0;
+        // this.player.gridY = 0;
+        GridMovement gridMovement = (GridMovement) this.getBehavior(GridMovement.class);
+        gridMovement.level = this.currentLevel;
+        System.out.println(gridMovement.level);
+        gridMovement.moveTo(0, 0);
 
         this.levelStartedTime = Instant.now();
     }
