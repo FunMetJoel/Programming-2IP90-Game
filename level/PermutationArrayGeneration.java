@@ -43,9 +43,6 @@ public class PermutationArrayGeneration {
     }
 
     public int[] getPermutatedArray() {
-        createIndicies();
-        fillInitialArray();
-        shuffleArray();
         return permutations;
     }
 
@@ -65,7 +62,7 @@ public class PermutationArrayGeneration {
     }
 
     public static void main(String[] args) {
-        PermutationArrayGeneration generation = new PermutationArrayGeneration(446342);
+        PermutationArrayGeneration generation = new PermutationArrayGeneration(4462);
         generation.createIndicies();
         generation.fillInitialArray();
         generation.shuffleArray();

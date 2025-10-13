@@ -7,12 +7,15 @@ public class PerlinGrid {
         this.seed = seed;
     }
 
-    int[] permutations = new PermutationArrayGeneration(seed).getPermutatedArray();
-
 
     double[][] createGrid(int x, int y) {
         double[][] perlinArray = new double[x][y];
-        Noise noise = new Noise(this.seed);
+        Noise noise = new Noise();
+        PermutationArrayGeneration generator = new PermutationArrayGeneration(seed);
+        generator.createIndicies();
+        generator.fillInitialArray();
+        generator.shuffleArray();
+        int[] permutations = generator.getPermutatedArray();
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
@@ -28,7 +31,7 @@ public class PerlinGrid {
     }
 
     public static void main(String[] args) {
-        PerlinGrid grid = new PerlinGrid(12435566);
+        PerlinGrid grid = new PerlinGrid(12132144);
         double[][] array = grid.createGrid(50, 50);
     }
 }

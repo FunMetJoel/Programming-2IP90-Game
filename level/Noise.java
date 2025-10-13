@@ -1,11 +1,6 @@
 package level;
 
 public class Noise {
-    int seed;
-    
-    public Noise(int seed) {
-        this.seed = seed;
-    }
     
     double calculateNoise(int[] permutationArray, double x, double y) {
         final int indexX = (int) Math.floor(x) & 255;
