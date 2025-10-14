@@ -25,7 +25,7 @@ public class SpriteRenderer extends Renderer {
     @Override
     public void render(
         Graphics2D[] graphics, 
-        Vector2<Integer> centerScreenCords, 
+        Vector2<Double> centerScreenCords, 
         Vector2<Double> screenScale
     ) {
         if (sprite == null) {
@@ -35,12 +35,14 @@ public class SpriteRenderer extends Renderer {
             return;
         }
 
+        Vector2<Integer> upperCorner = getUpperCorner(centerScreenCords, screenScale).round();
+        Vector2<Integer> lowerCorner = screenScale.round();
+        
+
         graphics[1].drawImage(
             sprite,
-            centerScreenCords.x - (int) Math.round(screenScale.x * 0.5), 
-            centerScreenCords.y - (int) Math.round(screenScale.y * 0.5), 
-            (int) Math.round(screenScale.x), 
-            (int) Math.round(screenScale.y),
+            upperCorner.x, upperCorner.y, 
+            lowerCorner.x, lowerCorner.y,
             null
         );
 
@@ -49,10 +51,10 @@ public class SpriteRenderer extends Renderer {
         }
         graphics[0].drawImage(
             sprite,
-            centerScreenCords.x - (int) Math.round(screenScale.x * 0.52), 
-            centerScreenCords.y - (int) Math.round(screenScale.y * 0.52), 
-            (int) Math.round(screenScale.x * 1.04), 
-            (int) Math.round(screenScale.y * 1.04),
+            upperCorner.addVector(new Vector2<Double>(-1.0, -1.0)).round().x, 
+            upperCorner.addVector(new Vector2<Double>(-1.0, -1.0)).round().y, 
+            lowerCorner.addVector(new Vector2<Double>(1.0, 1.0)).round().x, 
+            lowerCorner.addVector(new Vector2<Double>(1.0, 1.0)).round().y,
             null
         );
     }

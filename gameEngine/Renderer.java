@@ -21,7 +21,7 @@ public abstract class Renderer {
      */
     public abstract void render(
         Graphics2D[] graphics, 
-        Vector2<Integer> centerScreenCords, // TODO: This can be a double, and round on render.
+        Vector2<Double> centerScreenCords, // TODO: This can be a double, and round on render.
         Vector2<Double> screenScale
     );
 
@@ -31,12 +31,12 @@ public abstract class Renderer {
      * @param screenScale how big the object is on the screen
      * @return the pixel position of the corner of the object on screen
      */
-    public static Vector2<Integer> getUpperCorner(
-        Vector2<Integer> centerScreenCords, Vector2<Double> screenScale
+    public static Vector2<Double> getUpperCorner(
+        Vector2<Double> centerScreenCords, Vector2<Double> screenScale
     ) {
-        return new Vector2<Integer>(
-            centerScreenCords.x - (int) Math.round(screenScale.x * 0.5), 
-            centerScreenCords.y - (int) Math.round(screenScale.y * 0.5)
+        return new Vector2<Double>(
+            centerScreenCords.x - (screenScale.x * 0.5), 
+            centerScreenCords.y - (screenScale.y * 0.5)
         );
     }
 }

@@ -83,32 +83,6 @@ public abstract class GameObject {
     }
 
     /**
-     * Paints the gameObject and every child gameObject.
-     * @param graphics the graphics context
-     * @param centerScreenCords the center of the parent object in screen cords
-     * @param scale the scale of the parent object
-     */
-    public void draw(
-        Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale
-    ) {
-        Vector2<Double> newScale = this.scale.newScaledVector(scale);
-
-        Vector2<Double> deltaPos = this.position.newScaledVector(scale);
-        Vector2<Integer> newCenterScreenCords = centerScreenCords.addVector(deltaPos).round();
-
-        // TODO: Remove this when the time is ready
-        this.paint(graphics, newCenterScreenCords, newScale);
-        
-        if (this.renderer != null) {
-            this.renderer.render(graphics, newCenterScreenCords, newScale);
-        }
-
-        for (GameObject gameObject : children) {
-            gameObject.draw(graphics, newCenterScreenCords, newScale);
-        }
-    }
-
-    /**
      * Runs the update function of this object and every child object.
      */
     public void updateAll() {
