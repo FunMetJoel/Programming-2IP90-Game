@@ -1,5 +1,6 @@
 import java.util.Random;
 
+import behaviors.GridMovement;
 import gameEngine.GameCanvas;
 import gameEngine.Scene;
 import gameEngine.Vector2;
@@ -30,6 +31,8 @@ public class GameScene extends Scene {
         Enemy enemy = new Enemy(new Vector2<Double>(10.0, 10.0), gameManager);
         addObject(enemy);
         addObject(new Enemy(new Vector2<Double>(-10.0, 10.0), gameManager));
+
+        addObject(new Canister((GridMovement) player.getBehavior(GridMovement.class)));
 
     }
 }

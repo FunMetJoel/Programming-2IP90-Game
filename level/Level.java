@@ -57,7 +57,7 @@ public class Level extends Grid {
                 //     );
                 // }
 
-                setTile(new PerlinTestTile(newPos, newPos, newNoise[i][j]), i, j);
+                setTile(new PerlinTestTile(newPos, scale, newNoise[i][j]), i, j);
             }
         }
 
