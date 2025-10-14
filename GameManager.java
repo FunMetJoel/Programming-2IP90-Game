@@ -2,6 +2,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Random;
 
+import behaviors.CameraManager;
 import behaviors.GridMovement;
 import gameEngine.GameCanvas;
 import gameEngine.GameObject;
@@ -14,22 +15,22 @@ import level.Level;
 public class GameManager extends GameObject {
     Player player;
     Level currentLevel;
-    GameCanvas canvas;
     Scene scene;
-
-    Instant levelStartedTime = Instant.now();
+    GameCanvas canvas;
 
     public GameManager (Player player, GameCanvas canvas, Scene scene) {
         this.player = player;
         this.canvas = canvas;
         this.scene = scene;
+
+        this.behaviors.add(
+            new CameraManager(this, player, canvas, scene)
+        );
     }
 
     public GameManager (Player player, Level currentLevel, GameCanvas canvas, Scene scene) {
-        this.player = player;
+        this(player, canvas, scene);
         this.currentLevel = currentLevel;
-        this.canvas = canvas;
-        this.scene = scene;
     }
 
     public void newLevel() {
@@ -48,30 +49,8 @@ public class GameManager extends GameObject {
         System.out.println(gridMovement.level);
         gridMovement.moveTo(0, 0);
 
-        this.levelStartedTime = Instant.now();
+
+        CameraManager cameraManager = (CameraManager) getBehavior(CameraManager.class);
+        cameraManager.levelStartedTime = Instant.now();
     }
-
-    @Override
-    public void update() {
-        long millisSinceStart = Duration.between(levelStartedTime, Instant.now()).toMillis();
-        if (millisSinceStart < 3000) {
-            // canvas.cameraPosition.x = 0.0;
-            // canvas.cameraPosition.y = 0.0;
-            double fixedTime = ((double) millisSinceStart - 2000.0) / 1000.0;
-            if (millisSinceStart > 2000) {
-                canvas.zoom =  0.9 * (Math.pow(fixedTime, 4) - 3.75 * Math.pow(fixedTime, 3) + 3.625 * Math.pow(fixedTime, 2) + 0.125) + 0.1;
-            } else {
-                canvas.zoom = 0.2125;
-            }
-        } else {
-            canvas.zoom = 1;
-        }
-        
-        canvas.cameraPosition = player.getPosition();
-
-        player.screenMiddle.x = (canvas.getWidth() / 2);
-        player.screenMiddle.y = (canvas.getHeight() / 2);
-    }
-
-
 }

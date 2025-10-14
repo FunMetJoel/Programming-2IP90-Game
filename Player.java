@@ -17,6 +17,8 @@ import gameEngine.GameObject;
 import gameEngine.InputManager;
 import gameEngine.Vector2;
 import gameEngine.dummyObjects.Circle;
+import gameEngine.renderers.SpriteRenderer;
+
 import java.awt.Image;
 
 
@@ -34,16 +36,9 @@ public class Player extends GameObject{
         super(position, scale);
         this.behaviors.add(new GridMovement(this, level));
         this.behaviors.add(new PlayerController(this));
-    }
-
-    public void paint(Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale) {
-        graphics[1].drawImage(
-            image,
-            screenMiddle.x - (int) Math.round(scale.x * 0.5), 
-            screenMiddle.y - (int) Math.round(scale.y * 0.5), 
-            (int) Math.round(scale.x), 
-            (int) Math.round(scale.y),
-            null
-        );
+        SpriteRenderer spriteRenderer = new SpriteRenderer(this);
+        spriteRenderer.sprite = image;
+        spriteRenderer.renderInCenter = true;
+        renderer = spriteRenderer;
     }
 }

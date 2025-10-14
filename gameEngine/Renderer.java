@@ -9,6 +9,8 @@ public abstract class Renderer {
 
     protected GameObject gameObject;
 
+    public boolean renderInCenter;
+
     public Renderer(GameObject gameObject) {
         this.gameObject = gameObject;
     }
@@ -21,9 +23,23 @@ public abstract class Renderer {
      */
     public abstract void render(
         Graphics2D[] graphics, 
-        Vector2<Double> centerScreenCords, // TODO: This can be a double, and round on render.
+        Vector2<Double> centerScreenCords,
         Vector2<Double> screenScale
     );
+
+    public void render(
+        Graphics2D[] graphics, 
+        Vector2<Double> centerScreenCords,
+        Vector2<Double> screenScale,
+        Vector2<Double> screenCenter
+    ) {
+        if (renderInCenter) {
+            this.render(graphics, screenCenter, screenScale);
+        } else {
+            this.render(graphics, centerScreenCords, screenScale);
+        }
+        
+    }
 
     /**
      * Gets the topleft corner based on the center and scale.

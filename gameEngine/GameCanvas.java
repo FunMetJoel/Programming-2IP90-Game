@@ -51,12 +51,13 @@ public class GameCanvas extends JPanel {
             (width / 2) - scale.x * cameraPosition.x,
             (height / 2) - scale.y * cameraPosition.y
         );
-        
-        // for (GameObject gameObject : scene.gameObjects) {
-        //     gameObject.draw(graphicsLayers, centerScreenCords, scale);
-        // }
 
-        renderAll(graphicsLayers, centerScreenCords, scale);
+        Vector2<Double> centerScreen = new Vector2<Double>(
+            width * 0.5, 
+            height * 0.5
+        );
+
+        renderAll(graphicsLayers, centerScreenCords, scale, centerScreen);
 
         drawToScreen(graphics, bufferedImages);
     }
@@ -68,10 +69,10 @@ public class GameCanvas extends JPanel {
      * @param scale the scale of the parent object
      */
     private void renderAll(
-        Graphics2D[] graphics, Vector2<Double> centerScreenCords, Vector2<Double> scale
+        Graphics2D[] graphics, Vector2<Double> centerScreenCords, Vector2<Double> scale, Vector2<Double> screenCenter
     ) {
         for (GameObject gameObject : scene.gameObjects) {
-            renderAll(gameObject, graphics, centerScreenCords, scale);
+            renderAll(gameObject, graphics, centerScreenCords, scale, screenCenter);
         }
     }
 
@@ -84,19 +85,18 @@ public class GameCanvas extends JPanel {
      */
     private void renderAll(
         GameObject gameObject, 
-        Graphics2D[] graphics, Vector2<Double> centerScreenCords, Vector2<Double> scale
+        Graphics2D[] graphics, Vector2<Double> centerScreenCords, Vector2<Double> scale, Vector2<Double> screenCenter
     ) {
         Vector2<Double> newScale = gameObject.scale.newScaledVector(scale);
-
         Vector2<Double> deltaPos = gameObject.position.newScaledVector(scale);
         Vector2<Double> newCenterScreenCords = centerScreenCords.addVector(deltaPos);
         
         if (gameObject.renderer != null) {
-            gameObject.renderer.render(graphics, newCenterScreenCords, newScale);
+            gameObject.renderer.render(graphics, newCenterScreenCords, newScale, screenCenter);
         }
 
         for (GameObject child : gameObject.children) {
-            renderAll(child, graphics, newCenterScreenCords, newScale);
+            renderAll(child, graphics, newCenterScreenCords, newScale, screenCenter);
         }
     }
 

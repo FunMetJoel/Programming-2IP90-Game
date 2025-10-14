@@ -16,29 +16,6 @@ public abstract class GameObject {
     protected Renderer renderer;
 
     /**
-     * Paints the component to screen.
-     * @param graphics the graphics context
-     * @param centerScreenCords the screen coordinates of the center of the object
-     * @param scale the scale of the element
-     */
-    public void paint(
-        Graphics2D[] graphics, 
-        Vector2<Integer> centerScreenCords, 
-        Vector2<Double> scale
-    ) {
-
-    }
-
-    /**
-     * Runs in a loop.
-     * @deprecated use behaviors.
-     */
-    @Deprecated 
-    public void update() {
-
-    }
-
-    /**
      * Sets up all behaviors.
      */
     private void setupBehaviors() {
@@ -86,9 +63,6 @@ public abstract class GameObject {
      * Runs the update function of this object and every child object.
      */
     public void updateAll() {
-        // TODO: Remove this when the time is ready
-        this.update();
-        
         this.updateBehaviors();
 
         for (GameObject gameObject : children) {
