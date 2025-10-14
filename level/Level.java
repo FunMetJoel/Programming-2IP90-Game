@@ -5,6 +5,7 @@ import gameEngine.Grid;
 import gameEngine.Vector2;
 
 public class Level extends Grid {
+    
     public Level() {
         this(new Random().nextInt());
     }

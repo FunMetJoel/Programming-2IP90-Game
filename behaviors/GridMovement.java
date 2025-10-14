@@ -12,11 +12,12 @@ import java.time.Instant;
  */
 public class GridMovement extends Behavior {
 
-    int gridX = 0;
-    int gridY = 0;
+    private int gridX = 0;
+    private int gridY = 0;
+    
     public level.Level level;
     private Instant lastMovement = Instant.now();
-    public Vector2<Integer> lastPosition = new Vector2<Integer>(gridX, gridY);
+    private Vector2<Integer> lastPosition = new Vector2<Integer>(gridX, gridY);
     public Double movementSpeed = 10.0;
 
     /**
@@ -100,5 +101,10 @@ public class GridMovement extends Behavior {
      */
     public void move(int dx, int dy) {
         moveTo(gridX + dx, gridY + dy);
+    }
+
+    public Vector2<Integer> getPosition() {
+        Vector2<Integer> position =  new Vector2<Integer>(gridX, gridY);
+        return position;
     }
 }

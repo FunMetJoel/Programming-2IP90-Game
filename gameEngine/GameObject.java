@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import gameEngine.renderers.SpriteRenderer;
-
 /**
  * An object that exist in the game world.
  */
@@ -16,29 +14,6 @@ public abstract class GameObject {
     protected Vector2<Double> scale = new Vector2<Double>(1.0, 1.0);
     protected ArrayList<Behavior> behaviors = new ArrayList<Behavior>();
     protected Renderer renderer;
-
-    /**
-     * Paints the component to screen.
-     * @param graphics the graphics context
-     * @param centerScreenCords the screen coordinates of the center of the object
-     * @param scale the scale of the element
-     */
-    public void paint(
-        Graphics2D[] graphics, 
-        Vector2<Integer> centerScreenCords, 
-        Vector2<Double> scale
-    ) {
-
-    }
-
-    /**
-     * Runs in a loop.
-     * @deprecated use behaviors.
-     */
-    @Deprecated 
-    public void update() {
-
-    }
 
     /**
      * Sets up all behaviors.
@@ -85,38 +60,9 @@ public abstract class GameObject {
     }
 
     /**
-     * Paints the gameObject and every child gameObject.
-     * @param graphics the graphics context
-     * @param centerScreenCords the center of the parent object in screen cords
-     * @param scale the scale of the parent object
-     */
-    public void draw(
-        Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale
-    ) {
-        Vector2<Double> newScale = this.scale.newScaledVector(scale);
-
-        Vector2<Double> deltaPos = this.position.newScaledVector(scale);
-        Vector2<Integer> newCenterScreenCords = centerScreenCords.addVector(deltaPos).round();
-
-        // TODO: Remove this when the time is ready
-        this.paint(graphics, newCenterScreenCords, newScale);
-        
-        if (this.renderer != null) {
-            this.renderer.render(graphics, newCenterScreenCords, newScale);
-        }
-
-        for (GameObject gameObject : children) {
-            gameObject.draw(graphics, newCenterScreenCords, newScale);
-        }
-    }
-
-    /**
      * Runs the update function of this object and every child object.
      */
     public void updateAll() {
-        // TODO: Remove this when the time is ready
-        this.update();
-        
         this.updateBehaviors();
 
         for (GameObject gameObject : children) {
@@ -168,7 +114,7 @@ public abstract class GameObject {
             }
         }
 
-        Logger logger = Logger.getLogger(SpriteRenderer.class.getName());
+        Logger logger = Logger.getLogger(this.getClass().getName());
         logger.setLevel(Level.WARNING);
         logger.warning(this + " does not have a behavior of type " + searchClass.getName());
         return null;

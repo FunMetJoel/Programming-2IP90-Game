@@ -15,7 +15,7 @@ public class RegularShapeRenderer extends Renderer {
 
     public Color fillColor;
     public Color borderColor;
-    public RegularShapeRenderer.Shape shape;
+    public RegularShapeRenderer.Shape shape = Shape.oval;
 
     /**
      * Different shapes that can be drawn by the class.
@@ -35,10 +35,10 @@ public class RegularShapeRenderer extends Renderer {
     @Override
     public void render(
         Graphics2D[] graphics, 
-        Vector2<Integer> centerScreenCords, 
+        Vector2<Double> centerScreenCords, 
         Vector2<Double> screenScale
     ) {
-        Vector2<Integer> upperCorner = getUpperCorner(centerScreenCords, screenScale);
+        Vector2<Integer> upperCorner = getUpperCorner(centerScreenCords, screenScale).round();
         Vector2<Integer> lowerCorner = screenScale.round();
         
         switch (shape) {

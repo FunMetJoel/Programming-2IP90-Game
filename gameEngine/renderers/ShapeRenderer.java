@@ -25,7 +25,7 @@ public class ShapeRenderer extends Renderer {
     @Override
     public void render(
         Graphics2D[] graphics, 
-        Vector2<Integer> centerScreenCords, 
+        Vector2<Double> centerScreenCords, 
         Vector2<Double> screenScale
     ) {
         if (shape == null) {
