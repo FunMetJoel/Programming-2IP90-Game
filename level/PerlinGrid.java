@@ -20,8 +20,9 @@ public class PerlinGrid {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 double noiseValue = noise.calculateNoise(permutations, i * 0.01, j * 0.01);
-                noiseValue += 1.0;
-                noiseValue /= 2;
+                // double noiseValue = noise.calculateNoise(permutations, i, j);
+                // noiseValue += 1.0;
+                // noiseValue /= 2;
 
                 perlinArray[i][j] = noiseValue;
             }
@@ -76,8 +77,8 @@ public class PerlinGrid {
     }
 
     public static void main(String[] args) {
-        PerlinGrid grid = new PerlinGrid(12132144);
-        double[][] array = grid.createGrid(200, 200);
+        PerlinGrid grid = new PerlinGrid(666);
+        double[][] array = grid.createGrid(10, 10);
 
         double average = grid.findAverage(array);
 

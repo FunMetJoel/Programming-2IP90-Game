@@ -62,7 +62,7 @@ public class PermutationArrayGeneration {
     }
 
     public static void main(String[] args) {
-        PermutationArrayGeneration generation = new PermutationArrayGeneration(4462);
+        PermutationArrayGeneration generation = new PermutationArrayGeneration(2462);
         generation.createIndicies();
         generation.fillInitialArray();
         generation.shuffleArray();

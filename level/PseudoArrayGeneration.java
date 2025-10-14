@@ -37,7 +37,7 @@ public class PseudoArrayGeneration {
     }
 
     public static void main(String[] args) {
-        PseudoArrayGeneration generate = new PseudoArrayGeneration(1254325334);
+        PseudoArrayGeneration generate = new PseudoArrayGeneration(1234);
         generate.generateArray();
         System.out.println(generate);
     }
