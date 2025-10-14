@@ -16,7 +16,7 @@ public class PerlinTestTile extends GridItem {
         RegularShapeRenderer render = new RegularShapeRenderer(this);
         render.shape = RegularShapeRenderer.Shape.rectangle;
         int colorValue = Math.clamp((int) Math.round(value * 255.0), 0, 255);
-        System.err.println(colorValue);
+        // System.err.println(colorValue);
         render.fillColor = new Color(colorValue, colorValue, colorValue);
         this.renderer = render;
     }

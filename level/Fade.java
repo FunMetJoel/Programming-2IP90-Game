@@ -8,6 +8,9 @@ public class Fade {
     }
 
     public double calculateFade() {
+        // double value;
+        // value = ((6 * x - 15) * x + 10) * x * x * x;
+        // return value;
         return ((6 * x - 15) * x + 10) * x * x * x;
     }
 }

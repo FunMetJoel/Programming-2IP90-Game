@@ -10,7 +10,7 @@ public class VectorCreator {
     }
 
     double dotProduct(double otherX, double otherY) {
-        return x * otherX + y * otherY;
+        return this.x * otherX + this.y * otherY;
     }
 
     double dotProductVector(VectorCreator v) {

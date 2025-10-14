@@ -11,12 +11,6 @@ public class PseudoRandomGenerator {
         this.value = seed % Integer.MAX_VALUE;
     }
 
-
-    /**Generates a pseudo-random number for the noise to be bounded to a seed.
-     * 
-     * @param seed an initial seed for the generator
-     * @return float in range (0, 1]
-     */
     public double generatePseudoRandom() {
         value = value * 16807;
         value = value % Integer.MAX_VALUE;

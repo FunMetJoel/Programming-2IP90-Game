@@ -10,7 +10,7 @@ public class Level extends Grid {
     }
 
     public Level(int seed) {
-        double frequency = 0.04;
+        double frequency = 0.6;
         PerlinGrid perlin = new PerlinGrid(seed);
         double[][] noise = perlin.createGrid(gridSize, gridSize, frequency);
         double noiseAverage = perlin.findAverage(noise);
@@ -18,7 +18,7 @@ public class Level extends Grid {
         double[][] newNoise = noise;
 
         // TODO: create level based on seed
-        for (int i = 1; i < 3; i++) {
+        for (int i = 1; i < 0; i++) {
             if (i % 2 == 1) {
                 frequency /= 10;
             } else {
@@ -57,7 +57,7 @@ public class Level extends Grid {
                 //     );
                 // }
 
-                setTile(new PerlinTestTile(newPos, newPos, newNoise[i][j]), i, j);
+                setTile(new PerlinTestTile(newPos, scale, newNoise[i][j]), i, j);
             }
         }
 
