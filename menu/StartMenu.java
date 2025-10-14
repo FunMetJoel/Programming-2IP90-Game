@@ -1,6 +1,7 @@
 package menu;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -32,23 +33,28 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         this.add(background, Integer.valueOf(0));
 
         this.mainPanel = new JPanel();
-        this.mainPanel.setOpaque(true);
+        this.mainPanel.setOpaque(false);
         this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         this.add(mainPanel, Integer.valueOf(1));
-
 
         JLabel title = new JLabel("NAME"); 
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.mainPanel.add(title, Integer.valueOf(1));
 
+        JPanel inputGroupPanel = new JPanel();
+        inputGroupPanel.setOpaque(false);
+        inputGroupPanel.setLayout(new GridLayout(3, 1, 0, 5));
+        inputGroupPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
+        this.mainPanel.add(inputGroupPanel);
+
         JTextField seedInput = new JTextField("Seed");
         seedInput.setAlignmentX(CENTER_ALIGNMENT);
-        seedInput.setSize(100, 100);
-        this.mainPanel.add(seedInput, Integer.valueOf(1));
+        seedInput.setHorizontalAlignment(JTextField.CENTER);
+        inputGroupPanel.add(seedInput, Integer.valueOf(1));
 
         JButton newGameButton = new JButton("New Game");
         newGameButton.setAlignmentX(CENTER_ALIGNMENT);
-        this.mainPanel.add(newGameButton, Integer.valueOf(1));
+        inputGroupPanel.add(newGameButton, Integer.valueOf(1));
         
         this.componentResized(null);
         this.setVisible(true);

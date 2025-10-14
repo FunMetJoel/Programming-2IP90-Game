@@ -14,7 +14,7 @@
 2. [ ] If we have time, we can add different difficulties, difficulty menu will appear after pressing "New Game".
 
 ## Movement of the opponents
-1. [ ] After the game launches, opponents try to catch the player and end the game, using a pathfinding algotithm.
+1. [X] After the game launches, opponents try to catch the player and end the game, using a pathfinding algotithm.
 2. [ ] If we have time, we can also implement this: as the runtime advances, the bots should become faster and be able to catch up to the player with more ease.
 
 ## Movement of the player

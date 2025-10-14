@@ -10,7 +10,7 @@ import gameEngine.renderers.SpriteRenderer;
 
 public class Obstacle extends GridItem  {
 
-    static Image image = new ImageIcon("assets/TestTile.png").getImage();
+    static Image image = new ImageIcon("assets/obstacle.png").getImage();
 
     @Override
     public Image getTexture(byte situation) {

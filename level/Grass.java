@@ -9,7 +9,7 @@ import gameEngine.Vector2;
 import gameEngine.renderers.SpriteRenderer;
 
 public class Grass extends GridItem {
-    static Image image = new ImageIcon("assets/grasstop.png").getImage();
+    static Image image = new ImageIcon("assets/moss_block.png").getImage();
 
     @Override
     public Image getTexture(byte situation) {
