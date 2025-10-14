@@ -6,6 +6,7 @@ import java.time.Instant;
 
 import javax.swing.ImageIcon;
 
+import behaviors.GridMovement;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import level.Level;
@@ -13,26 +14,24 @@ import level.Level;
 public class Enemy extends GameObject {
     static Image image = new ImageIcon("assets/TempEnemy.png").getImage();
     GameManager gameManager;
-    int gridX;
-    int gridY;
 
     int costs[][];
     boolean checked[][];
     Vector2<Integer> nextMove = new Vector2<Integer>(0, 0);
 
-    Instant lastMovement = Instant.now();
-
     public Enemy(Vector2<Double> position, GameManager gameManager) {
         super(position);
-        this.gridX = (int) Math.round(position.x);
-        this.gridY = (int) Math.round(position.y);
+
         this.gameManager = gameManager;
+
+        GridMovement gridMovement = new GridMovement(this, this.gameManager.currentLevel);
+        gridMovement.moveTo(position.round());
+        this.behaviors.add(gridMovement);
         
         int gridSize = gameManager.currentLevel.gridSize;
         costs = new int[gridSize][gridSize];
         checked = new boolean[gridSize][gridSize];
 
-        // calculateCost();
     }
 
     // TODO: Fix terrible code
@@ -51,8 +50,14 @@ public class Enemy extends GameObject {
             }
         }
 
+        GridMovement gridMovement = (GridMovement) this.getBehavior(GridMovement.class);
+        int gridX = gridMovement.getPosition().x;
+        int gridY = gridMovement.getPosition().y;
+
+        GridMovement targetGridMovement = (GridMovement) gameManager.player.getBehavior(GridMovement.class);
+
         Vector2<Integer> enemyArrayPos = gameManager.currentLevel.getArrayPos(gridX, gridY);
-        Vector2<Integer> targetArrayPos = gameManager.currentLevel.getArrayPos(player.gridX, player.gridY);
+        Vector2<Integer> targetArrayPos = gameManager.currentLevel.getArrayPos(targetGridMovement.getPosition().x, targetGridMovement.getPosition().y);
 
         costs[enemyArrayPos.x][enemyArrayPos.y] = 0;
 
@@ -118,6 +123,7 @@ public class Enemy extends GameObject {
         //     }
         //     System.out.println("");
         // }
+        // System.out.println("----------------");
         
         Vector2<Integer> nextPosition = new Vector2<Integer>(targetArrayPos.x, targetArrayPos.y);
         Vector2<Integer> currentPosition = new Vector2<Integer>(targetArrayPos.x, targetArrayPos.y);
@@ -158,40 +164,32 @@ public class Enemy extends GameObject {
         );
     }
 
-    public void handleMovement() {
-        Level level = this.gameManager.currentLevel;
-        Player player = this.gameManager.player;
-        if ((player.gridY < this.gridY) && level.canEnter(gridX, gridY - 1)) {
-            this.gridY -= 1;
-        } else if ((player.gridY > this.gridY) && level.canEnter(gridX, gridY + 1)) {
-            this.gridY += 1;
-        } else if ((player.gridX < this.gridX) && level.canEnter(gridX - 1, gridY)) {
-            this.gridX -= 1;
-        } else if ((player.gridX > this.gridX) && level.canEnter(gridX + 1, gridY)) {
-            this.gridX += 1;
-        }
+    // TODO: Old simple code, mayby add enemy with this caractaristic?
+    // public void handleMovement() {
+    //     Level level = this.gameManager.currentLevel;
+    //     Player player = this.gameManager.player;
+    //     if ((player.gridY < this.gridY) && level.canEnter(gridX, gridY - 1)) {
+    //         this.gridY -= 1;
+    //     } else if ((player.gridY > this.gridY) && level.canEnter(gridX, gridY + 1)) {
+    //         this.gridY += 1;
+    //     } else if ((player.gridX < this.gridX) && level.canEnter(gridX - 1, gridY)) {
+    //         this.gridX -= 1;
+    //     } else if ((player.gridX > this.gridX) && level.canEnter(gridX + 1, gridY)) {
+    //         this.gridX += 1;
+    //     }
 
-        this.position.x = (double) gridX;
-        this.position.y = (double) gridY;
-    }
+    //     this.position.x = (double) gridX;
+    //     this.position.y = (double) gridY;
+    // }
 
     @Override
     public void update() {
-        double deltaTime = (double) Duration.between(lastMovement, Instant.now()).toMillis();
-
-        this.position.x = ((double) gridX - nextMove.x) + (deltaTime / 200) * nextMove.x;
-        this.position.y = ((double) gridY - nextMove.y) + (deltaTime / 200) * nextMove.y;
-
-        if (deltaTime < 200) {
+        GridMovement gridMovement = (GridMovement) this.getBehavior(GridMovement.class);
+        if (!gridMovement.canMove()) {
             return;
         }
-        lastMovement = Instant.now();
+
         calculateCost();
-
-        this.gridX = gridX + nextMove.x;
-        this.gridY = gridY + nextMove.y;
-
-        // this.position.x = (double) gridX;
-        // this.position.y = (double) gridY;
+        gridMovement.move(nextMove.x, nextMove.y);
     }
 }

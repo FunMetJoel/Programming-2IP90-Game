@@ -101,4 +101,9 @@ public class GridMovement extends Behavior {
     public void move(int dx, int dy) {
         moveTo(gridX + dx, gridY + dy);
     }
+
+    public Vector2<Integer> getPosition() {
+        Vector2<Integer> position =  new Vector2<Integer>(gridX, gridY);
+        return position;
+    }
 }
