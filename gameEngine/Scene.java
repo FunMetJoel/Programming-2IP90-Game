@@ -10,9 +10,16 @@ public class Scene implements Runnable {
     GameCanvas camera;
 
     public void run() {
+        setup();
         while (true) {
             update();
             camera.repaint();
+        }
+    }
+
+    public void setup() {
+        for (GameObject gameObject: gameObjects) {
+            gameObject.setupAll();
         }
     }
 
