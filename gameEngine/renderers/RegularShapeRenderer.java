@@ -42,11 +42,11 @@ public class RegularShapeRenderer extends Renderer {
         Vector2<Integer> lowerCorner = screenScale.round();
         
         switch (shape) {
-            case Shape.rectangle -> {
+            case rectangle -> {
                 renderRect(graphics, upperCorner, lowerCorner);
             }
 
-            case Shape.oval -> {
+            case oval -> {
                 renderOval(graphics, upperCorner, lowerCorner);
             }
 

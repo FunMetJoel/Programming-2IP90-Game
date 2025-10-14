@@ -28,7 +28,7 @@ public class PermutationArrayGeneration {
     public void createIndicies() {
         for (int i = 0; i < randomNumbers.size(); i++) {
             double number = randomNumbers.get(i) * 1000;
-            int index = (int) Math.round(number) % 256;
+            int index = (int) Math.round(number) & 255;
             indicies.add(index);
         }
     }
