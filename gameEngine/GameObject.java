@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import gameEngine.renderers.SpriteRenderer;
-
 /**
  * An object that exist in the game world.
  */
@@ -168,7 +166,7 @@ public abstract class GameObject {
             }
         }
 
-        Logger logger = Logger.getLogger(SpriteRenderer.class.getName());
+        Logger logger = Logger.getLogger(this.getClass().getName());
         logger.setLevel(Level.WARNING);
         logger.warning(this + " does not have a behavior of type " + searchClass.getName());
         return null;

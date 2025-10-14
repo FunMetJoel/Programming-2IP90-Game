@@ -16,12 +16,15 @@ public class main {
 
         GameCanvas gameCanvas = new GameCanvas();
         window.add(InputManager.get());
-
         window.add(gameCanvas);
 
         Level level = new Level();
 
-        gameCanvas.addObject(
+        Scene scene = new Scene();
+        gameCanvas.setScene(scene);
+
+
+        scene.addObject(
             level
         );
 
@@ -32,17 +35,17 @@ public class main {
         );
         player.level = level;
 
-        gameCanvas.addObject(player);
+        scene.addObject(player);
 
         player.camera = gameCanvas;
 
-        GameManager gameManager = new GameManager(player, level, gameCanvas);
-        gameCanvas.addObject(gameManager);
+        GameManager gameManager = new GameManager(player, level, gameCanvas, scene);
+        scene.addObject(gameManager);
 
         Enemy enemy = new Enemy(new Vector2<Double>(10.0, 10.0), gameManager);
-        gameCanvas.addObject(enemy);
+        scene.addObject(enemy);
         
-        Thread thread = new Thread(gameCanvas);
+        Thread thread = new Thread(scene);
         thread.start();
 
         window.pack();
