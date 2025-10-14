@@ -73,32 +73,34 @@ public class Grid extends GameObject {
     }
 
     public void setTile(GridItem tile, int arrayX, int arrayY) {
+        children.remove(gridData[arrayX][arrayY]);
         gridData[arrayX][arrayY] = tile;
+        children.add(tile);
     }
 
-    @Override
-    public void draw(
-        Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale
-    ) {
-        Vector2<Double> newScale = new Vector2<Double>(
-            scale.x * this.scale.x,
-            scale.y * this.scale.y
-        );
+    // @Override
+    // public void draw(
+    //     Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale
+    // ) {
+    //     Vector2<Double> newScale = new Vector2<Double>(
+    //         scale.x * this.scale.x,
+    //         scale.y * this.scale.y
+    //     );
 
-        Vector2<Integer> newCenterScreenCords = new Vector2<Integer>(
-            (int) Math.round(centerScreenCords.x + (this.position.x * scale.x)),
-            (int) Math.round(centerScreenCords.y + (this.position.y * scale.y))
-        );
+    //     Vector2<Integer> newCenterScreenCords = new Vector2<Integer>(
+    //         (int) Math.round(centerScreenCords.x + (this.position.x * scale.x)),
+    //         (int) Math.round(centerScreenCords.y + (this.position.y * scale.y))
+    //     );
 
-        this.paint(graphics, newCenterScreenCords, newScale);
+    //     this.paint(graphics, newCenterScreenCords, newScale);
 
-        for (GridItem[] row : gridData) {
-            for (GridItem gridItem : row) {
-                if (gridItem == null) {
-                    continue;
-                }
-                gridItem.paint(graphics, newCenterScreenCords, newScale, (byte) 0);
-            }
-        }
-    }
+    //     for (GridItem[] row : gridData) {
+    //         for (GridItem gridItem : row) {
+    //             if (gridItem == null) {
+    //                 continue;
+    //             }
+    //             gridItem.paint(graphics, newCenterScreenCords, newScale, (byte) 0);
+    //         }
+    //     }
+    // }
 }

@@ -16,6 +16,8 @@ public class SpriteRenderer extends Renderer {
 
     public Image sprite;
 
+    public Boolean drawAntiLine = false;
+
     public SpriteRenderer(GameObject gameObject) {
         super(gameObject);
     }
@@ -39,6 +41,18 @@ public class SpriteRenderer extends Renderer {
             centerScreenCords.y - (int) Math.round(screenScale.y * 0.5), 
             (int) Math.round(screenScale.x), 
             (int) Math.round(screenScale.y),
+            null
+        );
+
+        if (!drawAntiLine) {
+            return;
+        }
+        graphics[0].drawImage(
+            sprite,
+            centerScreenCords.x - (int) Math.round(screenScale.x * 0.52), 
+            centerScreenCords.y - (int) Math.round(screenScale.y * 0.52), 
+            (int) Math.round(screenScale.x * 1.04), 
+            (int) Math.round(screenScale.y * 1.04),
             null
         );
     }

@@ -15,7 +15,7 @@ public class RegularShapeRenderer extends Renderer {
 
     public Color fillColor;
     public Color borderColor;
-    public RegularShapeRenderer.Shape shape;
+    public RegularShapeRenderer.Shape shape = Shape.oval;
 
     /**
      * Different shapes that can be drawn by the class.

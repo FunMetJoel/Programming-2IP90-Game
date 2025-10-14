@@ -52,11 +52,55 @@ public class GameCanvas extends JPanel {
             (height / 2) - scale.y * cameraPosition.y
         ).round();
         
-        for (GameObject gameObject : scene.gameObjects) {
-            gameObject.draw(graphicsLayers, centerScreenCords, scale);
-        }
+        // for (GameObject gameObject : scene.gameObjects) {
+        //     gameObject.draw(graphicsLayers, centerScreenCords, scale);
+        // }
+
+        renderAll(graphicsLayers, centerScreenCords, scale);
 
         drawToScreen(graphics, bufferedImages);
+    }
+
+    /**
+     * Renders all the gameObjects to screen.
+     * @param graphics the graphics context
+     * @param centerScreenCords the center of the parent object in screen cords
+     * @param scale the scale of the parent object
+     */
+    private void renderAll(
+        Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale
+    ) {
+        for (GameObject gameObject : scene.gameObjects) {
+            renderAll(gameObject, graphics, centerScreenCords, scale);
+        }
+    }
+
+    /**
+     * Renders a gameObject and all its children.
+     * @param gameObject the gameObject to render
+     * @param graphics the graphics context
+     * @param centerScreenCords the center of the parent object in screen cords
+     * @param scale the scale of the parent object
+     */
+    private void renderAll(
+        GameObject gameObject, 
+        Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale
+    ) {
+        Vector2<Double> newScale = gameObject.scale.newScaledVector(scale);
+
+        Vector2<Double> deltaPos = gameObject.position.newScaledVector(scale);
+        Vector2<Integer> newCenterScreenCords = centerScreenCords.addVector(deltaPos).round();
+
+        // TODO: Remove this when the time is ready
+        // gameObject.paint(graphics, newCenterScreenCords, newScale);
+        
+        if (gameObject.renderer != null) {
+            gameObject.renderer.render(graphics, newCenterScreenCords, newScale);
+        }
+
+        for (GameObject child : gameObject.children) {
+            renderAll(child, graphics, newCenterScreenCords, newScale);
+        }
     }
 
     public void drawToScreen(Graphics graphics, BufferedImage[] bufferedImages) {
