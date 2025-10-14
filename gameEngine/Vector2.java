@@ -95,4 +95,8 @@ public class Vector2<T extends Number> {
             y.doubleValue()
         );
     }
+
+    public boolean equals(Vector2<T> otherVector){
+        return ((this.x == otherVector.x) && (this.y == otherVector.y));
+    }
 }
