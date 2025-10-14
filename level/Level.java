@@ -11,7 +11,28 @@ public class Level extends Grid {
     }
 
     public Level(int seed) {
+        double frequency = 0.04;
+        PerlinGrid perlin = new PerlinGrid(seed);
+        double[][] noise = perlin.createGrid(gridSize, gridSize, frequency);
+        double noiseAverage = perlin.findAverage(noise);
+        String[][] visualOriginalPerlin = perlin.visualyRepresentedGrid(noiseAverage, noise);
+
         // TODO: create level based on seed
+        for (int i = 1; i < 3; i++) {
+            if (i % 2 == 1) {
+                frequency /= 10;
+            } else {
+                frequency *= 10;
+            }
+
+            PerlinGrid newPerlin = new PerlinGrid((seed * (i + 1)) % Integer.MAX_VALUE);
+            double[][] newNoise = newPerlin.createGrid(gridSize, gridSize, frequency);
+            double newNoiseAverage = newPerlin.findAverage(noise);
+            String[][] visual = newPerlin.visualyRepresentedGrid(newNoiseAverage, newNoise);
+
+            visualOriginalPerlin = newPerlin.combineGrid(visualOriginalPerlin, visual);
+        }
+
 
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
@@ -22,7 +43,7 @@ public class Level extends Grid {
                 );
 
                 // TODO: Make this a better generator function
-                if ((seed * new Random().nextInt()) % 5 != 0) {
+                if (visualOriginalPerlin[i][j] != "*") {
                     setTile(
                         new Grass(newPos, scale), 
                         i, 

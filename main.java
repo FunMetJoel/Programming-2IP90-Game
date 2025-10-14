@@ -18,7 +18,7 @@ public class main {
         window.add(InputManager.get());
         window.add(gameCanvas);
 
-        Level level = new Level();
+        Level level = new Level(534621);
 
         Scene scene = new Scene();
         gameCanvas.setScene(scene);

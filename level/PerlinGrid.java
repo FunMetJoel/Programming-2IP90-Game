@@ -8,7 +8,7 @@ public class PerlinGrid {
     }
 
 
-    double[][] createGrid(int x, int y) {
+    double[][] createGrid(int x, int y, double frequency) {
         double[][] perlinArray = new double[x][y];
         Noise noise = new Noise();
         PermutationArrayGeneration generator = new PermutationArrayGeneration(seed);
@@ -19,10 +19,10 @@ public class PerlinGrid {
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                double noiseValue = noise.calculateNoise(permutations, i * 0.01, j * 0.01);
+                double noiseValue = noise.calculateNoise(permutations, i * frequency, j * frequency);
                 // double noiseValue = noise.calculateNoise(permutations, i, j);
-                // noiseValue += 1.0;
-                // noiseValue /= 2;
+                noiseValue += 1.0;
+                noiseValue /= 2;
 
                 perlinArray[i][j] = noiseValue;
             }
@@ -66,6 +66,21 @@ public class PerlinGrid {
         return visual;
     }
 
+    String[][] combineGrid(String[][] firstGrid, String[][] secondGrid) {
+        String[][] betterGrid = new String[firstGrid.length][firstGrid[0].length];
+
+        for (int i = 0; i < firstGrid.length; i++) {
+            for (int j = 0; j < firstGrid[0].length; j++) {
+                if (firstGrid[i][j] == "*" && secondGrid[i][j] == "*") {
+                    betterGrid[i][j] = "*";
+                } else {
+                    betterGrid[i][j] = " ";
+                }
+            }
+        }
+        return betterGrid;
+    }
+
     void printStringArray(String[][] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
@@ -77,13 +92,18 @@ public class PerlinGrid {
     }
 
     public static void main(String[] args) {
-        PerlinGrid grid = new PerlinGrid(666);
-        double[][] array = grid.createGrid(10, 10);
+        PerlinGrid gridOne = new PerlinGrid(16890);
+        double[][] arrayOne = gridOne.createGrid(50, 50, 0.01);
+        double averageOne = gridOne.findAverage(arrayOne);
+        String[][] visOne = gridOne.visualyRepresentedGrid(averageOne, arrayOne);
 
-        double average = grid.findAverage(array);
+        PerlinGrid gridTwo = new PerlinGrid(6523);
+        double[][] arrayTwo = gridTwo.createGrid(50, 50, 0.01);
+        double averageTwo = gridTwo.findAverage(arrayTwo);
+        String[][] visTwo = gridTwo.visualyRepresentedGrid(averageTwo, arrayTwo);
 
-        String[][] vis = grid.visualyRepresentedGrid(average, array);
+        String[][] combinedGrid = gridOne.combineGrid(visOne, visTwo);
 
-        grid.printStringArray(vis);
+        gridOne.printStringArray(combinedGrid);
     }
 }

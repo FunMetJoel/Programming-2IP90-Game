@@ -6,7 +6,7 @@ public class Noise {
         final int indexX = (int) Math.floor(x * 100) % 256;
         final int indexY = (int) Math.floor(y * 100) % 256;
 
-        System.out.println(x + " " + indexX + " | " + y + " " + indexY);
+        // System.out.println(x + " " + indexX + " | " + y + " " + indexY);
 
         final double distX = x - Math.floor(x);
         final double distY = y - Math.floor(y);

@@ -39,7 +39,7 @@ public class CameraManager extends Behavior {
                 camera.zoom = 0.2125;
             }
         } else {
-            camera.zoom = 1;
+            camera.zoom = 0.2125;//1;
         }
 
         camera.cameraPosition = player.getPosition();
