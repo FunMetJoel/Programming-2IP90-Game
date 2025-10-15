@@ -15,18 +15,12 @@ public class Level extends Grid {
         double[][] noise = perlin.createGrid(gridSize, gridSize, frequency);
         double noiseAverage = perlin.findAverage(noise);
         String[][] visualOriginalPerlin = perlin.visualyRepresentedGrid(noiseAverage, noise);
-        double[][] newNoise = noise;
+        // double[][] newNoise = noise;
 
         // TODO: create level based on seed
-        for (int i = 1; i < 0; i++) {
-            if (i % 2 == 1) {
-                frequency /= 10;
-            } else {
-                frequency *= 10;
-            }
-
+        for (int i = 1; i < 3; i++) {
             PerlinGrid newPerlin = new PerlinGrid((seed * (i + 1)) % Integer.MAX_VALUE);
-            newNoise = newPerlin.createGrid(gridSize, gridSize, frequency);
+            double[][] newNoise = newPerlin.createGrid(gridSize, gridSize, frequency);
             double newNoiseAverage = newPerlin.findAverage(noise);
             String[][] visual = newPerlin.visualyRepresentedGrid(newNoiseAverage, newNoise);
 
@@ -43,21 +37,21 @@ public class Level extends Grid {
                 );
 
                 // TODO: Make this a better generator function
-                // if (visualOriginalPerlin[i][j] != "*") {
-                //     setTile(
-                //         new Grass(newPos, scale), 
-                //         i, 
-                //         j
-                //     );
-                // } else {
-                //     setTile(
-                //         new Obstacle(newPos, scale), 
-                //         i, 
-                //         j
-                //     );
-                // }
+                if (visualOriginalPerlin[i][j] != "*") {
+                    setTile(
+                        new Grass(newPos, scale), 
+                        i, 
+                        j
+                    );
+                } else {
+                    setTile(
+                        new Obstacle(newPos, scale), 
+                        i, 
+                        j
+                    );
+                }
 
-                setTile(new PerlinTestTile(newPos, scale, newNoise[i][j]), i, j);
+                // setTile(new PerlinTestTile(newPos, scale, newNoise[i][j]), i, j);
             }
         }
 

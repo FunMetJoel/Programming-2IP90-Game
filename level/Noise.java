@@ -16,15 +16,15 @@ public class Noise {
         final VectorCreator lowerRightCorner = new VectorCreator(distX - 1.0, distY);
         final VectorCreator lowerLeftCorner = new VectorCreator(distX, distY);
 
-        final int valueUpperRight = permutationArray[permutationArray[indexX + 1] + indexY + 1];
-        final int valueUpperLeft = permutationArray[permutationArray[indexX] + indexY + 1];
-        final int valueLowerRight = permutationArray[permutationArray[indexX + 1] + indexY];
-        final int valueLowerLeft = permutationArray[permutationArray[indexX] + indexY];
+        // final int valueUpperRight = permutationArray[permutationArray[indexX + 1] + indexY + 1];
+        // final int valueUpperLeft = permutationArray[permutationArray[indexX] + indexY + 1];
+        // final int valueLowerRight = permutationArray[permutationArray[indexX + 1] + indexY];
+        // final int valueLowerLeft = permutationArray[permutationArray[indexX] + indexY];
 
-        // final int valueUpperRight = permutationArray[(permutationArray[indexX + 1] + indexY + 1) % 256];
-        // final int valueUpperLeft = permutationArray[(permutationArray[indexX] + indexY + 1) % 256];
-        // final int valueLowerRight = permutationArray[(permutationArray[indexX + 1] + indexY) % 256];
-        // final int valueLowerLeft = permutationArray[(permutationArray[indexX] + indexY) % 256];
+        final int valueUpperRight = permutationArray[(permutationArray[indexX + 1] + indexY + 1) % 256];
+        final int valueUpperLeft = permutationArray[(permutationArray[indexX] + indexY + 1) % 256];
+        final int valueLowerRight = permutationArray[(permutationArray[indexX + 1] + indexY) % 256];
+        final int valueLowerLeft = permutationArray[(permutationArray[indexX] + indexY) % 256];
 
         final VectorCreator constantUpperRight = new ConstantVector().makeConstantVector(valueUpperRight);
         final VectorCreator constantUpperLeft = new ConstantVector().makeConstantVector(valueUpperLeft);

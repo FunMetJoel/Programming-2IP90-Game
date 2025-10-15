@@ -55,7 +55,7 @@ public class PerlinGrid {
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                if (grid[i][j] >= average) {
+                if (grid[i][j] >= average * 0.93) {
                     visual[i][j] = "*";
                 } else {
                     visual[i][j] = " ";
@@ -93,12 +93,12 @@ public class PerlinGrid {
 
     public static void main(String[] args) {
         PerlinGrid gridOne = new PerlinGrid(16890);
-        double[][] arrayOne = gridOne.createGrid(50, 50, 0.01);
+        double[][] arrayOne = gridOne.createGrid(50, 50, 0.1);
         double averageOne = gridOne.findAverage(arrayOne);
         String[][] visOne = gridOne.visualyRepresentedGrid(averageOne, arrayOne);
 
         PerlinGrid gridTwo = new PerlinGrid(6523);
-        double[][] arrayTwo = gridTwo.createGrid(50, 50, 0.01);
+        double[][] arrayTwo = gridTwo.createGrid(50, 50, 0.1);
         double averageTwo = gridTwo.findAverage(arrayTwo);
         String[][] visTwo = gridTwo.visualyRepresentedGrid(averageTwo, arrayTwo);
 
