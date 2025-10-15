@@ -18,7 +18,7 @@ public class main {
         window.add(InputManager.get());
         window.add(gameCanvas);
 
-        Scene scene = new GameScene(534621, gameCanvas);
+        Scene scene = new GameScene(666, gameCanvas);
         gameCanvas.setScene(scene);
         
         Thread thread = new Thread(scene);
