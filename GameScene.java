@@ -34,5 +34,8 @@ public class GameScene extends Scene {
 
         addObject(new Canister((GridMovement) player.getBehavior(GridMovement.class)));
 
+
+
+        addObject(new EnergyBar());
     }
 }

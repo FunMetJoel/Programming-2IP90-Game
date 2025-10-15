@@ -35,10 +35,10 @@ public class ShapeRenderer extends Renderer {
             return;
         }
 
-        graphics[1].setColor(fillColor);
-        graphics[1].fill(shape);
+        graphics[mainLayer].setColor(fillColor);
+        graphics[mainLayer].fill(shape);
 
-        graphics[1].setColor(borderColor);
-        graphics[1].draw(shape);
+        graphics[mainLayer].setColor(borderColor);
+        graphics[mainLayer].draw(shape);
     }
 }

@@ -10,6 +10,8 @@ public abstract class Renderer {
     protected GameObject gameObject;
 
     public boolean renderInCenter;
+    public boolean constantScreenSize;
+    public int mainLayer = 1;
 
     public Renderer(GameObject gameObject) {
         this.gameObject = gameObject;
@@ -33,12 +35,20 @@ public abstract class Renderer {
         Vector2<Double> screenScale,
         Vector2<Double> screenCenter
     ) {
-        if (renderInCenter) {
-            this.render(graphics, screenCenter, screenScale);
-        } else {
+        if (!renderInCenter) {
             this.render(graphics, centerScreenCords, screenScale);
+            return;
         }
-        
+
+        if (!constantScreenSize) {
+            this.render(graphics, screenCenter, screenScale);
+            return;
+        }
+
+        Vector2<Double> totalScreenScale = screenCenter.newScaledVector(2.0);
+        Vector2<Double> newScale = totalScreenScale.newScaledVector(gameObject.getScale());
+        Vector2<Double> newPosition = screenCenter.addVector(totalScreenScale.newScaledVector(gameObject.getPosition()));
+        this.render(graphics, newPosition, newScale);
     }
 
     /**
