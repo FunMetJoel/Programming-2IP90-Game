@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  */
 public class RegularShapeRenderer extends Renderer {
 
-    public Color fillColor;
+    public Color fillColor = Color.WHITE;
     public Color borderColor;
     public RegularShapeRenderer.Shape shape = Shape.oval;
 
@@ -62,16 +62,16 @@ public class RegularShapeRenderer extends Renderer {
     private void renderRect(
         Graphics2D[] graphics, Vector2<Integer> upperCorner, Vector2<Integer> lowerCorner
     ) {
-        graphics[1].setColor(fillColor);
-        graphics[1].fillRect(
+        graphics[mainLayer].setColor(fillColor);
+        graphics[mainLayer].fillRect(
             upperCorner.x, 
             upperCorner.y, 
             lowerCorner.x, 
             lowerCorner.y
         );
 
-        graphics[1].setColor(borderColor);
-        graphics[1].drawRect(
+        graphics[mainLayer].setColor(borderColor);
+        graphics[mainLayer].drawRect(
             upperCorner.x, 
             upperCorner.y, 
             lowerCorner.x, 

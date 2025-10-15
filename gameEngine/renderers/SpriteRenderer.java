@@ -39,7 +39,7 @@ public class SpriteRenderer extends Renderer {
         Vector2<Integer> lowerCorner = screenScale.round();
         
 
-        graphics[1].drawImage(
+        graphics[mainLayer].drawImage(
             sprite,
             upperCorner.x, upperCorner.y, 
             lowerCorner.x, lowerCorner.y,
