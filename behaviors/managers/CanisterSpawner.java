@@ -1,8 +1,10 @@
-package behaviors;
+package behaviors.managers;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import behaviors.Edible;
+import behaviors.GridMovement;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.Vector2;

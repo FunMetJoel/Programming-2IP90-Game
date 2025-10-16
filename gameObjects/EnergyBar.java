@@ -1,4 +1,5 @@
-import behaviors.ScoreBarManager;
+package gameObjects;
+import behaviors.managers.ScoreBarManager;
 import gameEngine.GameObject;
 import gameEngine.renderers.RegularShapeRenderer;
 import gameEngine.renderers.UiRenderer;

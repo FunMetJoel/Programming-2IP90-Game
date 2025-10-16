@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import gameEngine.*;
 import gameEngine.dummyObjects.Circle;
 import gameEngine.dummyObjects.Square;
+import gameObjects.GameScene;
 import level.Level;
 
 public class main {

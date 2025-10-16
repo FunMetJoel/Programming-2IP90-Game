@@ -30,6 +30,9 @@ public class GameObject {
      */
     private void updateBehaviors() {
         for (Behavior behavior : behaviors) {
+            if (!behavior.enabled) {
+                continue;
+            }
             behavior.update();
         }
     }

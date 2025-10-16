@@ -1,10 +1,10 @@
 package gameObjects;
 import javax.swing.ImageIcon;
 
-import behaviors.CanisterSpawner;
 import behaviors.Edible;
 import behaviors.GridMovement;
-import behaviors.ScoreHolder;
+import behaviors.managers.CanisterSpawner;
+import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.RegularShapeRenderer;

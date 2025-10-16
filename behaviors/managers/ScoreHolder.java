@@ -1,4 +1,4 @@
-package behaviors;
+package behaviors.managers;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -29,7 +29,7 @@ public class ScoreHolder extends Behavior {
         double deltaPoints = (double) Duration.between(lastUpdate, Instant.now()).toMillis() * 0.0001;
         score = Math.max(score - deltaPoints, 0);
         lastUpdate = Instant.now();
-        // System.out.println(score + ", " + totalGrabedStore);
+        System.out.println(score + ", " + totalGrabedStore);
     }
 
     public double getScore() {
@@ -39,5 +39,9 @@ public class ScoreHolder extends Behavior {
     public void addScore(double score) {
         this.score += score;
         this.totalGrabedStore += score;
+    }
+
+    public void removeScore(double score) {
+        this.score -= score;
     }
 }

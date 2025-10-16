@@ -1,5 +1,6 @@
 package behaviors;
 
+import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 
 public class EnemyCollider extends PlayerCollisionDetector {
@@ -14,6 +15,6 @@ public class EnemyCollider extends PlayerCollisionDetector {
     @Override
     void onCollide() {
         // TODO Auto-generated method stub
-        scoreHolder.addScore(-1.0);
+        scoreHolder.removeScore(1.0);
     }
 }

@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
+import behaviors.managers.ScoreHolder;
+
 public class Edible extends PlayerCollisionDetector {
 
     ScoreHolder scoreHolder;

@@ -1,4 +1,4 @@
-package behaviors;
+package behaviors.managers;
 
 import java.awt.Color;
 

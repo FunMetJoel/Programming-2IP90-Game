@@ -1,3 +1,4 @@
+package gameObjects;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -10,7 +11,8 @@ import behaviors.EnemyCollider;
 import behaviors.GridMovement;
 import behaviors.PathFinding;
 import behaviors.PlayerCollisionDetector;
-import behaviors.ScoreHolder;
+import behaviors.managers.GameStateManager;
+import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.SpriteRenderer;
@@ -44,6 +46,10 @@ public class Enemy extends GameObject {
             (ScoreHolder) gameManager.getBehavior(ScoreHolder.class)
         );
         this.behaviors.add(collider);
+
+
+        GameStateManager gameStateManager = (GameStateManager) gameManager.getBehavior(GameStateManager.class);
+        gameStateManager.enemies.add(this);
     }
 
     // TODO: Old simple code, mayby add enemy with this caractaristic?

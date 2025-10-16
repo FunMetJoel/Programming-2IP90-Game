@@ -1,10 +1,11 @@
+package gameObjects;
 import java.util.Random;
 
 import behaviors.GridMovement;
+import behaviors.managers.GameStateManager;
 import gameEngine.GameCanvas;
 import gameEngine.Scene;
 import gameEngine.Vector2;
-import gameObjects.Canister;
 import level.Level;
 
 public class GameScene extends Scene {
