@@ -10,7 +10,7 @@ import javax.swing.Timer;
 public class Edible extends PlayerCollisionDetector {
 
     ScoreHolder scoreHolder;
-    boolean isEten = false;
+    public boolean isEten = false;
     Timer animator;
 
     @Override

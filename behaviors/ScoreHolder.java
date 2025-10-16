@@ -1,11 +1,17 @@
 package behaviors;
 
+import java.time.Duration;
+import java.time.Instant;
+
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 
 public class ScoreHolder extends Behavior {
 
-    private double score = 0.0;
+    private double score = 2.0;
+    private double totalGrabedStore = 0.0;
+
+    private Instant lastUpdate = Instant.now();
 
     public ScoreHolder(GameObject gameObject) {
         super(gameObject);
@@ -20,7 +26,10 @@ public class ScoreHolder extends Behavior {
     @Override
     public void update() {
         // TODO Auto-generated method stub
-        
+        double deltaPoints = (double) Duration.between(lastUpdate, Instant.now()).toMillis() * 0.0001;
+        score = Math.max(score - deltaPoints, 0);
+        lastUpdate = Instant.now();
+        // System.out.println(score + ", " + totalGrabedStore);
     }
 
     public double getScore() {
@@ -29,7 +38,6 @@ public class ScoreHolder extends Behavior {
 
     public void addScore(double score) {
         this.score += score;
+        this.totalGrabedStore += score;
     }
-
-
 }

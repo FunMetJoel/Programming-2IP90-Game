@@ -22,13 +22,13 @@
 2. No remarks yet.
 
 ## Structural generation of the obstacles
-1. [ ] After the launch of the game, obstacles are generated in the game field. These are barriers, impenetrable by any game entity. Each time there should be a different setting of them.
+1. [X] After the launch of the game, obstacles are generated in the game field. These are barriers, impenetrable by any game entity. Each time there should be a different setting of them.
 2. [ ] There is a fixed number and shape of obstacles that always appear in the level.
 3. [ ] If there is time, some special tiles with special properties should be created
 
 ## Generating the fuel canisters
-1. [ ] After the game launches, there should be constantly generated fuel canisters in the game field in random tiles, which upon collection by the player extend the player's life length.
-2. [ ] Fuel canisters should generate constantly, but there is a max cap of them in one moment. The fuel canisters should not generate on the obstacles.
+1. [X] After the game launches, there should be constantly generated fuel canisters in the game field in random tiles, which upon collection by the player extend the player's life length.
+2. [X] Fuel canisters should generate constantly, but there is a max cap of them in one moment. The fuel canisters should not generate on the obstacles.
 
 ## Player lifetime counter
 1. [ ] After the game launches, a Player lifetime counter should appear somewhere in the game field (without obstructing the field). It should be set to a default value (TBD).
@@ -39,7 +39,7 @@
 2. [ ] We can also add an option to play again.
 
 ## Textures of the gamefield, player and enemies
-1. [ ] Throught the gameplay there should be visible textures of diverse game entities.
+1. [X] Throught the gameplay there should be visible textures of diverse game entities.
 2. No remarks yet.
 
 ## Reading the input

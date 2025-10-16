@@ -6,8 +6,11 @@ import java.time.Instant;
 
 import javax.swing.ImageIcon;
 
+import behaviors.EnemyCollider;
 import behaviors.GridMovement;
 import behaviors.PathFinding;
+import behaviors.PlayerCollisionDetector;
+import behaviors.ScoreHolder;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.SpriteRenderer;
@@ -35,6 +38,12 @@ public class Enemy extends GameObject {
         pathFinding.target = (GridMovement) gameManager.player.getBehavior(GridMovement.class);
         this.behaviors.add(pathFinding);
         
+        PlayerCollisionDetector collider = new EnemyCollider(
+            this, 
+            (GridMovement) gameManager.player.getBehavior(GridMovement.class), 
+            (ScoreHolder) gameManager.getBehavior(ScoreHolder.class)
+        );
+        this.behaviors.add(collider);
     }
 
     // TODO: Old simple code, mayby add enemy with this caractaristic?

@@ -27,32 +27,42 @@ public class CanisterSpawner extends Behavior {
         this.scoreHolder = (ScoreHolder) gameObject.getBehavior(ScoreHolder.class);
         // TODO Auto-generated method stub
         for (int i = 0; i < 5; i++) {
-            spawn();
+            Canister newCanister = new Canister(playerMovement, new Vector2<Integer>(0, 0), scoreHolder);
+            activeGameObjects.add(newCanister);
+            gameObject.addChild(newCanister);
+            spawn(newCanister);
         }
     }
 
     @Override
     public void update() {
         // TODO Auto-generated method stub
-        
+        for (Canister canister : activeGameObjects) {
+            if (!canister.isActive) {
+                spawn(canister);
+            }
+        }
     }
 
-    public void spawn() {
+    public void spawn(Canister canister) {
         int gridSize = level.gridSize;
         int x = Math.round(new Random().nextFloat() * (gridSize - 1));
         int y = Math.round(new Random().nextFloat() * (gridSize - 1));
 
         if (!level.canEnter(x, y)) { // Try a different position
-            spawn();
+            spawn(canister);
             return;
         }
 
-        spawn(x, y);
+        spawn(canister, x, y);
     }
 
-    public void spawn(int x, int y) {
-        Canister newCanister = new Canister(playerMovement, new Vector2<Integer>(x, y), this.scoreHolder);
-        this.activeGameObjects.add(newCanister);
-        gameObject.addChild(newCanister);
+    public void spawn(Canister canister, int x, int y) {
+        canister.isActive = true;
+        Edible edible = (Edible) canister.getBehavior(Edible.class);
+        edible.isEten = false;
+        GridMovement gridMovement = (GridMovement) canister.getBehavior(GridMovement.class);
+        gridMovement.moveTo(x, y);
+        
     }
 }
