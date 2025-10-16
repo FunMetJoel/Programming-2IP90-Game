@@ -1,5 +1,6 @@
 package menu;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ComponentEvent;
@@ -54,7 +55,15 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
 
         JButton newGameButton = new JButton("New Game");
         newGameButton.setAlignmentX(CENTER_ALIGNMENT);
+        newGameButton.setBackground(new Color(88, 255, 10));
+        newGameButton.setForeground(Color.WHITE);
         inputGroupPanel.add(newGameButton, Integer.valueOf(1));
+
+        JButton quitGameButton = new JButton("Quit Game");
+        quitGameButton.setAlignmentX(CENTER_ALIGNMENT);
+        quitGameButton.setBackground(new Color(232, 14, 14));
+        quitGameButton.setForeground(Color.WHITE);
+        inputGroupPanel.add(quitGameButton, Integer.valueOf(1));
         
         this.componentResized(null);
         this.setVisible(true);
