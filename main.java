@@ -1,13 +1,10 @@
-import java.awt.Color;
-import java.util.Scanner;
 
+import gameEngine.GameCanvas;
+import gameEngine.InputManager;
+import gameEngine.Scene;
+import gameObjects.GameScene;
 import javax.swing.JFrame;
 
-import gameEngine.*;
-import gameEngine.dummyObjects.Circle;
-import gameEngine.dummyObjects.Square;
-import gameObjects.GameScene;
-import level.Level;
 
 public class main {
     public static void main(String[] args) {

@@ -1,11 +1,4 @@
 package gameObjects;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.time.Duration;
-import java.time.Instant;
-
-import javax.swing.ImageIcon;
 
 import behaviors.EnemyCollider;
 import behaviors.GridMovement;
@@ -16,7 +9,7 @@ import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.SpriteRenderer;
-import level.Level;
+import javax.swing.ImageIcon;
 
 public class Enemy extends GameObject {
     public GameManager gameManager;

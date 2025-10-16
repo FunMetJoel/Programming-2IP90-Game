@@ -1,29 +1,15 @@
 package gameObjects;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.event.*;
-import java.time.Instant;
-
-import javax.swing.ImageIcon;
 
 import behaviors.GridMovement;
 import behaviors.PlayerController;
-
-import java.time.Duration;
-
 import gameEngine.GameCanvas;
 import gameEngine.GameObject;
-import gameEngine.InputManager;
 import gameEngine.Vector2;
-import gameEngine.dummyObjects.Circle;
 import gameEngine.renderers.SpriteRenderer;
-
 import java.awt.Image;
+import javax.swing.ImageIcon;
 
-
-public class Player extends GameObject{
+public class Player extends GameObject {
 
     GameCanvas camera;
 

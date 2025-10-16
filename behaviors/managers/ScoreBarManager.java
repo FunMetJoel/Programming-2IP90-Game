@@ -1,10 +1,9 @@
 package behaviors.managers;
 
-import java.awt.Color;
-
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.renderers.RegularShapeRenderer;
+import java.awt.Color;
 
 public class ScoreBarManager extends Behavior {
 

@@ -1,13 +1,12 @@
 package behaviors.managers;
 
-import java.time.Duration;
-import java.time.Instant;
-
 import behaviors.managers.GameStateManager.GameState;
 import gameEngine.Behavior;
 import gameEngine.GameCanvas;
 import gameEngine.GameObject;
 import gameEngine.Scene;
+import java.time.Duration;
+import java.time.Instant;
 
 public class CameraManager extends Behavior {
     public Instant levelStartedTime;

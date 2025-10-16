@@ -1,12 +1,10 @@
 package level;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
 import gameEngine.GridItem;
 import gameEngine.Vector2;
 import gameEngine.renderers.SpriteRenderer;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class Grass extends GridItem {
     static Image image = new ImageIcon("assets/moss_block.png").getImage();

@@ -1,8 +1,8 @@
 package level;
-import java.util.Random;
 
 import gameEngine.Grid;
 import gameEngine.Vector2;
+import java.util.Random;
 
 public class Level extends Grid {
     public Level() {

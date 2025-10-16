@@ -1,13 +1,11 @@
 package behaviors.managers;
 
-import java.util.ArrayList;
-
 import behaviors.GridMovement;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
-import gameEngine.Grid;
 import gameObjects.Enemy;
 import gameObjects.GameManager;
+import java.util.ArrayList;
 
 public class GameStateManager extends Behavior {
     ScoreHolder scoreHolder;

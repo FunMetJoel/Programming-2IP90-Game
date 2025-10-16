@@ -1,11 +1,10 @@
 package gameEngine.renderers;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-
 import gameEngine.GameObject;
 import gameEngine.Renderer;
 import gameEngine.Vector2;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 public class UiRenderer extends Renderer {
     public UiRenderer(GameObject gameObject) {

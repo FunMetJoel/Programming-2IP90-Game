@@ -1,14 +1,12 @@
 package gameObjects;
-import javax.swing.ImageIcon;
 
 import behaviors.Edible;
 import behaviors.GridMovement;
-import behaviors.managers.CanisterSpawner;
 import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
-import gameEngine.renderers.RegularShapeRenderer;
 import gameEngine.renderers.SpriteRenderer;
+import javax.swing.ImageIcon;
 
 public class Canister extends GameObject{
     public Canister(GridMovement playerMovement, Vector2<Integer> position, ScoreHolder scoreHolder){

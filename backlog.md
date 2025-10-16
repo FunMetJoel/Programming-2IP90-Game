@@ -1,8 +1,8 @@
-# //TODO come up with a cool name
+# TODO come up with a cool name
 
 # Topics of chocice:
 1. [X] Pathfinding algorithm
-2. [ ] Procedural generation of the obstacles (Perlin noise)
+2. [X] Procedural generation of the obstacles (Perlin noise)
 
 ## Rendering the game
 1. [X] The application should render sprites to the screen
@@ -23,8 +23,7 @@
 
 ## Structural generation of the obstacles
 1. [X] After the launch of the game, obstacles are generated in the game field. These are barriers, impenetrable by any game entity. Each time there should be a different setting of them.
-2. [ ] There is a fixed number and shape of obstacles that always appear in the level.
-3. [ ] If there is time, some special tiles with special properties should be created
+2. [ ] If there is time, some special tiles with special properties should be created
 
 ## Generating the fuel canisters
 1. [X] After the game launches, there should be constantly generated fuel canisters in the game field in random tiles, which upon collection by the player extend the player's life length.
@@ -51,5 +50,5 @@
 2. No remarks yet.
 
 ## Initial position of the player
-1. [ ] After the game is launched, the player should be generated in a start position, giving it an opportunity to run away from the enemies.
+1. [X] After the game is launched, the player should be generated in a start position, giving it an opportunity to run away from the enemies.
 2. No remarks yet.

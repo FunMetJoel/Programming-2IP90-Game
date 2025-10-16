@@ -1,10 +1,9 @@
 package behaviors.managers;
 
-import java.time.Duration;
-import java.time.Instant;
-
 import gameEngine.Behavior;
 import gameEngine.GameObject;
+import java.time.Duration;
+import java.time.Instant;
 
 public class ScoreHolder extends Behavior {
 
