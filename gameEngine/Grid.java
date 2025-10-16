@@ -53,10 +53,12 @@ public class Grid extends GameObject {
      * @return The x and y of the array object
      */
     public Vector2<Integer> getArrayPos(int gridX, int gridY) {
-        return new Vector2<Integer>(
-            gridX + gridSize / 2, 
-            gridY + gridSize / 2
-        );
+        return new Vector2<Integer>(gridX, gridY);
+        // TODO: remove when fully implemented
+        // return new Vector2<Integer>(
+        //     gridX + gridSize / 2, 
+        //     gridY + gridSize / 2
+        // );
     }
 
     /**
@@ -66,10 +68,12 @@ public class Grid extends GameObject {
      * @return The world x and y of the tile
      */
     protected Vector2<Integer> getGridPos(int arrayX, int arrayY) {
-        return new Vector2<Integer>(
-            arrayX - gridSize / 2, 
-            arrayY - gridSize / 2
-        );
+        return new Vector2<Integer>(arrayX, arrayY);
+        // TODO: remove when fully implemented
+        // return new Vector2<Integer>(
+        //     arrayX - gridSize / 2, 
+        //     arrayY - gridSize / 2
+        // );
     }
 
     public void setTile(GridItem tile, int arrayX, int arrayY) {
@@ -77,30 +81,4 @@ public class Grid extends GameObject {
         gridData[arrayX][arrayY] = tile;
         children.add(tile);
     }
-
-    // @Override
-    // public void draw(
-    //     Graphics2D[] graphics, Vector2<Integer> centerScreenCords, Vector2<Double> scale
-    // ) {
-    //     Vector2<Double> newScale = new Vector2<Double>(
-    //         scale.x * this.scale.x,
-    //         scale.y * this.scale.y
-    //     );
-
-    //     Vector2<Integer> newCenterScreenCords = new Vector2<Integer>(
-    //         (int) Math.round(centerScreenCords.x + (this.position.x * scale.x)),
-    //         (int) Math.round(centerScreenCords.y + (this.position.y * scale.y))
-    //     );
-
-    //     this.paint(graphics, newCenterScreenCords, newScale);
-
-    //     for (GridItem[] row : gridData) {
-    //         for (GridItem gridItem : row) {
-    //             if (gridItem == null) {
-    //                 continue;
-    //             }
-    //             gridItem.paint(graphics, newCenterScreenCords, newScale, (byte) 0);
-    //         }
-    //     }
-    // }
 }

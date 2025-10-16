@@ -3,7 +3,9 @@ import java.time.Instant;
 import java.util.Random;
 
 import behaviors.CameraManager;
+import behaviors.CanisterSpawner;
 import behaviors.GridMovement;
+import behaviors.ScoreHolder;
 import gameEngine.GameCanvas;
 import gameEngine.GameObject;
 import gameEngine.Scene;
@@ -18,20 +20,26 @@ public class GameManager extends GameObject {
     Scene scene;
     GameCanvas canvas;
 
-    public GameManager (Player player, GameCanvas canvas, Scene scene) {
+    public GameManager (Player player, Level currentLevel, GameCanvas canvas, Scene scene) {
         this.player = player;
         this.canvas = canvas;
         this.scene = scene;
+        this.currentLevel = currentLevel;
 
         this.behaviors.add(
             new CameraManager(this, player, canvas, scene)
         );
+        this.behaviors.add(
+            new CanisterSpawner(this, currentLevel, (GridMovement) player.getBehavior(GridMovement.class))
+        );
+
+        this.behaviors.add(new ScoreHolder(this));
     }
 
-    public GameManager (Player player, Level currentLevel, GameCanvas canvas, Scene scene) {
-        this(player, canvas, scene);
-        this.currentLevel = currentLevel;
-    }
+    // public GameManager (Player player, Level currentLevel, GameCanvas canvas, Scene scene) {
+    //     this(player, canvas, scene);
+    //     this.currentLevel = currentLevel;
+    // }
 
     public void newLevel() {
         newLevel(new Random().nextInt());

@@ -4,6 +4,7 @@ import behaviors.GridMovement;
 import gameEngine.GameCanvas;
 import gameEngine.Scene;
 import gameEngine.Vector2;
+import gameObjects.Canister;
 import level.Level;
 
 public class GameScene extends Scene {
@@ -15,8 +16,13 @@ public class GameScene extends Scene {
         Level level = new Level();
         addObject(level);
 
+        Vector2<Integer> middlePosition = new Vector2<Integer>(
+            level.gridSize / 2, 
+            level.gridSize / 2
+        );
+        
         Player player = new Player(
-            new Vector2<Double>(0.0, 0.0), 
+            new Vector2<Double>((double) middlePosition.x, (double) middlePosition.y), 
             new Vector2<Double>(0.8, 0.8),
             level
         );
@@ -30,11 +36,7 @@ public class GameScene extends Scene {
 
         Enemy enemy = new Enemy(new Vector2<Double>(10.0, 10.0), gameManager);
         addObject(enemy);
-        addObject(new Enemy(new Vector2<Double>(-10.0, 10.0), gameManager));
-
-        addObject(new Canister((GridMovement) player.getBehavior(GridMovement.class)));
-
-
+        addObject(new Enemy(new Vector2<Double>(20.0, 10.0), gameManager));
 
         addObject(new EnergyBar());
     }

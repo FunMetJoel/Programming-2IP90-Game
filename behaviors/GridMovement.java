@@ -27,6 +27,15 @@ public class GridMovement extends Behavior {
     public GridMovement(GameObject gameObject, level.Level level) {
         super(gameObject);
         this.level = level;
+        this.gridX = (int) Math.round(gameObject.getPosition().x);
+        this.gridY = (int) Math.round(gameObject.getPosition().y);
+    }
+
+    public GridMovement(GameObject gameObject, level.Level level, Vector2<Integer> pos) {
+        this(gameObject, level);
+        gridX = pos.x;
+        gridY = pos.y;
+        lastPosition = new Vector2<Integer>(gridX, gridY);
     }
 
     @Override

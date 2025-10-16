@@ -96,6 +96,9 @@ public class GameCanvas extends JPanel {
         }
 
         for (GameObject child : gameObject.children) {
+            if (!child.isActive) {
+                return;
+            }
             renderAll(child, graphics, newCenterScreenCords, newScale, screenCenter);
         }
     }

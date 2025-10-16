@@ -21,7 +21,6 @@ public class PathFinding extends Behavior {
 
     @Override
     public void setup() {
-        // TODO Auto-generated method stub
         gridMovement = (GridMovement) gameObject.getBehavior(GridMovement.class);
 
         int gridSize = level.gridSize;

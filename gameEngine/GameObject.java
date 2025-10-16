@@ -8,12 +8,13 @@ import java.util.logging.Logger;
 /**
  * An object that exist in the game world.
  */
-public abstract class GameObject {
+public class GameObject {
     protected ArrayList<GameObject> children;
     protected Vector2<Double> position = new Vector2<Double>(0.0, 0.0);
     protected Vector2<Double> scale = new Vector2<Double>(1.0, 1.0);
     protected ArrayList<Behavior> behaviors = new ArrayList<Behavior>();
-    protected Renderer renderer;
+    public Renderer renderer;
+    public boolean isActive = true;
 
     /**
      * Sets up all behaviors.
@@ -63,6 +64,10 @@ public abstract class GameObject {
      * Runs the update function of this object and every child object.
      */
     public void updateAll() {
+        if (!this.isActive) {
+            return;
+        }
+        
         this.updateBehaviors();
 
         for (GameObject gameObject : children) {
@@ -103,6 +108,11 @@ public abstract class GameObject {
         this.position = position;
     }
 
+    public void setScale(double x, double y) {
+        this.scale.x = x;
+        this.scale.y = y;
+    }
+
     public Vector2<Double> getScale() {
         return this.scale.copy();
     }
@@ -118,6 +128,16 @@ public abstract class GameObject {
         logger.setLevel(Level.WARNING);
         logger.warning(this + " does not have a behavior of type " + searchClass.getName());
         return null;
+    }
+
+    public void addChild(GameObject gameObject) {
+        this.children.add(gameObject);
+        System.out.println("Size" + this.children.size() + gameObject.getClass());
+    }
+
+    // TODO: make this safe
+    public void removeChild(GameObject gameObject) {
+        this.children.remove(gameObject);
     }
 
 }
