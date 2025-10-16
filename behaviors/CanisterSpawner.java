@@ -14,6 +14,7 @@ public class CanisterSpawner extends Behavior {
     Level level;
     GridMovement playerMovement;
     ArrayList<Canister> activeGameObjects = new ArrayList<Canister>();
+    ScoreHolder scoreHolder;
 
     public CanisterSpawner(GameObject gameObject, Level level, GridMovement playerMovement) {
         super(gameObject);
@@ -23,6 +24,7 @@ public class CanisterSpawner extends Behavior {
 
     @Override
     public void setup() {
+        this.scoreHolder = (ScoreHolder) gameObject.getBehavior(ScoreHolder.class);
         // TODO Auto-generated method stub
         for (int i = 0; i < 5; i++) {
             spawn();
@@ -37,13 +39,19 @@ public class CanisterSpawner extends Behavior {
 
     public void spawn() {
         int gridSize = level.gridSize;
-        int x = Math.round(new Random().nextFloat() * gridSize);
-        int y = Math.round(new Random().nextFloat() * gridSize);
+        int x = Math.round(new Random().nextFloat() * (gridSize - 1));
+        int y = Math.round(new Random().nextFloat() * (gridSize - 1));
+
+        if (!level.canEnter(x, y)) { // Try a different position
+            spawn();
+            return;
+        }
+
         spawn(x, y);
     }
 
     public void spawn(int x, int y) {
-        Canister newCanister = new Canister(playerMovement, new Vector2<Integer>(x, y));
+        Canister newCanister = new Canister(playerMovement, new Vector2<Integer>(x, y), this.scoreHolder);
         this.activeGameObjects.add(newCanister);
         gameObject.addChild(newCanister);
     }
