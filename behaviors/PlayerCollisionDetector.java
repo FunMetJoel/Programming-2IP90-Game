@@ -7,6 +7,8 @@ public abstract class PlayerCollisionDetector extends Behavior {
     private GridMovement playerMovement;
     private GridMovement gridMovement;
 
+    private Boolean collides = false;
+
     public PlayerCollisionDetector(GameObject gameObject, GridMovement playerMovement) {
         super(gameObject);
         this.playerMovement = playerMovement;
@@ -19,8 +21,16 @@ public abstract class PlayerCollisionDetector extends Behavior {
 
     @Override
     public void update() {
-        if (playerMovement.getPosition().equals(gridMovement.getPosition())) {
-            onCollide();
+        
+        if (!collides) {
+            if (playerMovement.getPosition().equals(gridMovement.getPosition())) {
+                onCollide();
+                collides = true;
+            }
+        } else {
+            if (! playerMovement.getPosition().equals(gridMovement.getPosition())) {
+                collides = false;
+            }
         }
     }
 

@@ -4,6 +4,7 @@ import behaviors.GridMovement;
 import gameEngine.GameCanvas;
 import gameEngine.Scene;
 import gameEngine.Vector2;
+import gameObjects.Canister;
 import level.Level;
 
 public class GameScene extends Scene {
@@ -32,7 +33,7 @@ public class GameScene extends Scene {
         addObject(enemy);
         addObject(new Enemy(new Vector2<Double>(-10.0, 10.0), gameManager));
 
-        addObject(new Canister((GridMovement) player.getBehavior(GridMovement.class)));
+        // addObject(new Canister((GridMovement) player.getBehavior(GridMovement.class), new Vector2<Integer>(5, 5)));
 
 
 

@@ -120,4 +120,12 @@ public abstract class GameObject {
         return null;
     }
 
+    public void addChild(GameObject gameObject) {
+        this.children.add(gameObject);
+    }
+
+    public void removeChild(GameObject gameObject) {
+        this.children.remove(gameObject);
+    }
+
 }
