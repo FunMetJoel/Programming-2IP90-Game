@@ -14,7 +14,7 @@ public class GameObject {
     protected Vector2<Double> scale = new Vector2<Double>(1.0, 1.0);
     protected ArrayList<Behavior> behaviors = new ArrayList<Behavior>();
     public Renderer renderer;
-    public Boolean isActive = true;
+    public boolean isActive = true;
 
     /**
      * Sets up all behaviors.
