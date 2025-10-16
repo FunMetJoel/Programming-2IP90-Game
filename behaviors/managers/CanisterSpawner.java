@@ -61,7 +61,7 @@ public class CanisterSpawner extends Behavior {
     public void spawn(Canister canister, int x, int y) {
         canister.isActive = true;
         Edible edible = (Edible) canister.getBehavior(Edible.class);
-        edible.isEten = false;
+        edible.isEaten = false;
         GridMovement gridMovement = (GridMovement) canister.getBehavior(GridMovement.class);
         gridMovement.moveTo(x, y);
         

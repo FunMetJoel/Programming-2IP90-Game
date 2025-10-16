@@ -95,17 +95,17 @@ public class PathFinding extends Behavior {
             int x = lowestValuePosition.x;
             int y = lowestValuePosition.y;
             
-            if ((x+1 < checked.length) && !checked[x+1][y] && level.canEnterArrayPos(x+1, y)) {
-                costs[x+1][y] = Math.min(costs[x+1][y], costs[x][y] + movementCost);
+            if ((x + 1 < checked.length) && !checked[x + 1][y] && level.canEnterArrayPos(x + 1, y)) {
+                costs[x + 1][y] = Math.min(costs[x + 1][y], costs[x][y] + movementCost);
             }
-            if ((x-1 > 0) && !checked[x-1][y] && level.canEnterArrayPos(x-1, y)) {
-                costs[x-1][y] = Math.min(costs[x-1][y], costs[x][y] + movementCost);
+            if ((x - 1 > 0) && !checked[x - 1][y] && level.canEnterArrayPos(x - 1, y)) {
+                costs[x - 1][y] = Math.min(costs[x - 1][y], costs[x][y] + movementCost);
             }
-            if ((y+1 < checked.length) && !checked[x][y+1] && level.canEnterArrayPos(x, y+1)) {
-                costs[x][y+1] = Math.min(costs[x][y+1], costs[x][y] + movementCost);
+            if ((y + 1 < checked.length) && !checked[x][y + 1] && level.canEnterArrayPos(x, y + 1)) {
+                costs[x][y + 1] = Math.min(costs[x][y + 1], costs[x][y] + movementCost);
             }
-            if ((y-1 > 0) && !checked[x][y-1] && level.canEnterArrayPos(x, y-1)) {
-                costs[x][y-1] = Math.min(costs[x][y-1], costs[x][y] + movementCost);
+            if ((y - 1 > 0) && !checked[x][y - 1] && level.canEnterArrayPos(x, y - 1)) {
+                costs[x][y - 1] = Math.min(costs[x][y - 1], costs[x][y] + movementCost);
             }
 
             checked[x][y] = true;
@@ -133,17 +133,17 @@ public class PathFinding extends Behavior {
             int y = currentPosition.y;
             int lowestValue = costs[x][y];
 
-            if ((x+1 < checked.length) && (costs[x+1][y] <= lowestValue)) {
-                lowestValue = costs[x+1][y];
+            if ((x + 1 < checked.length) && (costs[x + 1][y] <= lowestValue)) {
+                lowestValue = costs[x + 1][y];
                 nextPosition.x = x + 1;
-            } else if ((x-1 > 0) && (costs[x-1][y] <= lowestValue)) {
-                lowestValue = costs[x-1][y];
+            } else if ((x - 1 > 0) && (costs[x - 1][y] <= lowestValue)) {
+                lowestValue = costs[x - 1][y];
                 nextPosition.x = x - 1;
-            } else if ((y+1 < checked.length) && (costs[x][y+1] <= lowestValue)) {
-                lowestValue = costs[x][y+1];
+            } else if ((y + 1 < checked.length) && (costs[x][y + 1] <= lowestValue)) {
+                lowestValue = costs[x][y + 1];
                 nextPosition.y = y + 1; 
-            } else if ((y-1 > 0) && (costs[x][y-1] <= lowestValue)) {
-                lowestValue = costs[x][y-1];
+            } else if ((y - 1 > 0) && (costs[x][y - 1] <= lowestValue)) {
+                lowestValue = costs[x][y - 1];
                 nextPosition.y = y - 1; 
             }
         }

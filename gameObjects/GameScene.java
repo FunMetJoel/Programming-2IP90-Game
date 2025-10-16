@@ -4,6 +4,8 @@ import gameEngine.GameCanvas;
 import gameEngine.Scene;
 import gameEngine.Vector2;
 import java.util.Random;
+
+import behaviors.managers.ScoreHolder;
 import level.Level;
 
 public class GameScene extends Scene {
@@ -37,6 +39,8 @@ public class GameScene extends Scene {
         addObject(enemy);
         addObject(new Enemy(new Vector2<Double>(20.0, 10.0), gameManager));
 
-        addObject(new EnergyBar());
+        // addObject(new EnergyBar());
+
+        addUIObject(new MainUICanvas(gameCanvas, (ScoreHolder) gameManager.getBehavior(ScoreHolder.class)));
     }
 }

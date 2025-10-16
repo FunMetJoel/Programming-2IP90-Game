@@ -7,26 +7,39 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
+/**
+ * A behavior of a item that can be eaten.
+ */
 public class Edible extends PlayerCollisionDetector {
 
     ScoreHolder scoreHolder;
-    public boolean isEten = false;
+    public boolean isEaten = false;
     Timer animator;
 
     @Override
     void onCollide() {
-        if (isEten) {
+        if (isEaten) {
             return;
         }
 
         scoreHolder.addScore(1.0);
         System.out.println(scoreHolder.getScore());
-        isEten = true;
+        isEaten = true;
         // TODO: Make this better
         gameObject.isActive = false;
     }
 
-    public Edible(GameObject gameObject, GridMovement playerMovement, ScoreHolder scoreHolder, GameObject spriteObject) {
+    /**
+     * Creates new edible behavior.
+     * @param gameObject the gameObject to add the behavior to
+     * @param playerMovement the movement script of the player to track its position
+     * @param scoreHolder the score holder to edit the score
+     * @param spriteObject the sprite of the gameObject
+     */
+    public Edible(
+        GameObject gameObject, GridMovement playerMovement, 
+        ScoreHolder scoreHolder, GameObject spriteObject
+    ) {
         super(gameObject, playerMovement);
         this.scoreHolder = scoreHolder;
 
@@ -41,7 +54,9 @@ public class Edible extends PlayerCollisionDetector {
                     direction = 1.0;
                 }
                 
-                Vector2<Double> newPosition = spriteObject.getPosition().addVector(new Vector2<Double>(0.0, -0.01).newScaledVector(direction));
+                Vector2<Double> newPosition = spriteObject.getPosition().addVector(
+                    new Vector2<Double>(0.0, -0.01).newScaledVector(direction)
+                );
                 spriteObject.setPosition(newPosition);
             }
         };
