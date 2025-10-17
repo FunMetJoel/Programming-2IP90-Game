@@ -14,6 +14,9 @@ public class EnergyBar extends GameObject {
         RegularShapeRenderer renderer = new RegularShapeRenderer(this);
         this.renderer = renderer;
         renderer.shape = RegularShapeRenderer.Shape.rectangle;
+        // renderer.borderColor = Color.PINK;
+        renderer.fillColor = new Color(0, 0, 0, 150);
+        renderer.borderColor = new Color(200, 0, 100, 100);
         // renderer.mainLayer = 3;
         // renderer.renderInCenter = true;
         // renderer.constantScreenSize = true;

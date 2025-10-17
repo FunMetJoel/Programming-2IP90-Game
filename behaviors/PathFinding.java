@@ -1,7 +1,6 @@
 package behaviors;
 
 import gameEngine.Behavior;
-import gameEngine.GameCanvas;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import level.Level;

@@ -3,9 +3,13 @@ package behaviors.managers;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.renderers.RegularShapeRenderer;
+import gameEngine.renderers.SpriteRenderer;
 import gameEngine.renderers.RegularShapeRenderer.Shape;
 
 import java.awt.Color;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class ScoreBarManager extends Behavior {
 
@@ -30,14 +34,15 @@ public class ScoreBarManager extends Behavior {
             
             // gameObject.addChild(partElements[i]);
 
-            RegularShapeRenderer renderer = new RegularShapeRenderer(partElements[i]);
-            renderer.fillColor = new Color(0, 0, 0, 0);
-            renderer.borderColor = Color.BLACK;
-            renderer.shape = Shape.rectangle;
-            renderer.mainLayer = 1;
-            renderer.renderInCenter = false;
-            renderer.constantScreenSize = true;
-            partElements[i].renderer = renderer;
+            // RegularShapeRenderer renderer = new RegularShapeRenderer(partElements[i]);
+            // renderer.fillColor = new Color(0, 0, 0, 0);
+            // renderer.borderColor = Color.BLACK;
+            // renderer.shape = Shape.rectangle;
+            // renderer.mainLayer = 1;
+
+            SpriteRenderer spriteRenderer = new SpriteRenderer(partElements[i]);
+            spriteRenderer.sprite = new ImageIcon("assets/nether_star.png").getImage();
+            partElements[i].renderer = spriteRenderer;
             partElements[i].setPosition(((double) (i - 4.5) / partElements.length), 0);
             partElements[i].setScale((1.0 / partElements.length), 1.0);
 
