@@ -53,8 +53,9 @@ public class GridRenderer extends Renderer {
 
         for (GameObject child : gameObject.children) {
             GridItem tile = (GridItem) child;
-            Image texture = tile.getTexture((byte) 0);
             Vector2<Integer> pos = tile.getPosition().round();
+            byte situation = Ctm.getSituation((Grid) gameObject, pos);
+            Image texture = tile.getTexture((byte) situation);
             layers[1].drawImage(
                 texture, 
                 pos.x * texture.getWidth(null), 

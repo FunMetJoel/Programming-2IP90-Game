@@ -83,4 +83,14 @@ public class Grid extends GameObject {
         gridData[arrayX][arrayY] = tile;
         children.add(tile);
     }
+
+    public GridItem getTile(int x, int y) {
+        if (x < 0 || x >= this.gridSize) {
+            return null;
+        }
+        if (y < 0 || y >= this.gridSize) {
+            return null;
+        }
+        return gridData[x][y];
+    }
 }

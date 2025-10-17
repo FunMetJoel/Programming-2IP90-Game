@@ -135,7 +135,6 @@ public class GameObject {
 
     public void addChild(GameObject gameObject) {
         this.children.add(gameObject);
-        System.out.println("Size" + this.children.size() + gameObject.getClass());
     }
 
     // TODO: make this safe

@@ -42,13 +42,6 @@ public class ScoreBarManager extends Behavior {
             partElements[i].setScale((1.0 / partElements.length), 1.0);
 
             gameObject.addChild(partElements[i]);
-            System.out.println(
-                partElements[i].getPosition() + ", "
-                + partElements[i].getScale()
-            );
-            System.out.println(
-                partElements
-            );
         }
     }
 
