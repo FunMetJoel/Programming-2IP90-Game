@@ -18,6 +18,7 @@ public class GridRenderer extends Renderer {
     public Boolean drawAntiLine = false;
 
     private BufferedImage[] bakedMap;
+    private int hashedMap;
 
     public GridRenderer(GameObject gameObject) {
         super(gameObject);
@@ -29,8 +30,12 @@ public class GridRenderer extends Renderer {
         Vector2<Double> centerScreenCords, 
         Vector2<Double> screenScale
     ) {
-        bakeMap();
-        // TODO: Do not hardcode
+        if (hashedMap != hashCurrentMap()) {
+            bakeMap();
+            hashedMap = hashCurrentMap();
+        }
+
+        // TODO: Do not hardcode grid size
         Vector2<Integer> upperCorner = getUpperCorner(centerScreenCords, screenScale).round();
         Vector2<Integer> lowerCorner = screenScale.newScaledVector(51.0).round();
         graphics[1].drawImage(
@@ -70,5 +75,9 @@ public class GridRenderer extends Renderer {
             layers[i].dispose();
         }
 
+    }
+
+    public int hashCurrentMap() {
+        return gameObject.children.hashCode();
     }
 }

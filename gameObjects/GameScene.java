@@ -14,7 +14,7 @@ public class GameScene extends Scene {
     }
 
     public GameScene(int seed, GameCanvas gameCanvas) {
-        Level level = new Level();
+        Level level = new Level(seed);
         addObject(level);
 
         Vector2<Integer> middlePosition = new Vector2<Integer>(
@@ -35,9 +35,9 @@ public class GameScene extends Scene {
         GameManager gameManager = new GameManager(player, level, gameCanvas, this);
         addObject(gameManager);
 
-        Enemy enemy = new Enemy(new Vector2<Double>(10.0, 10.0), gameManager);
-        addObject(enemy);
-        addObject(new Enemy(new Vector2<Double>(20.0, 10.0), gameManager));
+        addObject(new Enemy(new Vector2<Double>(11.0, 11.0), gameManager));
+        addObject(new Enemy(new Vector2<Double>(31.0, 11.0), gameManager));
+        addObject(new Enemy(new Vector2<Double>(31.0, 31.0), gameManager));
 
         // addObject(new EnergyBar());
 
