@@ -51,7 +51,47 @@ public class Ctm {
         if (NW & N & NE & E & SE & S & SW & W) {
             return images[26];
         } 
-                
+
+        // everything except 1 diagonal
+        else if (N & NE & E & SE & S & SW & W) {
+            return images[45];
+        } else if (NW & N & E & SE & S & SW & W) {
+            return images[44];
+        } else if (NW & N & NE & E & S & SW & W) {
+            return images[32];
+        } else if (NW & N & NE & E & SE & S & W) {
+            return images[33];
+        } 
+
+        // everything except 2 diagonals on same side
+        else if (N & E & SE & S & SW & W) {
+            return images[22];
+        } else if (NW & N & E & S & SW & W) {
+            return images[10];
+        } else if (NW & N & NE & E & S & W) {
+            return images[11];
+        } else if (N & NE & E & SE & S & W) {
+            return images[23];
+        } 
+
+        // everything except 2 diagonals on opposite sites
+        else if (N & NE & E & S & SW & W) {
+            return images[34];
+        } else if (NW & N & E & SE & S & W) {
+            return images[35];
+        }
+
+        // Everything except 3 diagonals
+        else if (NW & N & E & S & W) {
+            return images[20];
+        } else if (N & NE & E & S & W) {
+            return images[8];
+        } else if (N & E & SE & S & W) {
+            return images[9];
+        } else if (N & E & S & SW & W) {
+            return images[21];
+        } 
+
         // Sides
         else if (E & SE & S & SW & W) {
             return images[14];
@@ -61,6 +101,11 @@ public class Ctm {
             return images[25];
         } else if (N & NW & W & SW & S) {
             return images[27];
+        }
+
+        // Everything exept 4 diagonals
+        else if (N & E & S & W) {
+            return images[46];
         }
 
         // Sides with 1 diagonal missing
