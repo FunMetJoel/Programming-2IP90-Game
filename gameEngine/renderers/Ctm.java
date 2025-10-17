@@ -214,7 +214,7 @@ public class Ctm {
 
     private static boolean isSameClass(GridItem tile, GridItem otherTile) {
         if (otherTile == null) {
-            return false;
+            return true;
         }
         return tile.getClass().equals(otherTile.getClass());
     }

@@ -13,7 +13,7 @@ public class Obstacle extends GridItem  {
 
     static Image image = new ImageIcon("assets/obstacle.png").getImage();
 
-    static Ctm ctm = new Ctm(new ImageIcon("assets/CornerCtm.png").getImage());
+    static Ctm ctm = new Ctm(new ImageIcon("assets/obstacleCtm.png").getImage());
 
 
     @Override
