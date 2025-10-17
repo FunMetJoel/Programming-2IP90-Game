@@ -24,7 +24,7 @@ public class Obstacle extends GridItem  {
         SpriteRenderer spriteRenderer = new SpriteRenderer(this);
         spriteRenderer.sprite = image;
         spriteRenderer.drawAntiLine = true;
-        renderer = spriteRenderer;
+        // renderer = spriteRenderer;
     }
     
 }

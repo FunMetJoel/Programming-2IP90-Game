@@ -2,6 +2,8 @@ package gameEngine;
 
 import java.awt.Graphics2D;
 
+import gameEngine.renderers.GridRenderer;
+
 /**
  * A grid of GridItem tiles.
  */
@@ -10,7 +12,7 @@ public class Grid extends GameObject {
     GridItem[][] gridData = new GridItem[gridSize][gridSize];
 
     public Grid() {
-
+        this.renderer = new GridRenderer(this);
     }
 
     /**

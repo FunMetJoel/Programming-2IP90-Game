@@ -10,6 +10,7 @@ public class Level extends Grid {
     }
 
     public Level(int seed) {
+        super();
         double frequency = 0.1;
         PerlinGrid perlin = new PerlinGrid(seed);
         double[][] noise = perlin.createGrid(gridSize, gridSize, frequency);
