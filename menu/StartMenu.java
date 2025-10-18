@@ -53,17 +53,17 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         this.add(mainPanel, Integer.valueOf(1));
 
-        JLabel title = new JLabel("COOL GAME"); 
+        JLabel title = new AnimatedTitle().title;
         title.setAlignmentX(CENTER_ALIGNMENT);
         title.setForeground(new Color(5, 9, 245));
 
-        try {
-            File fontFile = new File("assets/RushDriver-Italic.otf");
-            Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(100f);
-            title.setFont(font);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     File fontFile = new File("assets/RushDriver-Italic.otf");
+        //     Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(100f);
+        //     title.setFont(font);
+        // } catch(Exception e) {
+        //     e.printStackTrace();
+        // }
 
         this.mainPanel.add(title, Integer.valueOf(1));
 
