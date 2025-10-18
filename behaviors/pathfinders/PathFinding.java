@@ -1,5 +1,6 @@
-package behaviors;
+package behaviors.pathfinders;
 
+import behaviors.GridMovement;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
@@ -20,7 +21,8 @@ public class PathFinding extends Behavior {
 
     @Override
     public void setup() {
-        gridMovement = (GridMovement) gameObject.getBehavior(GridMovement.class);
+        this.gridMovement = (GridMovement) gameObject.getBehavior(GridMovement.class);
+        this.level = gridMovement.level;
 
         int gridSize = level.gridSize;
         costs = new int[gridSize][gridSize];

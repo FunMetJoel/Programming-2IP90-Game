@@ -25,7 +25,7 @@ public class Level extends Grid {
             double newNoiseAverage = newPerlin.findAverage(noise);
             String[][] visual = newPerlin.visualyRepresentedGrid(newNoiseAverage, newNoise);
 
-            newMudNoise = newPerlin.createGrid(gridSize, gridSize, frequency * 0.5);
+            newMudNoise = newPerlin.createGrid(gridSize, gridSize, frequency * 0.4);
 
             visualOriginalPerlin = newPerlin.combineGrid(visualOriginalPerlin, visual);
         }
@@ -41,7 +41,7 @@ public class Level extends Grid {
 
                 // TODO: Make this a better generator function
                 if (visualOriginalPerlin[i][j] != "*") {
-                    if (newMudNoise[i][j] >= 0.8) {
+                    if (newMudNoise[i][j] >= 0.7) {
                         setTile(
                             new Mud(newPos, scale), 
                             i, 

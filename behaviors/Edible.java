@@ -24,7 +24,6 @@ public class Edible extends PlayerCollisionDetector {
         }
 
         scoreHolder.addScore(1.0);
-        System.out.println(scoreHolder.getScore());
         isEaten = true;
 
         ActionListener taskPerformer = new ActionListener() {
@@ -32,7 +31,6 @@ public class Edible extends PlayerCollisionDetector {
 
             public void actionPerformed(ActionEvent evt) {
                 frame++;
-                System.out.println(frame);
                 spriteObject.setScale(0.8 + (double) frame * 0.3, 0.8 + (double) frame * 0.3);
 
                 if (frame >= 4) {
