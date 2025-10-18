@@ -39,27 +39,18 @@ public class main {
 
         StartMenu menu = startMenu.getMenu();
 
-        // while (!startIsCLicked) {
-        //     startIsCLicked = menu.getStartStatus();
-        //     System.out.println();
-        // }
-
-        // System.out.println("Start!");
-
-        // new GameLauncher().launchGame();
-
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while(!menu.getStartStatus()) {
+                while (!menu.getStartStatus()) {
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                new GameLauncher().launchGame();
                 startMenu.closeStartMenu();
+                new GameLauncher().launchGame();
             }
         }).start();
     }
