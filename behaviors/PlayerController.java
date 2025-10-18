@@ -31,25 +31,31 @@ public class PlayerController extends Behavior {
         if (horizontalFirst) {
             if (InputManager.isPressed(KeyEvent.VK_A) && gridMovement.canMoveBy(-1, 0)) {
                 gridMovement.move(-1, 0);
+                horizontalFirst = false;
             } else if (InputManager.isPressed(KeyEvent.VK_D) && gridMovement.canMoveBy(1, 0)) {
                 gridMovement.move(1, 0);
+                horizontalFirst = false;
             } else if (InputManager.isPressed(KeyEvent.VK_W) && gridMovement.canMoveBy(0, -1)) {
                 gridMovement.move(0, -1);
+                horizontalFirst = true;
             } else if (InputManager.isPressed(KeyEvent.VK_S) && gridMovement.canMoveBy(0, 1)) {
                 gridMovement.move(0, 1);
+                horizontalFirst = true;
             }
         } else {
             if (InputManager.isPressed(KeyEvent.VK_W) && gridMovement.canMoveBy(0, -1)) {
                 gridMovement.move(0, -1);
+                horizontalFirst = true;
             } else if (InputManager.isPressed(KeyEvent.VK_S) && gridMovement.canMoveBy(0, 1)) {
                 gridMovement.move(0, 1);
+                horizontalFirst = true;
             } else if (InputManager.isPressed(KeyEvent.VK_A) && gridMovement.canMoveBy(-1, 0)) {
                 gridMovement.move(-1, 0);
+                horizontalFirst = false;
             } else if (InputManager.isPressed(KeyEvent.VK_D) && gridMovement.canMoveBy(1, 0)) {
                 gridMovement.move(1, 0);
+                horizontalFirst = false;
             }
         }
-
-        horizontalFirst = !horizontalFirst;
     }
 }
