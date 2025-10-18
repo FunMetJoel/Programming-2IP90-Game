@@ -38,7 +38,7 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         this.add(mainPanel, Integer.valueOf(1));
 
-        JLabel title = new JLabel("NAME"); 
+        JLabel title = new JLabel("COOL GAME"); 
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.mainPanel.add(title, Integer.valueOf(1));
 
