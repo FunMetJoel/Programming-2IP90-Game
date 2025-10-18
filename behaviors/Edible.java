@@ -15,6 +15,7 @@ public class Edible extends PlayerCollisionDetector {
     ScoreHolder scoreHolder;
     public boolean isEaten = false;
     Timer animator;
+    GameObject spriteObject;
 
     @Override
     void onCollide() {
@@ -25,8 +26,29 @@ public class Edible extends PlayerCollisionDetector {
         scoreHolder.addScore(1.0);
         System.out.println(scoreHolder.getScore());
         isEaten = true;
-        // TODO: Make this better
-        gameObject.isActive = false;
+
+        ActionListener taskPerformer = new ActionListener() {
+            int frame = 0;
+
+            public void actionPerformed(ActionEvent evt) {
+                frame++;
+                System.out.println(frame);
+                spriteObject.setScale(0.8 + (double) frame * 0.3, 0.8 + (double) frame * 0.3);
+
+                if (frame >= 4) {
+                    spriteObject.setScale(0.8, 0.8);
+                    gameObject.isActive = false;
+                    animator.start();
+                    ((Timer) evt.getSource()).stop();
+                }
+            }
+
+            
+        };
+        Timer pickedUpAnimator = new Timer(5, taskPerformer);
+        pickedUpAnimator.setRepeats(true);
+        animator.stop();
+        pickedUpAnimator.start();        
     }
 
     /**
@@ -42,6 +64,7 @@ public class Edible extends PlayerCollisionDetector {
     ) {
         super(gameObject, playerMovement);
         this.scoreHolder = scoreHolder;
+        this.spriteObject = spriteObject;
 
         int delay = 10; //milliseconds
         ActionListener taskPerformer = new ActionListener() {

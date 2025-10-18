@@ -37,7 +37,6 @@ public class CanisterSpawner extends Behavior {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
         for (Canister canister : activeGameObjects) {
             if (!canister.isActive) {
                 spawn(canister);

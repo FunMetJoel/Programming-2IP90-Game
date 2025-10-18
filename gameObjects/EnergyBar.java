@@ -17,7 +17,7 @@ public class EnergyBar extends GameObject {
         // renderer.borderColor = Color.PINK;
         renderer.fillColor = new Color(0, 0, 0, 150);
         renderer.borderColor = new Color(200, 0, 100, 100);
-        // renderer.mainLayer = 3;
+        // renderer.mainLayer = 3;ss
         // renderer.renderInCenter = true;
         // renderer.constantScreenSize = true;
 

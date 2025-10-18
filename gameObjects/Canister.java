@@ -13,7 +13,7 @@ public class Canister extends GameObject{
         super();
 
         GameObject canisterSpriteObject = new GameObject();
-        canisterSpriteObject.setScale(0.7, 0.7);
+        canisterSpriteObject.setScale(0.8, 0.8);
         SpriteRenderer renderer = new SpriteRenderer(canisterSpriteObject);
         renderer.sprite = new ImageIcon("assets/nether_star.png").getImage();
         canisterSpriteObject.renderer = renderer;
