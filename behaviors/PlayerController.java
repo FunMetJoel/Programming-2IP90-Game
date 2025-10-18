@@ -3,10 +3,13 @@ package behaviors;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.InputManager;
+import gameEngine.Vector2;
+
 import java.awt.event.KeyEvent;
 
 public class PlayerController extends Behavior {
     GridMovement gridMovement;
+    boolean horizontalFirst = false;
 
     public PlayerController(GameObject gameObject) {
         super(gameObject);
@@ -23,14 +26,30 @@ public class PlayerController extends Behavior {
             return;
         }
 
-        if (InputManager.isPressed(KeyEvent.VK_W) && gridMovement.canMoveBy(0, -1)) {
-            gridMovement.move(0, -1);
-        } else if (InputManager.isPressed(KeyEvent.VK_S) && gridMovement.canMoveBy(0, 1)) {
-            gridMovement.move(0, 1);
-        } else if (InputManager.isPressed(KeyEvent.VK_A) && gridMovement.canMoveBy(-1, 0)) {
-            gridMovement.move(-1, 0);
-        } else if (InputManager.isPressed(KeyEvent.VK_D) && gridMovement.canMoveBy(1, 0)) {
-            gridMovement.move(1, 0);
+        
+        // TODO: This can be more neat right?
+        if (horizontalFirst) {
+            if (InputManager.isPressed(KeyEvent.VK_A) && gridMovement.canMoveBy(-1, 0)) {
+                gridMovement.move(-1, 0);
+            } else if (InputManager.isPressed(KeyEvent.VK_D) && gridMovement.canMoveBy(1, 0)) {
+                gridMovement.move(1, 0);
+            } else if (InputManager.isPressed(KeyEvent.VK_W) && gridMovement.canMoveBy(0, -1)) {
+                gridMovement.move(0, -1);
+            } else if (InputManager.isPressed(KeyEvent.VK_S) && gridMovement.canMoveBy(0, 1)) {
+                gridMovement.move(0, 1);
+            }
+        } else {
+            if (InputManager.isPressed(KeyEvent.VK_W) && gridMovement.canMoveBy(0, -1)) {
+                gridMovement.move(0, -1);
+            } else if (InputManager.isPressed(KeyEvent.VK_S) && gridMovement.canMoveBy(0, 1)) {
+                gridMovement.move(0, 1);
+            } else if (InputManager.isPressed(KeyEvent.VK_A) && gridMovement.canMoveBy(-1, 0)) {
+                gridMovement.move(-1, 0);
+            } else if (InputManager.isPressed(KeyEvent.VK_D) && gridMovement.canMoveBy(1, 0)) {
+                gridMovement.move(1, 0);
+            }
         }
+
+        horizontalFirst = !horizontalFirst;
     }
 }
