@@ -1,12 +1,13 @@
-package behaviors;
+package behaviors.managers;
 
-import java.util.ArrayList;
-import java.util.Random;
-
+import behaviors.Edible;
+import behaviors.GridMovement;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameObjects.Canister;
+import java.util.ArrayList;
+import java.util.Random;
 import level.Level;
 
 public class CanisterSpawner extends Behavior {
@@ -36,7 +37,6 @@ public class CanisterSpawner extends Behavior {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
         for (Canister canister : activeGameObjects) {
             if (!canister.isActive) {
                 spawn(canister);
@@ -60,7 +60,7 @@ public class CanisterSpawner extends Behavior {
     public void spawn(Canister canister, int x, int y) {
         canister.isActive = true;
         Edible edible = (Edible) canister.getBehavior(Edible.class);
-        edible.isEten = false;
+        edible.isEaten = false;
         GridMovement gridMovement = (GridMovement) canister.getBehavior(GridMovement.class);
         gridMovement.moveTo(x, y);
         

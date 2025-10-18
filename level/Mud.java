@@ -7,16 +7,15 @@ import gameEngine.renderers.SpriteRenderer;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class Grass extends GridItem {
-    static Image image = new ImageIcon("assets/grasstop.png").getImage();
+public class Mud extends GridItem {
 
-    static Ctm ctm = new Ctm(new ImageIcon("assets/grassCtm.png").getImage());
+    static Ctm ctm = new Ctm(new ImageIcon("assets/mudCtm.png").getImage());
     @Override
     public Image getTexture(byte situation) {
-        return image;//ctm.getTexture(situation);
+        return ctm.getTexture(situation);
     }
 
-    public Grass(Vector2<Double> position, Vector2<Double> scale) {
+    public Mud(Vector2<Double> position, Vector2<Double> scale) {
         super(position, scale);
         this.canEnter = true;
     }

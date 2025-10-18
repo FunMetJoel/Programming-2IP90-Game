@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Scene implements Runnable {
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+    ArrayList<GameObject> uiObjects = new ArrayList<GameObject>();
     GameCanvas camera;
 
     public void run() {
@@ -21,6 +22,9 @@ public class Scene implements Runnable {
         for (GameObject gameObject: gameObjects) {
             gameObject.setupAll();
         }
+        for (GameObject uiGameObject: uiObjects) {
+            uiGameObject.setupAll();
+        }
     }
 
     /**
@@ -28,6 +32,9 @@ public class Scene implements Runnable {
      */
     public void update() {
         for (GameObject gameObject: gameObjects) {
+            gameObject.updateAll();
+        }
+        for (GameObject gameObject : uiObjects) {
             gameObject.updateAll();
         }
     }
@@ -42,6 +49,14 @@ public class Scene implements Runnable {
      */
     public void addObject(GameObject object) {
         gameObjects.add(object);
+    }
+
+    /**
+     * Adds an object to the ui canvas.
+     * @param objectthe object to add
+     */
+    public void addUIObject(GameObject object) {
+        uiObjects.add(object);
     }
 
     /**

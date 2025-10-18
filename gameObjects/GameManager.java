@@ -1,21 +1,22 @@
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Random;
+package gameObjects;
 
-import behaviors.CameraManager;
-import behaviors.CanisterSpawner;
 import behaviors.GridMovement;
-import behaviors.ScoreHolder;
+import behaviors.managers.CameraManager;
+import behaviors.managers.CanisterSpawner;
+import behaviors.managers.GameStateManager;
+import behaviors.managers.ScoreHolder;
 import gameEngine.GameCanvas;
 import gameEngine.GameObject;
 import gameEngine.Scene;
+import java.time.Instant;
+import java.util.Random;
 import level.Level;
 
 /**
  * Object to manage the game, switch the level game state.
  */
 public class GameManager extends GameObject {
-    Player player;
+    public Player player;
     Level currentLevel;
     Scene scene;
     GameCanvas canvas;
@@ -31,6 +32,9 @@ public class GameManager extends GameObject {
         );
         this.behaviors.add(
             new CanisterSpawner(this, currentLevel, (GridMovement) player.getBehavior(GridMovement.class))
+        );
+        this.behaviors.add(
+            new GameStateManager(this)
         );
 
         this.behaviors.add(new ScoreHolder(this));

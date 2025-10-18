@@ -1,34 +1,70 @@
 package behaviors;
 
+import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
+/**
+ * A behavior of a item that can be eaten.
+ */
 public class Edible extends PlayerCollisionDetector {
 
     ScoreHolder scoreHolder;
-    public boolean isEten = false;
+    public boolean isEaten = false;
     Timer animator;
+    GameObject spriteObject;
 
     @Override
     void onCollide() {
-        if (isEten) {
+        if (isEaten) {
             return;
         }
 
         scoreHolder.addScore(1.0);
         System.out.println(scoreHolder.getScore());
-        isEten = true;
-        // TODO: Make this better
-        gameObject.isActive = false;
+        isEaten = true;
+
+        ActionListener taskPerformer = new ActionListener() {
+            int frame = 0;
+
+            public void actionPerformed(ActionEvent evt) {
+                frame++;
+                System.out.println(frame);
+                spriteObject.setScale(0.8 + (double) frame * 0.3, 0.8 + (double) frame * 0.3);
+
+                if (frame >= 4) {
+                    spriteObject.setScale(0.8, 0.8);
+                    gameObject.isActive = false;
+                    animator.start();
+                    ((Timer) evt.getSource()).stop();
+                }
+            }
+
+            
+        };
+        Timer pickedUpAnimator = new Timer(5, taskPerformer);
+        pickedUpAnimator.setRepeats(true);
+        animator.stop();
+        pickedUpAnimator.start();        
     }
 
-    public Edible(GameObject gameObject, GridMovement playerMovement, ScoreHolder scoreHolder, GameObject spriteObject) {
+    /**
+     * Creates new edible behavior.
+     * @param gameObject the gameObject to add the behavior to
+     * @param playerMovement the movement script of the player to track its position
+     * @param scoreHolder the score holder to edit the score
+     * @param spriteObject the sprite of the gameObject
+     */
+    public Edible(
+        GameObject gameObject, GridMovement playerMovement, 
+        ScoreHolder scoreHolder, GameObject spriteObject
+    ) {
         super(gameObject, playerMovement);
         this.scoreHolder = scoreHolder;
+        this.spriteObject = spriteObject;
 
         int delay = 10; //milliseconds
         ActionListener taskPerformer = new ActionListener() {
@@ -41,7 +77,9 @@ public class Edible extends PlayerCollisionDetector {
                     direction = 1.0;
                 }
                 
-                Vector2<Double> newPosition = spriteObject.getPosition().addVector(new Vector2<Double>(0.0, -0.01).newScaledVector(direction));
+                Vector2<Double> newPosition = spriteObject.getPosition().addVector(
+                    new Vector2<Double>(0.0, -0.01).newScaledVector(direction)
+                );
                 spriteObject.setPosition(newPosition);
             }
         };

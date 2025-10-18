@@ -1,10 +1,9 @@
-package behaviors;
-
-import java.time.Duration;
-import java.time.Instant;
+package behaviors.managers;
 
 import gameEngine.Behavior;
 import gameEngine.GameObject;
+import java.time.Duration;
+import java.time.Instant;
 
 public class ScoreHolder extends Behavior {
 
@@ -39,5 +38,9 @@ public class ScoreHolder extends Behavior {
     public void addScore(double score) {
         this.score += score;
         this.totalGrabedStore += score;
+    }
+
+    public void removeScore(double score) {
+        this.score -= score;
     }
 }

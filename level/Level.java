@@ -1,8 +1,8 @@
 package level;
-import java.util.Random;
 
 import gameEngine.Grid;
 import gameEngine.Vector2;
+import java.util.Random;
 
 public class Level extends Grid {
     public Level() {
@@ -10,12 +10,13 @@ public class Level extends Grid {
     }
 
     public Level(int seed) {
+        super();
         double frequency = 0.1;
         PerlinGrid perlin = new PerlinGrid(seed);
         double[][] noise = perlin.createGrid(gridSize, gridSize, frequency);
         double noiseAverage = perlin.findAverage(noise);
         String[][] visualOriginalPerlin = perlin.visualyRepresentedGrid(noiseAverage, noise);
-        // double[][] newNoise = noise;
+        double[][] newMudNoise = noise;
 
         // TODO: create level based on seed
         for (int i = 1; i < 3; i++) {
@@ -23,6 +24,8 @@ public class Level extends Grid {
             double[][] newNoise = newPerlin.createGrid(gridSize, gridSize, frequency);
             double newNoiseAverage = newPerlin.findAverage(noise);
             String[][] visual = newPerlin.visualyRepresentedGrid(newNoiseAverage, newNoise);
+
+            newMudNoise = newPerlin.createGrid(gridSize, gridSize, frequency * 0.5);
 
             visualOriginalPerlin = newPerlin.combineGrid(visualOriginalPerlin, visual);
         }
@@ -38,11 +41,20 @@ public class Level extends Grid {
 
                 // TODO: Make this a better generator function
                 if (visualOriginalPerlin[i][j] != "*") {
-                    setTile(
-                        new Grass(newPos, scale), 
-                        i, 
-                        j
-                    );
+                    if (newMudNoise[i][j] >= 0.8) {
+                        setTile(
+                            new Mud(newPos, scale), 
+                            i, 
+                            j
+                        );
+                    } else {
+                        setTile(
+                            new Grass(newPos, scale), 
+                            i, 
+                            j
+                        );
+                    }
+                    
                 } else {
                     setTile(
                         new Obstacle(newPos, scale), 

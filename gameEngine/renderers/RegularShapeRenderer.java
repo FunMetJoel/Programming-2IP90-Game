@@ -3,8 +3,11 @@ package gameEngine.renderers;
 import gameEngine.GameObject;
 import gameEngine.Renderer;
 import gameEngine.Vector2;
+
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,12 +74,15 @@ public class RegularShapeRenderer extends Renderer {
         );
 
         graphics[mainLayer].setColor(borderColor);
+        Stroke stroke = graphics[mainLayer].getStroke();
+        graphics[mainLayer].setStroke(new BasicStroke(5));
         graphics[mainLayer].drawRect(
             upperCorner.x, 
             upperCorner.y, 
             lowerCorner.x, 
             lowerCorner.y
         );
+        graphics[mainLayer].setStroke(stroke);
     }
 
     private void renderOval(

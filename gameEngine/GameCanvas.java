@@ -12,6 +12,8 @@ public class GameCanvas extends JPanel {
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     public Vector2<Double> cameraPosition = new Vector2<Double>(0.0, 0.0);
     public double zoom = 1; // 1 pixel is 1 pixel
+    static final int totalLayers = 6;
+    static final int uiLayers = 2;
 
     private Scene scene;
 
@@ -34,13 +36,26 @@ public class GameCanvas extends JPanel {
         int width = this.getWidth();
         int height = this.getHeight();
         
+        
         // Create layers
-        BufferedImage[] bufferedImages = new BufferedImage[5];
-        Graphics2D[] graphicsLayers = new Graphics2D[bufferedImages.length];
-        for (int i = 0; i < bufferedImages.length; i++) {
+        BufferedImage[] bufferedImages = new BufferedImage[totalLayers];
+        Graphics2D[] graphicsLayers = new Graphics2D[totalLayers - uiLayers];
+        Graphics2D[] graphicsUiLayers = new Graphics2D[uiLayers];
+        for (int i = 0; i < totalLayers; i++) {
             bufferedImages[i] = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            graphicsLayers[i] = bufferedImages[i].createGraphics();
+
+            if (i < totalLayers - uiLayers) {
+                graphicsLayers[i] = bufferedImages[i].createGraphics();
+            } else {
+                graphicsUiLayers[i - (totalLayers - uiLayers)] = bufferedImages[i].createGraphics();
+            }
+            
         }
+
+        Vector2<Double> screenScale = new Vector2<Double>(
+            (double) width, 
+            (double) height    
+        );
 
         Vector2<Double> scale = new Vector2<Double>(
             zoom * width / 15.0, 
@@ -57,7 +72,8 @@ public class GameCanvas extends JPanel {
             height * 0.5
         );
 
-        renderAll(graphicsLayers, centerScreenCords, scale, centerScreen);
+        renderAll(scene.gameObjects, graphicsLayers, centerScreenCords, scale, centerScreen);
+        renderAll(scene.uiObjects, graphicsUiLayers, centerScreen, screenScale, centerScreen);
 
         drawToScreen(graphics, bufferedImages);
     }
@@ -69,9 +85,9 @@ public class GameCanvas extends JPanel {
      * @param scale the scale of the parent object
      */
     private void renderAll(
-        Graphics2D[] graphics, Vector2<Double> centerScreenCords, Vector2<Double> scale, Vector2<Double> screenCenter
+        ArrayList<GameObject> gameObjects, Graphics2D[] graphics, Vector2<Double> centerScreenCords, Vector2<Double> scale, Vector2<Double> screenCenter
     ) {
-        for (GameObject gameObject : scene.gameObjects) {
+        for (GameObject gameObject : gameObjects) {
             renderAll(gameObject, graphics, centerScreenCords, scale, screenCenter);
         }
     }

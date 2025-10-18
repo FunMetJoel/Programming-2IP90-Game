@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  * An object that exist in the game world.
  */
 public class GameObject {
-    protected ArrayList<GameObject> children;
+    public ArrayList<GameObject> children;
     protected Vector2<Double> position = new Vector2<Double>(0.0, 0.0);
     protected Vector2<Double> scale = new Vector2<Double>(1.0, 1.0);
     protected ArrayList<Behavior> behaviors = new ArrayList<Behavior>();
@@ -30,6 +30,9 @@ public class GameObject {
      */
     private void updateBehaviors() {
         for (Behavior behavior : behaviors) {
+            if (!behavior.enabled) {
+                continue;
+            }
             behavior.update();
         }
     }
@@ -132,7 +135,6 @@ public class GameObject {
 
     public void addChild(GameObject gameObject) {
         this.children.add(gameObject);
-        System.out.println("Size" + this.children.size() + gameObject.getClass());
     }
 
     // TODO: make this safe

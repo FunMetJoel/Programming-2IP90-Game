@@ -7,6 +7,7 @@ package gameEngine;
 public abstract class Behavior {
 
     protected final GameObject gameObject;
+    public boolean enabled = true;
 
     /**
      * Function that gets run at the start of the game.

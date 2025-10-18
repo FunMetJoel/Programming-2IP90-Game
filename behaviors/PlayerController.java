@@ -1,10 +1,9 @@
 package behaviors;
 
-import java.awt.event.KeyEvent;
-
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.InputManager;
+import java.awt.event.KeyEvent;
 
 public class PlayerController extends Behavior {
     GridMovement gridMovement;

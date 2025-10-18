@@ -1,11 +1,6 @@
 package gameEngine;
 
-import java.awt.Graphics2D;
 import java.awt.Image;
-
-import gameEngine.renderers.RegularShapeRenderer;
-import gameEngine.renderers.ShapeRenderer;
-import gameEngine.renderers.SpriteRenderer;
 
 /**
  * A tile in a Grid.
