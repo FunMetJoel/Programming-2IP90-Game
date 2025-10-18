@@ -1,10 +1,14 @@
 package menu;
 
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,12 +18,21 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import gameEngine.GameCanvas;
+import gameEngine.InputManager;
+import gameObjects.GameScene.*;
+
 /**
  * The menu shown before the game starts.
  */
 public class StartMenu extends JLayeredPane implements ComponentListener {
     BackgroundImage background;
     JPanel mainPanel;
+    boolean startClicked = false;
+
+    public boolean getStartStatus() {
+        return startClicked;
+    }
 
     /**
      * Creates the menu object.
@@ -40,6 +53,7 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
 
         JLabel title = new JLabel("COOL GAME"); 
         title.setAlignmentX(CENTER_ALIGNMENT);
+        title.setForeground(new Color(255,255,255));
         this.mainPanel.add(title, Integer.valueOf(1));
 
         JPanel inputGroupPanel = new JPanel();
@@ -57,12 +71,30 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         newGameButton.setAlignmentX(CENTER_ALIGNMENT);
         newGameButton.setBackground(new Color(88, 255, 10));
         newGameButton.setForeground(Color.WHITE);
+        
+
+        newGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startClicked = true;
+                // System.out.println("START WAS CLICKED");
+            }
+        });
+
         inputGroupPanel.add(newGameButton, Integer.valueOf(1));
 
         JButton quitGameButton = new JButton("Quit Game");
         quitGameButton.setAlignmentX(CENTER_ALIGNMENT);
         quitGameButton.setBackground(new Color(232, 14, 14));
         quitGameButton.setForeground(Color.WHITE);
+
+        quitGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
         inputGroupPanel.add(quitGameButton, Integer.valueOf(1));
         
         this.componentResized(null);
