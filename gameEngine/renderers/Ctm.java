@@ -32,7 +32,6 @@ public class Ctm {
         for (int i = 0; i < images.length; i++) {
             int x = i % 12;
             int y = i / 12;
-            System.out.println(x + ", " + y);
             images[i] = spriteSheet.getSubimage(x * 16, y * 16, 16, 16);
         }
     }

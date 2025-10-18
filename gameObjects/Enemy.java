@@ -4,11 +4,14 @@ import behaviors.EnemyCollider;
 import behaviors.GridMovement;
 import behaviors.PathFinding;
 import behaviors.PlayerCollisionDetector;
+import behaviors.SpeedManager;
 import behaviors.managers.GameStateManager;
 import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.SpriteRenderer;
+import level.Mud;
+
 import javax.swing.ImageIcon;
 
 public class Enemy extends GameObject {
@@ -25,8 +28,11 @@ public class Enemy extends GameObject {
 
         GridMovement gridMovement = new GridMovement(this, this.gameManager.currentLevel);
         gridMovement.moveTo(position.round());
-        gridMovement.movementSpeed = 5.0;
         this.behaviors.add(gridMovement);
+
+        SpeedManager speedManager = new SpeedManager(this, 5.0);
+        speedManager.addRule(Mud.class, 0.5);
+        this.behaviors.add(speedManager);
 
         PathFinding pathFinding = new PathFinding(this);
         pathFinding.level = gameManager.currentLevel;
