@@ -13,6 +13,7 @@ import java.awt.event.ComponentListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import gameEngine.GameCanvas;
 import gameEngine.InputManager;
@@ -86,6 +88,18 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         newGameButton.setAlignmentX(CENTER_ALIGNMENT);
         newGameButton.setBackground(new Color(88, 255, 10));
         newGameButton.setForeground(Color.WHITE);
+
+        newGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            Border border = BorderFactory.createLineBorder(Color.GRAY, 8);
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                newGameButton.setBorder(border);
+                newGameButton.setBorderPainted(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                newGameButton.setBorderPainted(false);
+            }
+        });
         
 
         newGameButton.addActionListener(new ActionListener() {
