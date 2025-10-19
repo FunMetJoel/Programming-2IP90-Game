@@ -6,19 +6,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class AnimatedTitle extends JFrame{
+public class AnimatedTitle extends JPanel{
     JLabel title;
     float titleSize = 80f;
     boolean isGrowing = true;
 
     public AnimatedTitle() {
-        setPreferredSize(new Dimension(800, 150));
-        setMinimumSize(new Dimension(800, 500)); 
-        setMaximumSize(new Dimension(800, 500)); 
-        setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension(Integer.MAX_VALUE, 130));
+        this.setMinimumSize(new Dimension(Integer.MAX_VALUE, 130)); 
+        this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 130)); 
+        this.setLayout(new BorderLayout());
+        this.setOpaque(false);
 
-        title = new JLabel("COOL GAME");
+        title = new JLabel("COOL GAME", SwingConstants.CENTER);
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setVerticalAlignment(SwingConstants.CENTER);
+        title.setForeground(new Color(5, 9, 245));
+
+
         try {
             File fontFile = new File("assets/RushDriver-Italic.otf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -32,7 +37,7 @@ public class AnimatedTitle extends JFrame{
         Timer timer = new Timer(16, new ActionListener() {
             final float maxSize = 100f;
             final float minSize = 80f;
-            final float step = 0.2f;
+            final float step = 0.3f;
 
             @Override
             public void actionPerformed(ActionEvent e) {
