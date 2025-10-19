@@ -84,25 +84,10 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         seedInput.setHorizontalAlignment(JTextField.CENTER);
         inputGroupPanel.add(seedInput, Integer.valueOf(1));
 
-        JButton newGameButton = new JButton("New Game");
-        newGameButton.setAlignmentX(CENTER_ALIGNMENT);
-        newGameButton.setBackground(new Color(88, 255, 10));
-        newGameButton.setForeground(Color.WHITE);
+        ActionButton newGame = new ActionButton("New Game", new Color(88, 255, 10));
+        inputGroupPanel.add(newGame.button, Integer.valueOf(1));
 
-        newGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            Border border = BorderFactory.createLineBorder(Color.GRAY, 8);
-            public void mouseEntered(java.awt.event.MouseEvent e) {
-                newGameButton.setBorder(border);
-                newGameButton.setBorderPainted(true);
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent e) {
-                newGameButton.setBorderPainted(false);
-            }
-        });
-        
-
-        newGameButton.addActionListener(new ActionListener() {
+        newGame.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startClicked = true;
@@ -110,21 +95,15 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
             }
         });
 
-        inputGroupPanel.add(newGameButton, Integer.valueOf(1));
+        ActionButton quitGame = new ActionButton("Quit Game", new Color(232, 14, 14));
+        inputGroupPanel.add(quitGame.button, Integer.valueOf(1));
 
-        JButton quitGameButton = new JButton("Quit Game");
-        quitGameButton.setAlignmentX(CENTER_ALIGNMENT);
-        quitGameButton.setBackground(new Color(232, 14, 14));
-        quitGameButton.setForeground(Color.WHITE);
-
-        quitGameButton.addActionListener(new ActionListener() {
+        quitGame.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-
-        inputGroupPanel.add(quitGameButton, Integer.valueOf(1));
         
         this.componentResized(null);
         this.setVisible(true);
