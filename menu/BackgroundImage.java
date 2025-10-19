@@ -10,7 +10,7 @@ public class BackgroundImage extends JPanel{
 
     @Override
     protected void paintComponent(Graphics g) {
-        System.out.println("SDF");
+        // System.out.println("SDF");
         Image backgroundTile = new ImageIcon("assets/racingFlag.png").getImage();
         for (int i = 0; i < (this.getWidth()/backgroundTile.getWidth(null)) + 1; i++) {
             for (int j = 0; j < (this.getHeight()/backgroundTile.getHeight(null)) + 1; j++) {

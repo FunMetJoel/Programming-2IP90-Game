@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -56,33 +58,37 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         this.add(mainPanel, Integer.valueOf(1));
 
-        // JLabel title = new AnimatedTitle().title;
-        // title.setAlignmentX(CENTER_ALIGNMENT);
-        // title.setForeground(new Color(5, 9, 245));
-
         AnimatedTitle title = new AnimatedTitle();
         title.setAlignmentX(CENTER_ALIGNMENT);
-
-        // try {
-        //     File fontFile = new File("assets/RushDriver-Italic.otf");
-        //     Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(100f);
-        //     title.setFont(font);
-        // } catch(Exception e) {
-        //     e.printStackTrace();
-        // }
 
         this.mainPanel.add(title, Integer.valueOf(1));
 
         JPanel inputGroupPanel = new JPanel();
         inputGroupPanel.setOpaque(false);
-        inputGroupPanel.setLayout(new GridLayout(3, 1, 0, 5));
+        inputGroupPanel.setLayout(new GridLayout(4, 1, 0, 5));
         inputGroupPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
         this.mainPanel.add(inputGroupPanel);
 
-        JTextField seedInput = new JTextField("Seed");
+        JTextField seedInput = new JTextField("Input custom seed");
         seedInput.setAlignmentX(CENTER_ALIGNMENT);
         seedInput.setHorizontalAlignment(JTextField.CENTER);
         inputGroupPanel.add(seedInput, Integer.valueOf(1));
+
+        seedInput.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (seedInput.getText().equals("Input custom seed")) {
+                    seedInput.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (seedInput.getText().equals("")) {
+                    seedInput.setText("Input custom seed");
+                }
+            }
+        });
 
         ActionButton newGame = new ActionButton("New Game", new Color(88, 255, 10));
         inputGroupPanel.add(newGame.button, Integer.valueOf(1));
@@ -91,6 +97,8 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startClicked = true;
+                String textValue = seedInput.getText();
+                System.out.println(textValue);
                 // System.out.println("START WAS CLICKED");
             }
         });
@@ -104,9 +112,15 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
                 System.exit(0);
             }
         });
+
+        JTextField dummyField = new JTextField();
+        inputGroupPanel.add(dummyField, Integer.valueOf(1));
+        dummyField.setVisible(true);
         
         this.componentResized(null);
         this.setVisible(true);
+        dummyField.requestFocusInWindow();
+        dummyField.setVisible(false);
     }
 
     @Override
