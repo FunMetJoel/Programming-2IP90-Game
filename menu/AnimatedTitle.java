@@ -35,9 +35,9 @@ public class AnimatedTitle extends JPanel{
         add(title, BorderLayout.CENTER);
 
         Timer timer = new Timer(16, new ActionListener() {
-            final float maxSize = 90f;
+            final float maxSize = 85f;
             final float minSize = 80f;
-            final float step = 0.3f;
+            final float step = 0.1f;
 
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -24,10 +25,13 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import gameEngine.GameCanvas;
 import gameEngine.InputManager;
+import gameEngine.Vector2;
+import gameObjects.Enemy;
 import gameObjects.GameScene.*;
 
 /**
@@ -52,7 +56,6 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         this.setSize(getPreferredSize());
         this.addComponentListener(this);
         
-        // this.background = new BackgroundImage();
         this.background = new GradientBackground();
         this.add(background, Integer.valueOf(0));
 
@@ -68,7 +71,7 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
 
         JPanel inputGroupPanel = new JPanel();
         inputGroupPanel.setOpaque(false);
-        inputGroupPanel.setLayout(new GridLayout(4, 1, 0, 5));
+        inputGroupPanel.setLayout(new GridLayout(4, 1, 0, 10));
         inputGroupPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
         this.mainPanel.add(inputGroupPanel);
 
@@ -94,7 +97,7 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
             }
         });
 
-        ActionButton newGame = new ActionButton("New Game", new Color(15, 145, 45));
+        ActionButton newGame = new ActionButton("New Game", new Color(2, 110, 36));
         inputGroupPanel.add(newGame, Integer.valueOf(1));
 
         newGame.addActionListener(new ActionListener() {
@@ -107,7 +110,7 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
             }
         });
 
-        ActionButton quitGame = new ActionButton("Quit Game", new Color(168, 32, 32));
+        ActionButton quitGame = new ActionButton("Quit Game", new Color(130, 1, 18));
         inputGroupPanel.add(quitGame, Integer.valueOf(1));
 
         quitGame.addActionListener(new ActionListener() {
@@ -116,16 +119,20 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
                 System.exit(0);
             }
         });
-
-        JTextField dummyField = new JTextField();
-        inputGroupPanel.add(dummyField, Integer.valueOf(1));
-        dummyField.setVisible(true);
         
         this.componentResized(null);
         this.setVisible(true);
-        dummyField.requestFocusInWindow();
-        dummyField.setVisible(false);
     }
+
+    @Override
+    public void addNotify() {
+        super.addNotify();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                StartMenu.this.requestFocusInWindow();
+            }
+        });
+}
 
     @Override
     public void componentResized(ComponentEvent e) {
