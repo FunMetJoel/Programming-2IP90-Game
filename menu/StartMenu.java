@@ -1,6 +1,7 @@
 package menu;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -33,7 +34,8 @@ import gameObjects.GameScene.*;
  * The menu shown before the game starts.
  */
 public class StartMenu extends JLayeredPane implements ComponentListener {
-    BackgroundImage background;
+    // BackgroundImage background;
+    GradientBackground background;
     JPanel mainPanel;
     boolean startClicked = false;
 
@@ -50,7 +52,8 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         this.setSize(getPreferredSize());
         this.addComponentListener(this);
         
-        this.background = new BackgroundImage();
+        // this.background = new BackgroundImage();
+        this.background = new GradientBackground();
         this.add(background, Integer.valueOf(0));
 
         this.mainPanel = new JPanel();
@@ -72,6 +75,7 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
         JTextField seedInput = new JTextField("Input custom seed");
         seedInput.setAlignmentX(CENTER_ALIGNMENT);
         seedInput.setHorizontalAlignment(JTextField.CENTER);
+        seedInput.setBorder(BorderFactory.createLineBorder(Color.WHITE, 8));
         inputGroupPanel.add(seedInput, Integer.valueOf(1));
 
         seedInput.addFocusListener(new FocusAdapter() {
@@ -90,10 +94,10 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
             }
         });
 
-        ActionButton newGame = new ActionButton("New Game", new Color(88, 255, 10));
-        inputGroupPanel.add(newGame.button, Integer.valueOf(1));
+        ActionButton newGame = new ActionButton("New Game", new Color(15, 145, 45));
+        inputGroupPanel.add(newGame, Integer.valueOf(1));
 
-        newGame.button.addActionListener(new ActionListener() {
+        newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startClicked = true;
@@ -103,10 +107,10 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
             }
         });
 
-        ActionButton quitGame = new ActionButton("Quit Game", new Color(232, 14, 14));
-        inputGroupPanel.add(quitGame.button, Integer.valueOf(1));
+        ActionButton quitGame = new ActionButton("Quit Game", new Color(168, 32, 32));
+        inputGroupPanel.add(quitGame, Integer.valueOf(1));
 
-        quitGame.button.addActionListener(new ActionListener() {
+        quitGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
