@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class GameStateManager extends Behavior {
     ScoreHolder scoreHolder;
-    GameState gameState = GameState.beforeStart;
+    public GameState gameState = GameState.beforeStart;
 
     public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 

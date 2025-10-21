@@ -41,6 +41,12 @@ public class GameScene extends Scene {
 
         // addObject(new EnergyBar());
 
-        addUIObject(new MainUICanvas(gameCanvas, (ScoreHolder) gameManager.getBehavior(ScoreHolder.class)));
+        addUIObject(
+            new MainUICanvas((ScoreHolder) gameManager.getBehavior(ScoreHolder.class))
+        );
+
+        addUIObject(
+            new DeathScreenCanvas(gameManager)
+        );
     }
 }
