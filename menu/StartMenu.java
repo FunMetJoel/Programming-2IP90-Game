@@ -42,6 +42,7 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
     GradientBackground background;
     JPanel mainPanel;
     boolean startClicked = false;
+    public int seed;
 
     public boolean getStartStatus() {
         return startClicked;
@@ -105,6 +106,14 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
             public void actionPerformed(ActionEvent e) {
                 startClicked = true;
                 String textValue = seedInput.getText();
+
+                try {
+                    int newSeed = Integer.parseInt(textValue);
+                    seed = newSeed;
+                } catch (NumberFormatException exception) {
+                    seed = 19;
+                }
+
                 System.out.println(textValue);
                 // System.out.println("START WAS CLICKED");
             }
@@ -132,7 +141,7 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
                 StartMenu.this.requestFocusInWindow();
             }
         });
-}
+    }
 
     @Override
     public void componentResized(ComponentEvent e) {
@@ -153,17 +162,17 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
     @Override
     public void componentShown(ComponentEvent e) { }
 
-    public static void main(String[] args) {
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setTitle("Main menu testing");
+    // public static void main(String[] args) {
+    //     JFrame window = new JFrame();
+    //     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //     window.setTitle("Main menu testing");
 
-        StartMenu menu = new StartMenu();
-        window.add(menu);
+    //     StartMenu menu = new StartMenu();
+    //     window.add(menu);
 
-        window.pack();
+    //     window.pack();
 
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-    }
+    //     window.setLocationRelativeTo(null);
+    //     window.setVisible(true);
+    // }
 }
