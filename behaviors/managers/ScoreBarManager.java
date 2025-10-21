@@ -2,13 +2,7 @@ package behaviors.managers;
 
 import gameEngine.Behavior;
 import gameEngine.GameObject;
-import gameEngine.renderers.RegularShapeRenderer;
 import gameEngine.renderers.SpriteRenderer;
-import gameEngine.renderers.RegularShapeRenderer.Shape;
-
-import java.awt.Color;
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public class ScoreBarManager extends Behavior {

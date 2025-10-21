@@ -53,7 +53,7 @@ public class GameCanvas extends JPanel {
         }
 
         Vector2<Double> screenScale = new Vector2<Double>(
-            (double) width, 
+            (double) height, 
             (double) height    
         );
 
