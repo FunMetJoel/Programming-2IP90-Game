@@ -2,6 +2,9 @@ package level;
 
 import java.util.ArrayList;
 
+/**Handles generation of an array list of pseudo-random numbers.
+ * 
+ */
 public class PseudoArrayGeneration {
     ArrayList<Double> pseudoArray = new ArrayList<Double>();
     PseudoRandomGenerator prg;
@@ -10,6 +13,9 @@ public class PseudoArrayGeneration {
         this.prg = new PseudoRandomGenerator(seed);
     }
 
+    /**Generates the array list of pseudo random numbers.
+     * 
+     */
     void generateArray() {
         for (int i = 0; i < 256; i++) {
             
@@ -19,6 +25,10 @@ public class PseudoArrayGeneration {
         }
     }
 
+    /**Getter method to get the array list of pseudo-random numbers.
+     * 
+     * @return array list of pseudo-random numbers
+     */
     ArrayList<Double> getArray() {
         generateArray();
         return pseudoArray;
