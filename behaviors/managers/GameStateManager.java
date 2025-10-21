@@ -5,6 +5,8 @@ import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameObjects.Enemy;
 import gameObjects.GameManager;
+import gameObjects.Player;
+
 import java.util.ArrayList;
 
 public class GameStateManager extends Behavior {
@@ -33,14 +35,18 @@ public class GameStateManager extends Behavior {
     public void update() {
         // TODO Auto-generated method stub
         if (scoreHolder.getScore() <= 0.0) {
-            gameState = GameState.finished;
-            for (Enemy enemy : enemies) {
-                GridMovement gridMovement = (GridMovement) enemy.getBehavior(GridMovement.class);
-                gridMovement.enabled = false;
-            }
-            GameManager gameManager = (GameManager) gameObject;
-            GridMovement gridMovement = (GridMovement) gameManager.player.getBehavior(GridMovement.class);
-            gridMovement.enabled = false;
+            gameState = GameState.finished;  
+            onGameFinished();
         } 
+    }
+
+    private void onGameFinished() {
+        for (Enemy enemy : enemies) {
+            GridMovement gridMovement = (GridMovement) enemy.getBehavior(GridMovement.class);
+            gridMovement.enabled = false;
+        }
+        Player player = ((GameManager) gameObject).player;
+        GridMovement gridMovement = (GridMovement) player.getBehavior(GridMovement.class);
+        gridMovement.enabled = false;
     }
 }

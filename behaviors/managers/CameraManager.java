@@ -10,6 +10,7 @@ import java.time.Instant;
 
 public class CameraManager extends Behavior {
     public Instant levelStartedTime;
+    private Instant levelFinishedTime;
     GameCanvas camera;
     GameObject player;
     Scene scene;
@@ -43,7 +44,16 @@ public class CameraManager extends Behavior {
             }
         } else {
             if (gameStateManager.gameState == GameState.finished) {
-                camera.zoom = 0.2125;
+                if (levelFinishedTime == null) {
+                    levelFinishedTime = Instant.now();
+                }
+                long millisSinceEnd = Duration.between(levelFinishedTime, Instant.now()).toMillis();
+                double normalisedTime = 1.0 - ((double) millisSinceEnd) / 1000.0;
+                if (millisSinceEnd < 1000) {
+                    camera.zoom =  0.9 * (Math.pow(normalisedTime, 4) - 3.75 * Math.pow(normalisedTime, 3) + 3.625 * Math.pow(normalisedTime, 2) + 0.125) + 0.1;
+                } else {
+                    camera.zoom = 0.2125;
+                }
             } else {
                 camera.zoom = 1;
             }            
