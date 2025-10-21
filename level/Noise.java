@@ -36,13 +36,12 @@ public class Noise {
         final double dotLowerRight = lowerRightCorner.dotProductVector(constantLowerRight);
         final double dotLowerLeft = lowerLeftCorner.dotProductVector(constantLowerLeft);
 
-        final double horizontalFade = new Fade(distX).calculateFade();
-        final double verticalFade = new Fade(distY).calculateFade();
+        final double horizontalFade = Fade.calculateFade(distX);
+        final double verticalFade = Fade.calculateFade(distY);
 
-        final double firstInterpolation = new LinearInterpolation(verticalFade, dotLowerLeft, dotUpperLeft).doInteroplation();
-        final double secondInterpolation = new LinearInterpolation(verticalFade, dotLowerRight, dotUpperRight).doInteroplation();
-
-        final double noiseValue = new LinearInterpolation(horizontalFade, firstInterpolation, secondInterpolation).doInteroplation();
+        final double firstInterpolation = LinearInterpolation.doInteroplation(verticalFade, dotLowerLeft, dotUpperLeft);
+        final double secondInterpolation = LinearInterpolation.doInteroplation(verticalFade, dotLowerRight, dotUpperRight);
+        final double noiseValue = LinearInterpolation.doInteroplation(horizontalFade, firstInterpolation, secondInterpolation);
 
         // System.out.println(noiseValue);
 

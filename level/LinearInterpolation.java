@@ -1,19 +1,19 @@
 package level;
 
+/**Does linear interoplation of two values and a factor.
+ * 
+ */
 public class LinearInterpolation {
-    double factor;
-    double start;
-    double end;
     
-    public LinearInterpolation(double factor, double start, double end) {
-        this.factor = factor;
-        this.start = start;
-        this.end = end;
-    }
-
-    public double doInteroplation(){
+    /**Computes the interpolation and calculates the value.
+     * 
+     * @param factor interpolation factor
+     * @param start first value
+     * @param end second value
+     * @return value of the interpolation
+     */
+    public static double doInteroplation(double factor, double start, double end){
         double value = start + factor * (end - start);
-
         return value;
     }
 }
