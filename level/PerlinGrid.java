@@ -1,5 +1,8 @@
 package level;
 
+/**Creates an array of values of Perlin noise and transforms it.
+ * 
+ */
 public class PerlinGrid {
     int seed;
 
@@ -7,7 +10,13 @@ public class PerlinGrid {
         this.seed = seed;
     }
 
-
+    /**Creates a grid of Perlin noise values.
+     * 
+     * @param x width of the array
+     * @param y height of the array
+     * @param frequency frequency of the noise
+     * @return array with computed noise values
+     */
     double[][] createGrid(int x, int y, double frequency) {
         double[][] perlinArray = new double[x][y];
         Noise noise = new Noise();
@@ -31,6 +40,11 @@ public class PerlinGrid {
         return perlinArray;
     }
 
+    /**Finds the avereage value in an array.
+     * 
+     * @param array array of doubles
+     * @return average value of the array
+     */
     double findAverage(double[][] array) {
         double sum = 0.0;
         int x = array.length;
@@ -47,6 +61,13 @@ public class PerlinGrid {
         return sum / (x * y * 1.0);
     }
 
+    /**Creates a visual representation of the array of noise values.
+     * It sets a star (*) in specific points to destinguish areas as obstacles.
+     * 
+     * @param average average value in the array
+     * @param grid array of noise values
+     * @return visual representation of the array
+     */
     String[][] visualyRepresentedGrid(double average, double[][] grid) {
         int x = grid.length;
         int y = grid[0].length;
@@ -66,6 +87,12 @@ public class PerlinGrid {
         return visual;
     }
 
+    /**Combines two visually represented noise arrays to reduce the obstacles in a natural way.
+     * 
+     * @param firstGrid visual representation of the first noise array
+     * @param secondGrid visual representation of the second noise array
+     * @return visual representation of the combined noise array
+     */
     String[][] combineGrid(String[][] firstGrid, String[][] secondGrid) {
         String[][] betterGrid = new String[firstGrid.length][firstGrid[0].length];
 
@@ -81,6 +108,10 @@ public class PerlinGrid {
         return betterGrid;
     }
 
+    /**Prints an array of String, used for debugging.
+     * 
+     * @param array array of String
+     */
     void printStringArray(String[][] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
@@ -96,13 +127,6 @@ public class PerlinGrid {
         double[][] arrayOne = gridOne.createGrid(50, 50, 0.1);
         double averageOne = gridOne.findAverage(arrayOne);
         String[][] visOne = gridOne.visualyRepresentedGrid(averageOne, arrayOne);
-
-        // PerlinGrid gridTwo = new PerlinGrid(6523);
-        // double[][] arrayTwo = gridTwo.createGrid(50, 50, 0.1);
-        // double averageTwo = gridTwo.findAverage(arrayTwo);
-        // String[][] visTwo = gridTwo.visualyRepresentedGrid(averageTwo, arrayTwo);
-
-        // String[][] combinedGrid = gridOne.combineGrid(visOne, visTwo);
 
         gridOne.printStringArray(visOne);
     }
