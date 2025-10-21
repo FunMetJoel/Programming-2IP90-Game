@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 public class GameLauncher {
 
-    public void launchGame() {
+    public void launchGame(int seed) {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setTitle("HOW DO WE CALL OUR GAME");
@@ -17,7 +17,7 @@ public class GameLauncher {
         window.add(InputManager.get());
         window.add(gameCanvas);
 
-        Scene scene = new GameScene(19, gameCanvas);
+        Scene scene = new GameScene(seed, gameCanvas);
         gameCanvas.setScene(scene);
         
         Thread thread = new Thread(scene);
@@ -27,5 +27,9 @@ public class GameLauncher {
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+    }
+
+    public void launchGame() {
+        launchGame(19); // Set a default seed
     }
 }

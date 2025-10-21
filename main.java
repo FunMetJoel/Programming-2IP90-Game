@@ -50,7 +50,8 @@ public class main {
                     }
                 }
                 startMenu.closeStartMenu();
-                new GameLauncher().launchGame();
+
+                new GameLauncher().launchGame(menu.seed);
             }
         }).start();
     }

@@ -1,7 +1,5 @@
 package gameEngine;
 
-import java.awt.Graphics2D;
-
 import gameEngine.renderers.GridRenderer;
 
 /**
