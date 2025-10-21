@@ -5,7 +5,6 @@ import behaviors.managers.ScoreBarManager;
 import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 import gameEngine.renderers.RegularShapeRenderer;
-import gameEngine.renderers.UiRenderer;
 
 public class EnergyBar extends GameObject {
     

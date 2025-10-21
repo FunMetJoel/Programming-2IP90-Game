@@ -24,7 +24,7 @@ public class GameCanvas extends JPanel {
         this.setPreferredSize(new Dimension(800, 600));
         this.setDoubleBuffered(true);
         this.setSize(getPreferredSize());
-        this.setBackground(Color.black);
+        this.setBackground(new Color(21, 27, 33));
     }
 
     /**

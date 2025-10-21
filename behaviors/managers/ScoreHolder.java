@@ -28,7 +28,6 @@ public class ScoreHolder extends Behavior {
         double deltaPoints = (double) Duration.between(lastUpdate, Instant.now()).toMillis() * 0.0001;
         score = Math.max(score - deltaPoints, 0);
         lastUpdate = Instant.now();
-        // System.out.println(score + ", " + totalGrabedStore);
     }
 
     public double getScore() {

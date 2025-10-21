@@ -116,6 +116,10 @@ public class GameObject {
         this.scale.y = y;
     }
 
+    public void setScale(Vector2<Double> scale) {
+        this.scale = scale;
+    }
+
     public Vector2<Double> getScale() {
         return this.scale.copy();
     }
