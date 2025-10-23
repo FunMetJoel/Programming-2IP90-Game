@@ -3,10 +3,11 @@ package behaviors;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.InputManager;
-import gameEngine.Vector2;
-
 import java.awt.event.KeyEvent;
 
+/**
+ * A behavior of the player that moves it based on the keyboard input.
+ */
 public class PlayerController extends Behavior {
     GridMovement gridMovement;
     boolean horizontalFirst = false;

@@ -1,11 +1,12 @@
 package behaviors.pathfinders;
 
 import behaviors.GridMovement;
-import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
-import level.Level;
 
+/**
+ * A type of path finding using dijkstra's algorithm.
+ */
 public class DijkstraPathfinding extends Pathfinding {
 
     int[][] costs;

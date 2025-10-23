@@ -21,13 +21,21 @@ public class Grid extends GameObject {
      */
     public boolean canEnter(int gridX, int gridY) {
         Vector2<Integer> arrayPosition = getArrayPos(gridX, gridY);
+        if (!inBounds(gridX, gridY)) {
+            return false;
+        }
+        return gridData[arrayPosition.x][arrayPosition.y].canEnter;
+    }
+
+    public boolean inBounds(int gridX, int gridY) {
+        Vector2<Integer> arrayPosition = getArrayPos(gridX, gridY);
         if (arrayPosition.x < 0 || arrayPosition.y < 0) {
             return false;
         }
         if (arrayPosition.x >= gridSize || arrayPosition.y >= gridSize) {
             return false;
         }
-        return gridData[arrayPosition.x][arrayPosition.y].canEnter;
+        return true;
     }
 
     /**

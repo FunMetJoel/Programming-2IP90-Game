@@ -1,38 +1,20 @@
 package menu;
 
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.io.File;
-import java.io.IOException;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
-
-import gameEngine.GameCanvas;
-import gameEngine.InputManager;
-import gameEngine.Vector2;
-import gameObjects.Enemy;
-import gameObjects.GameScene.*;
 
 /**
  * The menu shown before the game starts.
@@ -161,18 +143,4 @@ public class StartMenu extends JLayeredPane implements ComponentListener {
 
     @Override
     public void componentShown(ComponentEvent e) { }
-
-    // public static void main(String[] args) {
-    //     JFrame window = new JFrame();
-    //     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //     window.setTitle("Main menu testing");
-
-    //     StartMenu menu = new StartMenu();
-    //     window.add(menu);
-
-    //     window.pack();
-
-    //     window.setLocationRelativeTo(null);
-    //     window.setVisible(true);
-    // }
 }

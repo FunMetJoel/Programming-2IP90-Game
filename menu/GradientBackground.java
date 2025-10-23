@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import javax.swing.JPanel;
+
 
 public class GradientBackground extends JPanel{
 
@@ -17,8 +17,8 @@ public class GradientBackground extends JPanel{
         int width = getWidth();
         int height = getHeight();
 
-        Color start = new Color(0,0,60);
-        Color end = new Color(0,0,130);
+        Color start = new Color(0, 0, 60);
+        Color end = new Color(0, 0, 130);
 
         GradientPaint gradient = new GradientPaint(0, 0, start, 0, height, end);
 

@@ -38,7 +38,7 @@ public class GameManager extends GameObject {
             new GameStateManager(this)
         );
         this.behaviors.add(
-            new EnemySpawner(this, scene)
+            new EnemySpawner(this, scene, currentLevel)
         );
 
         this.behaviors.add(new ScoreHolder(this));

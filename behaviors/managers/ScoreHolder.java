@@ -5,10 +5,13 @@ import gameEngine.GameObject;
 import java.time.Duration;
 import java.time.Instant;
 
+/**
+ * A behavior for the gameManager that holds the score.
+ */
 public class ScoreHolder extends Behavior {
 
     private double score = 2.0;
-    private double totalGrabedStore = 0.0;
+    private double totalGrabbedStore = 0.0;
 
     private Instant lastUpdate = Instant.now();
 
@@ -18,13 +21,11 @@ public class ScoreHolder extends Behavior {
 
     @Override
     public void setup() {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
         double deltaPoints = (double) Duration.between(lastUpdate, Instant.now()).toNanos() * 1e-10;
         score = Math.max(score - deltaPoints, 0);
         lastUpdate = Instant.now();
@@ -35,12 +36,16 @@ public class ScoreHolder extends Behavior {
     }
 
     public double getTotalScore() {
-        return totalGrabedStore;
+        return totalGrabbedStore;
     }
 
+    /**
+     * Adds points to the score.
+     * @param score the amount of points to add.
+     */
     public void addScore(double score) {
         this.score = Math.min(10, this.score + score);
-        this.totalGrabedStore += score;
+        this.totalGrabbedStore += score;
     }
 
     public void removeScore(double score) {

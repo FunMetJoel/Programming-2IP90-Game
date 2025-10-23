@@ -1,11 +1,13 @@
 package behaviors;
 
+import gameEngine.Behavior;
+import gameEngine.GameObject;
 import java.time.Duration;
 import java.time.Instant;
 
-import gameEngine.Behavior;
-import gameEngine.GameObject;
-
+/**
+ * Abstract behavior that checks if a player is at the same position.
+ */
 public abstract class PlayerCollisionDetector extends Behavior {
     private GridMovement playerMovement;
     private GridMovement gridMovement;
@@ -14,6 +16,11 @@ public abstract class PlayerCollisionDetector extends Behavior {
 
     private Instant collisionInstant;
 
+    /**
+     * Creates a new abstract collision behavior.
+     * @param gameObject the gameObject to add the behavior to
+     * @param playerMovement the movement behavior of the player
+     */
     public PlayerCollisionDetector(GameObject gameObject, GridMovement playerMovement) {
         super(gameObject);
         this.playerMovement = playerMovement;
