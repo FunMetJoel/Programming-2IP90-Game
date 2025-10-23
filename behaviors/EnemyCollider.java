@@ -1,5 +1,8 @@
 package behaviors;
 
+import java.time.Duration;
+import java.time.Instant;
+
 import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 
@@ -9,7 +12,7 @@ import gameEngine.GameObject;
 public class EnemyCollider extends PlayerCollisionDetector {
 
     ScoreHolder scoreHolder;
-    double lastHitTime = 0;
+    Instant lastPointSubtraction = Instant.now();
 
     /**
      * Creates new enemy collider behavior.
@@ -26,15 +29,14 @@ public class EnemyCollider extends PlayerCollisionDetector {
 
     @Override
     void onCollide() {
-        lastHitTime = -0.8;
+
     }
 
     @Override
     void onCollisionStay(double collisionTime) {
-        // TODO Auto-generated method stub
-        if (collisionTime - lastHitTime > 1.0) {
+        if (Duration.between(lastPointSubtraction, Instant.now()).toMillis() > 1000) {
             scoreHolder.removeScore(1.0);
-            lastHitTime = collisionTime;
+            lastPointSubtraction = Instant.now();
         }
     }
 

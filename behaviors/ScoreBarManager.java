@@ -41,6 +41,8 @@ public class ScoreBarManager extends Behavior {
 
             gameObject.addChild(partElements[i]);
         }
+
+        lastFilledCount = Long.valueOf(Math.round(scoreHolder.getScore())).intValue();
     }
 
     @Override
@@ -58,7 +60,7 @@ public class ScoreBarManager extends Behavior {
             }
         }
 
-        if (filled > lastFilledCount) {
+        if (filled > lastFilledCount && lastFilledCount >= 0) {
             gainAnimation(lastFilledCount);
             System.out.println(filled + ", " + lastFilledCount);
         }
