@@ -1,30 +1,24 @@
 package menu;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import javax.swing.Timer;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.border.Border;
 
-import org.w3c.dom.events.MouseEvent;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-
-
-public class ActionButton extends JButton{
+/**Class of the action button in the start menu.
+ * 
+ */
+public class ActionButton extends JButton {
     Color borderColor;
 
+    /**Class constructor.
+     * 
+     * @param name text inside of the button
+     * @param color color of the border
+     */
     ActionButton(String name, Color color) {
         super(name);
         this.borderColor = color;
