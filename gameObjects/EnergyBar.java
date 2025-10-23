@@ -1,7 +1,7 @@
 package gameObjects;
 import java.awt.Color;
 
-import behaviors.managers.ScoreBarManager;
+import behaviors.ScoreBarManager;
 import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
 import gameEngine.renderers.RegularShapeRenderer;

@@ -30,6 +30,8 @@ public class Edible extends PlayerCollisionDetector {
             int frame = 0;
 
             public void actionPerformed(ActionEvent evt) {
+                System.out.println("Timer 2");
+
                 frame++;
                 spriteObject.setScale(0.8 + (double) frame * 0.3, 0.8 + (double) frame * 0.3);
 
@@ -40,7 +42,6 @@ public class Edible extends PlayerCollisionDetector {
                     ((Timer) evt.getSource()).stop();
                 }
             }
-
             
         };
         Timer pickedUpAnimator = new Timer(5, taskPerformer);
