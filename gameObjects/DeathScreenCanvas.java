@@ -2,6 +2,8 @@ package gameObjects;
 
 import java.awt.Color;
 
+import org.w3c.dom.Text;
+
 import behaviors.DeathScreenAnimator;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
@@ -19,14 +21,14 @@ public class DeathScreenCanvas extends GameObject {
         this.renderer = renderer;
 
         GameObject gameOverText = new GameObject();
-        gameOverText.renderer = new TextRenderer(gameOverText, "GAME OVER");
+        gameOverText.renderer = new TextRenderer(gameOverText, "GAME OVER", Color.red);
         gameOverText.setScale(0.8, 0.25);
         gameOverText.setPosition(0.0, -0.3);
         this.addChild(gameOverText);
 
         GameObject scoreText = new GameObject();
-        scoreText.renderer = new TextRenderer(scoreText, "999");
-        scoreText.setScale(0.3, 0.15);
+        scoreText.renderer = new TextRenderer(scoreText, "Score: ...");
+        scoreText.setScale(1, 0.10);
         scoreText.setPosition(0.0, 0.0);
         this.addChild(scoreText);
 

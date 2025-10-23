@@ -13,16 +13,21 @@ import gameEngine.Vector2;
 public class TextRenderer extends Renderer {
 
     public String textToRender;
+    public Color fillColor = Color.white;
 
     public TextRenderer(GameObject gameObject, String textToRender) {
         super(gameObject);
         this.textToRender = textToRender;
     }
 
+    public TextRenderer(GameObject gameObject, String textToRender, Color fillColor) {
+        this(gameObject, textToRender);
+        this.fillColor = fillColor;
+    }
+
     @Override
     public void render(Graphics2D[] graphics, Vector2<Double> centerScreenCords, Vector2<Double> screenScale) {
-        // TODO Auto-generated method stub
-        graphics[this.mainLayer].setColor(Color.WHITE);
+        graphics[this.mainLayer].setColor(fillColor);
         
         Font font = new Font("Arial", Font.BOLD, 72);;
         try {

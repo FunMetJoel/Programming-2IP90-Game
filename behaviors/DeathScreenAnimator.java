@@ -20,6 +20,8 @@ public class DeathScreenAnimator extends Behavior {
     Instant GameFinishedTime;
     TextRenderer scoreTextRenderer;
 
+    int currentScoreNumber;
+
     public DeathScreenAnimator(GameObject gameObject, GameManager gameManager, TextRenderer scoreTextRenderer) {
         super(gameObject);
         this.gameManager = gameManager;
@@ -40,7 +42,8 @@ public class DeathScreenAnimator extends Behavior {
 
         if (GameFinishedTime == null) {
             GameFinishedTime = Instant.now();
-            scoreTextRenderer.textToRender = "Score: " + Math.round(scoreHolder.getTotalScore());
+            scoreTextRenderer.textToRender = "Score: " + 0;
+            currentScoreNumber = 0;
         }
 
         long duration = Duration.between(GameFinishedTime, Instant.now()).toMillis();
@@ -48,6 +51,10 @@ public class DeathScreenAnimator extends Behavior {
 
         if (secondsPassed > 1.0 && secondsPassed < 1.25) {
             gameObject.setScale(new Vector2<Number>(0.75, 0.5).newScaledVector(secondsPassed - 1.0).newScaledVector(4.0));
+        }
+
+        if (secondsPassed > 1.75 && secondsPassed < 2.75) {
+            scoreTextRenderer.textToRender = "Score: " + Math.round(scoreHolder.getTotalScore() * (secondsPassed - 1.75));
         }
     }
 }
