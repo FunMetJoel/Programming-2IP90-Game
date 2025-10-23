@@ -18,14 +18,20 @@ public class DeathScreenCanvas extends GameObject {
         renderer.mainLayer = 0;
         this.renderer = renderer;
 
-        GameObject GameOverText = new GameObject();
-        GameOverText.renderer = new TextRenderer(GameOverText, "GAME OVER");
-        GameOverText.setScale(0.8, 0.25);
-        GameOverText.setPosition(0.0, -0.3);
-        this.addChild(GameOverText);
+        GameObject gameOverText = new GameObject();
+        gameOverText.renderer = new TextRenderer(gameOverText, "GAME OVER");
+        gameOverText.setScale(0.8, 0.25);
+        gameOverText.setPosition(0.0, -0.3);
+        this.addChild(gameOverText);
+
+        GameObject scoreText = new GameObject();
+        scoreText.renderer = new TextRenderer(scoreText, "999");
+        scoreText.setScale(0.3, 0.15);
+        scoreText.setPosition(0.0, 0.0);
+        this.addChild(scoreText);
 
         this.scale = new Vector2<Double>(0.0, 0.0);
 
-        this.behaviors.add(new DeathScreenAnimator(this, gameManager));
+        this.behaviors.add(new DeathScreenAnimator(this, gameManager, (TextRenderer) scoreText.renderer));
     }
 }

@@ -12,7 +12,7 @@ import gameEngine.Vector2;
 
 public class TextRenderer extends Renderer {
 
-    String textToRender;
+    public String textToRender;
 
     public TextRenderer(GameObject gameObject, String textToRender) {
         super(gameObject);

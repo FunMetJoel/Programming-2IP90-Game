@@ -34,6 +34,10 @@ public class ScoreHolder extends Behavior {
         return score;
     }
 
+    public double getTotalScore() {
+        return totalGrabedStore;
+    }
+
     public void addScore(double score) {
         this.score += score;
         this.totalGrabedStore += score;
