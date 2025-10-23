@@ -1,24 +1,32 @@
 package menu;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.*;
 
-public class AnimatedTitle extends JPanel{
+/**Class of the animated title in the menu.
+ * 
+ */
+public class AnimatedTitle extends JPanel {
     JLabel title;
+    String text;
     float titleSize = 80f;
     boolean isGrowing = true;
 
-    public AnimatedTitle() {
+    /**Class constructor.
+     * 
+     */
+    public AnimatedTitle(String text) {
+        this.text = text;
         this.setPreferredSize(new Dimension(Integer.MAX_VALUE, 130));
         this.setMinimumSize(new Dimension(Integer.MAX_VALUE, 130)); 
         this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 130)); 
         this.setLayout(new BorderLayout());
         this.setOpaque(false);
 
-        title = new JLabel("COOL GAME", SwingConstants.CENTER);
+        title = new JLabel(text, SwingConstants.CENTER);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
         title.setForeground(new Color(5, 9, 245));
@@ -28,7 +36,7 @@ public class AnimatedTitle extends JPanel{
             File fontFile = new File("assets/RushDriver-Italic.otf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
             title.setFont(font);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
