@@ -6,17 +6,17 @@ import behaviors.PlayerCollisionDetector;
 import behaviors.SpeedManager;
 import behaviors.managers.GameStateManager;
 import behaviors.managers.ScoreHolder;
-import behaviors.pathfinders.GreedyPathfinding;
-import behaviors.pathfinders.Pathfinding;
 import behaviors.pathfinders.DijkstraPathfinding;
-import gameEngine.Behavior;
+import behaviors.pathfinders.Pathfinding;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.SpriteRenderer;
+import javax.swing.ImageIcon;
 import level.Mud;
 
-import javax.swing.ImageIcon;
-
+/**
+ * A enemy that attacks the player.
+ */
 public class Enemy extends GameObject {
     public GameManager gameManager;
 
@@ -25,7 +25,16 @@ public class Enemy extends GameObject {
     }
 
     // TODO: Make pathfinding an abstract behavior
-    public Enemy(Vector2<Double> position, GameManager gameManager, Class<? extends Pathfinding> pathFindingBehaviour) {
+    /**
+     * Creates a new enemy.
+     * @param position the position of the enemy
+     * @param gameManager the game manager 
+     * @param pathFindingBehaviour the kind of path finding to use //TODO: Fix this/make this work
+     */
+    public Enemy(
+        Vector2<Double> position, GameManager gameManager, 
+        Class<? extends Pathfinding> pathFindingBehaviour    
+    ) {
         super(position);
 
         this.gameManager = gameManager;

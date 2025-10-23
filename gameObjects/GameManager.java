@@ -22,7 +22,14 @@ public class GameManager extends GameObject {
     Scene scene;
     GameCanvas canvas;
 
-    public GameManager (Player player, Level currentLevel, GameCanvas canvas, Scene scene) {
+    /**
+     * Creates the game manager.
+     * @param player the player in the game
+     * @param currentLevel the level of the game
+     * @param canvas the canvas of the game
+     * @param scene the scene of the game
+     */
+    public GameManager(Player player, Level currentLevel, GameCanvas canvas, Scene scene) {
         this.player = player;
         this.canvas = canvas;
         this.scene = scene;
@@ -32,7 +39,11 @@ public class GameManager extends GameObject {
             new CameraManager(this, player, canvas, scene)
         );
         this.behaviors.add(
-            new CanisterSpawner(this, currentLevel, (GridMovement) player.getBehavior(GridMovement.class))
+            new CanisterSpawner(
+                this, 
+                currentLevel, 
+                (GridMovement) player.getBehavior(GridMovement.class)
+            )
         );
         this.behaviors.add(
             new GameStateManager(this)
@@ -53,6 +64,11 @@ public class GameManager extends GameObject {
         newLevel(new Random().nextInt());
     }
 
+    // TODO: CAN this go?
+    /**
+     * Creates a new level.
+     * @param seed the levels seed
+     */
     public void newLevel(int seed) {
         this.scene.removeObject(currentLevel);
         this.currentLevel = new Level(seed);

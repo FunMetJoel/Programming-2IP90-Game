@@ -3,18 +3,17 @@ package gameObjects;
 import behaviors.GridMovement;
 import behaviors.PlayerController;
 import behaviors.SpeedManager;
-import gameEngine.GameCanvas;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.SpriteRenderer;
-import level.Mud;
-
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import level.Mud;
 
+/**
+ * The player character of the game.
+ */
 public class Player extends GameObject {
-
-    GameCanvas camera;
 
     public Vector2<Integer> screenMiddle = new Vector2<Integer>(0, 0);
 
@@ -22,6 +21,12 @@ public class Player extends GameObject {
 
     public level.Level level;
 
+    /**
+     * Creates the player.
+     * @param position the starting position of the player
+     * @param scale the scale of the player
+     * @param level the level the player is in
+     */
     Player(Vector2<Double> position, Vector2<Double> scale, level.Level level) {
         super(position, scale);
         this.behaviors.add(new GridMovement(this, level));
