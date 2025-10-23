@@ -72,7 +72,10 @@ public class GameCanvas extends JPanel {
             height * 0.5
         );
 
-        renderAll(scene.gameObjects, graphicsLayers, centerScreenCords, scale, centerScreen);
+        renderAll(
+            new ArrayList<GameObject>(scene.gameObjects), 
+            graphicsLayers, centerScreenCords, scale, centerScreen
+        );
         renderAll(scene.uiObjects, graphicsUiLayers, centerScreen, screenScale, centerScreen);
 
         drawToScreen(graphics, bufferedImages);
@@ -138,6 +141,10 @@ public class GameCanvas extends JPanel {
         graphics2D.dispose();
     }
 
+    /**
+     * Sets the scene the canvas look at.
+     * @param scene the scene to look at
+     */
     public void setScene(Scene scene) {
         this.scene = scene;
         this.scene.camera = this;

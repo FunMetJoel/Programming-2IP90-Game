@@ -1,17 +1,17 @@
 package behaviors;
 
+import behaviors.managers.ScoreHolder;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.renderers.SpriteRenderer;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
-import behaviors.managers.ScoreHolder;
-
+/**
+ * A behavior that shows the score in the score bar.
+ */
 public class ScoreBarManager extends Behavior {
 
     GameObject[] partElements;
@@ -19,6 +19,11 @@ public class ScoreBarManager extends Behavior {
     ScoreHolder scoreHolder;
     int lastFilledCount = 0;
 
+    /**
+     * Creates the score bar manager behavior.
+     * @param gameObject the game object to add the behavior to
+     * @param scoreHolder the score holder to get the score from
+     */
     public ScoreBarManager(GameObject gameObject, ScoreHolder scoreHolder) {
         super(gameObject);
         this.scoreHolder = scoreHolder;

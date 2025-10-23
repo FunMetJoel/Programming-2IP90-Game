@@ -36,7 +36,7 @@ public class GameManager extends GameObject {
         this.currentLevel = currentLevel;
 
         this.behaviors.add(
-            new CameraManager(this, player, canvas, scene)
+            new CameraManager(this, player, canvas)
         );
         this.behaviors.add(
             new CanisterSpawner(
@@ -55,11 +55,7 @@ public class GameManager extends GameObject {
         this.behaviors.add(new ScoreHolder(this));
     }
 
-    // public GameManager (Player player, Level currentLevel, GameCanvas canvas, Scene scene) {
-    //     this(player, canvas, scene);
-    //     this.currentLevel = currentLevel;
-    // }
-
+    // TODO: Can this go?
     public void newLevel() {
         newLevel(new Random().nextInt());
     }
@@ -78,7 +74,6 @@ public class GameManager extends GameObject {
         // this.player.gridY = 0;
         GridMovement gridMovement = (GridMovement) this.getBehavior(GridMovement.class);
         gridMovement.level = this.currentLevel;
-        System.out.println(gridMovement.level);
         gridMovement.moveTo(0, 0);
 
 

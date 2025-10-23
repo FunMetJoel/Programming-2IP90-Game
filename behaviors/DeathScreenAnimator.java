@@ -1,16 +1,15 @@
 package behaviors;
 
-import java.time.Duration;
-import java.time.Instant;
-
 import behaviors.managers.GameStateManager;
-import behaviors.managers.ScoreHolder;
 import behaviors.managers.GameStateManager.GameState;
+import behaviors.managers.ScoreHolder;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.TextRenderer;
 import gameObjects.GameManager;
+import java.time.Duration;
+import java.time.Instant;
 
 public class DeathScreenAnimator extends Behavior {
 

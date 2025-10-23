@@ -1,16 +1,13 @@
 package gameEngine.renderers;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import gameEngine.GameObject;
 import gameEngine.Grid;
 import gameEngine.GridItem;
 import gameEngine.Renderer;
 import gameEngine.Vector2;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 public class GridRenderer extends Renderer {
     public Image sprite;

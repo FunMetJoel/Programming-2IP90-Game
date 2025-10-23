@@ -96,7 +96,7 @@ public class Vector2<T extends Number> {
         );
     }
 
-    public boolean equals(Vector2<T> otherVector){
+    public boolean equals(Vector2<T> otherVector) {
         return ((this.x == otherVector.x) && (this.y == otherVector.y));
     }
 }
