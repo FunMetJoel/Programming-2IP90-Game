@@ -10,6 +10,8 @@ public class Scene implements Runnable {
     ArrayList<GameObject> uiObjects = new ArrayList<GameObject>();
     GameCanvas camera;
 
+    ArrayList<GameObject> bufferedNewObjects = new ArrayList<GameObject>();
+
     public void run() {
         setup();
         while (true) {
@@ -31,6 +33,7 @@ public class Scene implements Runnable {
      * Run the update function of each element.
      */
     public void update() {
+        handleBufferedNewObjects();
         for (GameObject gameObject: gameObjects) {
             gameObject.updateAll();
         }
@@ -51,9 +54,29 @@ public class Scene implements Runnable {
         gameObjects.add(object);
     }
 
+    public void instantiate(GameObject object) {
+        bufferedNewObjects.add(object);
+        System.out.println("Added " + object.getClass());
+        System.out.println(bufferedNewObjects);
+    }
+
+    private void handleBufferedNewObjects() {
+        ArrayList<GameObject> bufferedBufferedNewObjects = (ArrayList<GameObject>) bufferedNewObjects.clone();
+        // System.out.print(bufferedNewObjects);
+        for (GameObject gameObject : bufferedBufferedNewObjects) {
+            gameObjects.add(gameObject);
+            System.out.println("AddedToScene " + gameObject.getClass());
+        }
+        for (GameObject gameObject: bufferedBufferedNewObjects) {
+            gameObject.setupAll();
+            System.out.println("Setup " + gameObject.getClass());
+        }
+        bufferedNewObjects = new ArrayList<GameObject>();
+    }
+
     /**
      * Adds an object to the ui canvas.
-     * @param objectthe object to add
+     * @param object the object to add
      */
     public void addUIObject(GameObject object) {
         uiObjects.add(object);

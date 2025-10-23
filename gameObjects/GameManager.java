@@ -1,9 +1,9 @@
 package gameObjects;
 
-import behaviors.EnemySpawner;
 import behaviors.GridMovement;
 import behaviors.managers.CameraManager;
 import behaviors.managers.CanisterSpawner;
+import behaviors.managers.EnemySpawner;
 import behaviors.managers.GameStateManager;
 import behaviors.managers.ScoreHolder;
 import gameEngine.GameCanvas;
@@ -38,7 +38,7 @@ public class GameManager extends GameObject {
             new GameStateManager(this)
         );
         this.behaviors.add(
-            new EnemySpawner(this)
+            new EnemySpawner(this, scene)
         );
 
         this.behaviors.add(new ScoreHolder(this));
