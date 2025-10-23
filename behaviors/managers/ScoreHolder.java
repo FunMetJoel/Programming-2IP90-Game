@@ -39,7 +39,7 @@ public class ScoreHolder extends Behavior {
     }
 
     public void addScore(double score) {
-        this.score += score;
+        this.score = Math.min(10, this.score + score);
         this.totalGrabedStore += score;
     }
 
