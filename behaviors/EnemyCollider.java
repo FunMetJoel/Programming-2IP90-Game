@@ -9,6 +9,7 @@ import gameEngine.GameObject;
 public class EnemyCollider extends PlayerCollisionDetector {
 
     ScoreHolder scoreHolder;
+    double lastHitTime = 0;
 
     /**
      * Creates new enemy collider behavior.
@@ -25,7 +26,21 @@ public class EnemyCollider extends PlayerCollisionDetector {
 
     @Override
     void onCollide() {
+        lastHitTime = -0.8;
+    }
+
+    @Override
+    void onCollisionStay(double collisionTime) {
         // TODO Auto-generated method stub
-        scoreHolder.removeScore(1.0);
+        if (collisionTime - lastHitTime > 1.0) {
+            scoreHolder.removeScore(1.0);
+            lastHitTime = collisionTime;
+        }
+    }
+
+    @Override
+    void onCollisionExit() {
+        // TODO Auto-generated method stub
+        
     }
 }

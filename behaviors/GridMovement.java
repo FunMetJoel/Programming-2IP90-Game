@@ -52,13 +52,15 @@ public class GridMovement extends Behavior {
             return;
         }
 
+        interpolateMovement(movementSpeed * (deltaTime / 1000));
+    }
+
+    public void interpolateMovement(double percent) {
         Vector2<Double> movement = new Vector2<Integer>(gridX, gridY).subtractVector(lastPosition.toDouble());
         gameObject.setPosition(
-            ((double) gridX - movement.x) + movementSpeed * (deltaTime / 1000) * movement.x, 
-            ((double) gridY - movement.y) + movementSpeed * (deltaTime / 1000) * movement.y
+            ((double) gridX - movement.x) + percent * movement.x, 
+            ((double) gridY - movement.y) + percent * movement.y
         );
-
-        
     }
 
     /**

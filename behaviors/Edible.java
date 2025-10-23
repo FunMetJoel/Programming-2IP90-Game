@@ -85,4 +85,15 @@ public class Edible extends PlayerCollisionDetector {
         animator.setRepeats(true);
         animator.start();
     }
+
+    @Override
+    void onCollisionStay(double collisionTime) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    void onCollisionExit() {
+        // TODO Auto-generated method stub
+        
+    }
 }

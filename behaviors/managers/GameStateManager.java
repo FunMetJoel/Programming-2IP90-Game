@@ -49,4 +49,5 @@ public class GameStateManager extends Behavior {
         GridMovement gridMovement = (GridMovement) player.getBehavior(GridMovement.class);
         gridMovement.enabled = false;
     }
+
 }
