@@ -46,8 +46,8 @@ public class DeathScreenAnimator extends Behavior {
             currentScoreNumber = 0;
         }
 
-        long duration = Duration.between(GameFinishedTime, Instant.now()).toMillis();
-        double secondsPassed = ((double) duration / 1000.0);
+        long duration = Duration.between(GameFinishedTime, Instant.now()).toNanos();
+        double secondsPassed = ((double) duration / 1e9);
 
         if (secondsPassed > 1.0 && secondsPassed < 1.25) {
             gameObject.setScale(new Vector2<Number>(0.75, 0.5).newScaledVector(secondsPassed - 1.0).newScaledVector(4.0));

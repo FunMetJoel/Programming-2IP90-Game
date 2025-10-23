@@ -45,7 +45,7 @@ public class GridMovement extends Behavior {
 
     @Override
     public void update() {
-        double deltaTime = (double) Duration.between(lastMovement, Instant.now()).toMillis();
+        double deltaTime = (double) Duration.between(lastMovement, Instant.now()).toNanos() / 1e6;
 
         if (deltaTime > (1000 / movementSpeed)) {
             gameObject.setPosition((double) gridX, (double) gridY);
@@ -68,7 +68,7 @@ public class GridMovement extends Behavior {
      * @return if another move can be made.
      */
     public boolean canMove() {
-        double deltaTime = (double) Duration.between(lastMovement, Instant.now()).toMillis();
+        double deltaTime = (double) Duration.between(lastMovement, Instant.now()).toNanos() / 1e6;
 
         if (deltaTime < (1000 / movementSpeed)) {
             return false;

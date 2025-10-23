@@ -34,11 +34,11 @@ public class CameraManager extends Behavior {
 
     @Override
     public void update() {
-        long millisSinceStart = Duration.between(levelStartedTime, Instant.now()).toMillis();
-        if (millisSinceStart < 3000) {
+        long millisSinceStart = Duration.between(levelStartedTime, Instant.now()).toNanos();
+        if (millisSinceStart < 3e9) {
             player.renderer.renderInCenter = false;
-            double fixedTime = ((double) millisSinceStart - 2000.0) / 1000.0;
-            if (millisSinceStart > 2000) {
+            double fixedTime = ((double) millisSinceStart - 2e9) / 1e9;
+            if (millisSinceStart > 2e9) {
                 camera.zoom =  0.9 * (Math.pow(fixedTime, 4) - 3.75 * Math.pow(fixedTime, 3) + 3.625 * Math.pow(fixedTime, 2) + 0.125) + 0.1;
                 camera.cameraPosition = new Vector2<Double>(25.0, 25.0).addVector(player.getPosition().addVector(new Vector2<Double>(-25.0, -25.0)).newScaledVector(fixedTime));
             } else {
@@ -51,9 +51,9 @@ public class CameraManager extends Behavior {
                     levelFinishedTime = Instant.now();
                     player.renderer.renderInCenter = false;
                 }
-                long millisSinceEnd = Duration.between(levelFinishedTime, Instant.now()).toMillis();
-                double normalisedTime = 1.0 - ((double) millisSinceEnd) / 1000.0;
-                if (millisSinceEnd < 1000) {
+                long nanosSinceEnd = Duration.between(levelFinishedTime, Instant.now()).toNanos();
+                double normalisedTime = 1.0 - ((double) nanosSinceEnd) / 1e9;
+                if (nanosSinceEnd < 1e9) {
                     camera.zoom =  0.9 * (Math.pow(normalisedTime, 4) - 3.75 * Math.pow(normalisedTime, 3) + 3.625 * Math.pow(normalisedTime, 2) + 0.125) + 0.1;
                     camera.cameraPosition = new Vector2<Double>(25.0, 25.0).addVector(player.getPosition().addVector(new Vector2<Double>(-25.0, -25.0)).newScaledVector(normalisedTime));
                 } else {

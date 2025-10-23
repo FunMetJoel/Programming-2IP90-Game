@@ -34,7 +34,7 @@ public class EnemyCollider extends PlayerCollisionDetector {
 
     @Override
     void onCollisionStay(double collisionTime) {
-        if (Duration.between(lastPointSubtraction, Instant.now()).toMillis() > 1000) {
+        if (Duration.between(lastPointSubtraction, Instant.now()).toNanos() > 1e9) {
             scoreHolder.removeScore(1.0);
             lastPointSubtraction = Instant.now();
         }

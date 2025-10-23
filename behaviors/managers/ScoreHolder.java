@@ -25,7 +25,7 @@ public class ScoreHolder extends Behavior {
     @Override
     public void update() {
         // TODO Auto-generated method stub
-        double deltaPoints = (double) Duration.between(lastUpdate, Instant.now()).toMillis() * 0.0001;
+        double deltaPoints = (double) Duration.between(lastUpdate, Instant.now()).toNanos() * 1e-10;
         score = Math.max(score - deltaPoints, 0);
         lastUpdate = Instant.now();
     }

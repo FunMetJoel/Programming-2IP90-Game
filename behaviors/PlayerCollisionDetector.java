@@ -39,7 +39,7 @@ public abstract class PlayerCollisionDetector extends Behavior {
                 onCollisionExit();
             } else {
                 onCollisionStay(
-                    ((double) Duration.between(collisionInstant, Instant.now()).toMillis()) / 1000.0
+                    ((double) Duration.between(collisionInstant, Instant.now()).toNanos()) / 1e9
                 );
             }
         }

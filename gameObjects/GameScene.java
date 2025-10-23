@@ -39,8 +39,6 @@ public class GameScene extends Scene {
         addObject(new Enemy(new Vector2<Double>(31.0, 11.0), gameManager));
         addObject(new Enemy(new Vector2<Double>(31.0, 31.0), gameManager));
 
-        // addObject(new EnergyBar());
-
         addUIObject(
             new MainUICanvas((ScoreHolder) gameManager.getBehavior(ScoreHolder.class))
         );
