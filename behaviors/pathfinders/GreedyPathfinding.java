@@ -4,7 +4,9 @@ import behaviors.GridMovement;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 
-
+/**
+ * A simple path finding behavior that tries to minimize the distance to the player.
+ */
 public class GreedyPathfinding extends Pathfinding {
 
     public GreedyPathfinding(GameObject gameObject, GridMovement target) {

@@ -5,11 +5,19 @@ import gameEngine.Behavior;
 import gameEngine.GameObject;
 import level.Level;
 
+/**
+ * A abstract pathfinding behavior that can be implemented as different algorithms.
+ */
 public abstract class Pathfinding extends Behavior {
     protected GridMovement target;
     protected GridMovement gridMovement;
     protected Level level;
 
+    /**
+     * Creates new pathfinding behavior.
+     * @param gameObject the gameobject to add the behavior to
+     * @param target the target of the pathfinding
+     */
     public Pathfinding(GameObject gameObject, GridMovement target) {
         super(gameObject);
         this.target = target;

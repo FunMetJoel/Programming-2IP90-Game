@@ -1,18 +1,25 @@
 package behaviors;
 
-import java.util.ArrayList;
-
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameEngine.GridItem;
 import gameEngine.Vector2;
+import java.util.ArrayList;
 
+/**
+ * Behavior that manages the speed a entity moves at.
+ */
 public class SpeedManager extends Behavior {
     GridMovement gridMovement;
 
     public double defaultMovementSpeed = 10.0;
     private ArrayList<SpeedRule> rules = new ArrayList<SpeedRule>();
     
+    /**
+     * Creates new behavior.
+     * @param gameObject the game object to add the behavior to
+     * @param defaultMovementSpeed the default movement speed
+     */
     public SpeedManager(GameObject gameObject, double defaultMovementSpeed) {
         super(gameObject);
         this.gridMovement = (GridMovement) gameObject.getBehavior(GridMovement.class);
@@ -21,7 +28,7 @@ public class SpeedManager extends Behavior {
 
     @Override
     public void setup() {
-        // TODO Auto-generated method stub
+
     }
 
     @Override

@@ -6,9 +6,11 @@ import gameEngine.GameObject;
 import gameObjects.Enemy;
 import gameObjects.GameManager;
 import gameObjects.Player;
-
 import java.util.ArrayList;
 
+/**
+ * Behavior of game manager that manages the game state.
+ */
 public class GameStateManager extends Behavior {
     ScoreHolder scoreHolder;
     public GameState gameState = GameState.beforeStart;
@@ -19,6 +21,9 @@ public class GameStateManager extends Behavior {
         super(gameObject);
     }
 
+    /**
+     * States a game can be in.
+     */
     public enum GameState {
         beforeStart,
         inGame,

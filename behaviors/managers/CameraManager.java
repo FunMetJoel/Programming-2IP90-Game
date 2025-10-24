@@ -42,9 +42,14 @@ public class CameraManager extends Behavior {
         if (millisSinceStart < 3e9) {
             player.renderer.renderInCenter = false;
             double fixedTime = ((double) millisSinceStart - 2e9) / 1e9;
-            if (millisSinceStart > 2e9) {
+            if (millisSinceStart > 2e9) { //TODO: Can I / should I simplify this function?
                 camera.zoom =  0.9 * (Math.pow(fixedTime, 4) - 3.75 * Math.pow(fixedTime, 3) + 3.625 * Math.pow(fixedTime, 2) + 0.125) + 0.1;
-                camera.cameraPosition = new Vector2<Double>(25.0, 25.0).addVector(player.getPosition().addVector(new Vector2<Double>(-25.0, -25.0)).newScaledVector(fixedTime));
+                camera.cameraPosition = new Vector2<Double>(25.0, 25.0)
+                    .addVector(
+                        player.getPosition()
+                            .addVector(new Vector2<Double>(-25.0, -25.0))
+                            .newScaledVector(fixedTime)
+                    );
             } else {
                 camera.zoom = 0.2125;
                 camera.cameraPosition = new Vector2<Double>(25.0, 25.0);
@@ -59,7 +64,12 @@ public class CameraManager extends Behavior {
                 double normalizedTime = 1.0 - ((double) nanosSinceEnd) / 1e9;
                 if (nanosSinceEnd < 1e9) {
                     camera.zoom =  0.9 * (Math.pow(normalizedTime, 4) - 3.75 * Math.pow(normalizedTime, 3) + 3.625 * Math.pow(normalizedTime, 2) + 0.125) + 0.1;
-                    camera.cameraPosition = new Vector2<Double>(25.0, 25.0).addVector(player.getPosition().addVector(new Vector2<Double>(-25.0, -25.0)).newScaledVector(normalizedTime));
+                    camera.cameraPosition = new Vector2<Double>(25.0, 25.0)
+                        .addVector(
+                            player.getPosition()
+                                .addVector(new Vector2<Double>(-25.0, -25.0))
+                                .newScaledVector(normalizedTime)
+                        );
                 } else {
                     camera.zoom = 0.2125;
                     camera.cameraPosition = new Vector2<Double>(25.0, 25.0);

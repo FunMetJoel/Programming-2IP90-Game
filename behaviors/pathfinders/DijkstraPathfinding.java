@@ -32,6 +32,10 @@ public class DijkstraPathfinding extends Pathfinding {
         gridMovement.move(nextMove.x, nextMove.y);
     }
 
+    /**
+     * Calculates the cost and finds the next move to take.
+     * TODO: Make this be multiple functions
+     */
     public void calculateCost() {
         // TODO: Make this be part of the tile
         int movementCost = 1;
@@ -49,8 +53,8 @@ public class DijkstraPathfinding extends Pathfinding {
         int gridY = gridMovement.getPosition().y;
 
 
-        Vector2<Integer> enemyArrayPos = level.getArrayPos(gridX, gridY);
-        Vector2<Integer> targetArrayPos = level.getArrayPos(target.getPosition().x, target.getPosition().y);
+        Vector2<Integer> enemyArrayPos = new Vector2<Integer>(gridX, gridY);
+        Vector2<Integer> targetArrayPos = target.getPosition();
 
         costs[enemyArrayPos.x][enemyArrayPos.y] = 0;
 
@@ -68,6 +72,7 @@ public class DijkstraPathfinding extends Pathfinding {
             }
 
             if (lowestValuePosition == null) {
+                // System.out.println("-------------------");
                 // for (int i = 0; i < costs.length; i++) {
                 //     for (int j = 0; j < costs.length; j++) {
                 //         if (costs[i][j] == Integer.MAX_VALUE) {
@@ -79,6 +84,8 @@ public class DijkstraPathfinding extends Pathfinding {
                 //     }
                 //     System.out.println("");
                 // }
+                // System.out.println("-------------------");
+
                 nextMove.x = 0;
                 nextMove.y = 0;
                 return;
@@ -88,16 +95,16 @@ public class DijkstraPathfinding extends Pathfinding {
             int x = lowestValuePosition.x;
             int y = lowestValuePosition.y;
             
-            if ((x + 1 < checked.length) && !checked[x + 1][y] && level.canEnterArrayPos(x + 1, y)) {
+            if (level.canEnter(x + 1, y) && !checked[x + 1][y]) {
                 costs[x + 1][y] = Math.min(costs[x + 1][y], costs[x][y] + movementCost);
             }
-            if ((x - 1 > 0) && !checked[x - 1][y] && level.canEnterArrayPos(x - 1, y)) {
+            if (level.canEnter(x - 1, y) && !checked[x - 1][y]) {
                 costs[x - 1][y] = Math.min(costs[x - 1][y], costs[x][y] + movementCost);
             }
-            if ((y + 1 < checked.length) && !checked[x][y + 1] && level.canEnterArrayPos(x, y + 1)) {
+            if (level.canEnter(x, y + 1) && !checked[x][y + 1]) {
                 costs[x][y + 1] = Math.min(costs[x][y + 1], costs[x][y] + movementCost);
             }
-            if ((y - 1 > 0) && !checked[x][y - 1] && level.canEnterArrayPos(x, y - 1)) {
+            if (level.canEnter(x, y - 1) && !checked[x][y - 1]) {
                 costs[x][y - 1] = Math.min(costs[x][y - 1], costs[x][y] + movementCost);
             }
 
@@ -119,7 +126,10 @@ public class DijkstraPathfinding extends Pathfinding {
         
         Vector2<Integer> nextPosition = new Vector2<Integer>(targetArrayPos.x, targetArrayPos.y);
         Vector2<Integer> currentPosition = new Vector2<Integer>(targetArrayPos.x, targetArrayPos.y);
-        while ((!(enemyArrayPos.equals(nextPosition))) && (costs[nextPosition.x][nextPosition.y] != 0)) {
+        while (
+            (!(enemyArrayPos.equals(nextPosition))) 
+                && (costs[nextPosition.x][nextPosition.y] != 0)
+        ) {
             currentPosition.x = nextPosition.x;
             currentPosition.y = nextPosition.y;
             int x = currentPosition.x;
