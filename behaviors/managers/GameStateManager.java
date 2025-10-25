@@ -33,13 +33,11 @@ public class GameStateManager extends Behavior {
     
     @Override
     public void setup() {
-        // TODO Auto-generated method stub
         scoreHolder = (ScoreHolder) gameObject.getBehavior(ScoreHolder.class);
     }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
         if (scoreHolder.getScore() <= 0.0) {
             gameState = GameState.finished;  
             onGameFinished();

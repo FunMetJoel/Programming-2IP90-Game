@@ -5,10 +5,8 @@ import gameEngine.Scene;
 import gameEngine.Vector2;
 import gameObjects.AstarEnemy;
 import gameObjects.DijkstraEnemy;
-import gameObjects.Enemy;
 import gameObjects.GameManager;
 import gameObjects.GreedyEnemy;
-
 import java.util.ArrayList;
 import level.Level;
 

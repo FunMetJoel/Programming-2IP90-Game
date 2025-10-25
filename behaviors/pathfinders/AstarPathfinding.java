@@ -1,18 +1,25 @@
 package behaviors.pathfinders;
 
+import behaviors.GridMovement;
+import behaviors.SpeedManager;
+import gameEngine.GameObject;
+import gameEngine.Vector2;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-import behaviors.GridMovement;
-import behaviors.SpeedManager;
-import gameEngine.GameObject;
-import gameEngine.Vector2;
-
+/**
+ * A behavior that uses the A* pathfinding algoritm.
+ */
 public class AstarPathfinding extends Pathfinding {
     SpeedManager speedManager;
     
+    /**
+     * Creates the new behavior.
+     * @param gameObject the gameobject to add the behavior to
+     * @param target the target of the pathfinding
+     */
     public AstarPathfinding(GameObject gameObject, GridMovement target) {
         super(gameObject, target);
         this.speedManager = (SpeedManager) gameObject.getBehavior(SpeedManager.class);
@@ -24,6 +31,12 @@ public class AstarPathfinding extends Pathfinding {
         gridMovement.move(movement.x, movement.y);
     }
 
+    /**
+     * Function that looks for the shortest path.
+     * @param start the starting position
+     * @param target the target position
+     * @return the next move that should be made
+     */
     private Vector2<Integer> search(Vector2<Integer> start, Vector2<Integer> target) {
         PriorityQueue<PositionValuePair> frontier = new PriorityQueue<PositionValuePair>(
             new PositionValuePairComparator()
@@ -89,6 +102,11 @@ public class AstarPathfinding extends Pathfinding {
         }
     }
 
+    /**
+     * Gets the neighboring tiles from a position.
+     * @param position the center tile
+     * @return the surrounding tiles
+     */
     private ArrayList<Vector2<Integer>> getNeighbors(Vector2<Integer> position) {
         ArrayList<Vector2<Integer>> positions = new ArrayList<Vector2<Integer>>();
 

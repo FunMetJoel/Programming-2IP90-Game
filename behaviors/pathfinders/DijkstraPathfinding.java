@@ -26,6 +26,11 @@ public class DijkstraPathfinding extends Pathfinding {
         }
     }
 
+    /**
+     * Gets the movement that the objects needs to do to reach the target.
+     * @param costs the costs to reach each tile
+     * @return the movement
+     */
     public Vector2<Integer> getMovement(int[][] costs) {
         Vector2<Integer> nextPosition = target.getPosition().round();
         Vector2<Integer> currentPosition = target.getPosition().round();
