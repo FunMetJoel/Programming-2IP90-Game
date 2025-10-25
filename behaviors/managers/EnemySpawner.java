@@ -3,8 +3,11 @@ package behaviors.managers;
 import gameEngine.Behavior;
 import gameEngine.Scene;
 import gameEngine.Vector2;
+import gameObjects.DijkstraEnemy;
 import gameObjects.Enemy;
 import gameObjects.GameManager;
+import gameObjects.GreedyEnemy;
+
 import java.util.ArrayList;
 import level.Level;
 
@@ -34,16 +37,16 @@ public class EnemySpawner extends Behavior {
         int highest = getHighestNonInf(distances);
         ArrayList<Vector2<Integer>> points = getPointsWithDistance(distances, (2 * highest) / 3);
         scene.instantiate(
-            new Enemy(getCornerPoint(1, 1, points).toDouble(), (GameManager) gameObject)
+            new GreedyEnemy(getCornerPoint(1, 1, points).toDouble(), (GameManager) gameObject)
         );
         scene.instantiate(
-            new Enemy(getCornerPoint(-1, 1, points).toDouble(), (GameManager) gameObject)
+            new DijkstraEnemy(getCornerPoint(-1, 1, points).toDouble(), (GameManager) gameObject)
         );
         scene.instantiate(
-            new Enemy(getCornerPoint(-1, -1, points).toDouble(), (GameManager) gameObject)
+            new GreedyEnemy(getCornerPoint(-1, -1, points).toDouble(), (GameManager) gameObject)
         );
         scene.instantiate(
-            new Enemy(getCornerPoint(1, -1, points).toDouble(), (GameManager) gameObject)
+            new DijkstraEnemy(getCornerPoint(1, -1, points).toDouble(), (GameManager) gameObject)
         );
     }
 
@@ -165,4 +168,4 @@ public class EnemySpawner extends Behavior {
 
         return point;
     }
-}
+}  
