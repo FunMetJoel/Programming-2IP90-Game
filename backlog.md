@@ -74,3 +74,7 @@
 >How to test: Launch a new game and see how the player spawns.
 
 ## Start menu
+1. After main.java is exectuted, a start menu should apper with options (buttons) to play a new game, quit game and a text field to input a custom seed.
+
+>How to test: Launch main.java and observe the menu appearing. Test its features by pressing different buttons and input a custom seed.
+
