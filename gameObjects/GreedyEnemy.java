@@ -9,6 +9,12 @@ import javax.swing.ImageIcon;
  * A enemy that uses the greedy algorithm to pathfind.
  */
 public class GreedyEnemy extends Enemy {
+
+    /**
+     * Creates new greedy enemy.
+     * @param position the position of the enemy
+     * @param gameManager the gameManager to get information about the game
+     */
     public GreedyEnemy(Vector2<Double> position, GameManager gameManager) {
         super(
             position, 

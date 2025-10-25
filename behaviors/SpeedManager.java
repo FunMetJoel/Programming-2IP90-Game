@@ -36,6 +36,7 @@ public class SpeedManager extends Behavior {
         double speed = defaultMovementSpeed;
         Vector2<Integer> position = gridMovement.getPosition();
         GridItem gridItem = gridMovement.level.getTile(position.x, position.y);
+        // System.out.println(position + ", " + gridItem + ", " + gameObject.getClass().getName());
         for (SpeedRule speedRule : rules) {
             if (speedRule.tileClass == gridItem.getClass()) {
                 speed *= speedRule.multiplier;

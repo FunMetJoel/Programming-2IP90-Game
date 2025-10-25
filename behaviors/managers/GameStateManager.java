@@ -1,6 +1,7 @@
 package behaviors.managers;
 
 import behaviors.GridMovement;
+import behaviors.pathfinders.Pathfinding;
 import gameEngine.Behavior;
 import gameEngine.GameObject;
 import gameObjects.Enemy;
@@ -47,8 +48,8 @@ public class GameStateManager extends Behavior {
 
     private void onGameFinished() {
         for (Enemy enemy : enemies) {
-            GridMovement gridMovement = (GridMovement) enemy.getBehavior(GridMovement.class);
-            gridMovement.enabled = false;
+            Pathfinding pathfinding = (Pathfinding) enemy.getBehavior(Pathfinding.class);
+            pathfinding.enabled = false;
         }
         Player player = ((GameManager) gameObject).player;
         GridMovement gridMovement = (GridMovement) player.getBehavior(GridMovement.class);
