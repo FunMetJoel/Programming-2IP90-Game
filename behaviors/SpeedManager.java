@@ -46,6 +46,11 @@ public class SpeedManager extends Behavior {
         this.rules.add(new SpeedRule(tileClass, multiplier));
     }
 
+    /**
+     * Gets the speed a object moves at at on a certain tile.
+     * @param tileClass the class of tile the object is on
+     * @return the speed the object moves at
+     */
     public double getSpeed(Class<? extends GridItem> tileClass) {
         double speed = defaultMovementSpeed;
         for (SpeedRule speedRule : rules) {

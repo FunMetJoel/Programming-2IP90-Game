@@ -27,6 +27,12 @@ public class Grid extends GameObject {
         return gridData[arrayPosition.x][arrayPosition.y].canEnter;
     }
 
+    /**
+     * Checks if a tile is in de bounds of the grid.
+     * @param gridX the x position of the tile
+     * @param gridY the y position of the tile
+     * @return if the position is in bounds
+     */
     public boolean inBounds(int gridX, int gridY) {
         Vector2<Integer> arrayPosition = getArrayPos(gridX, gridY);
         if (arrayPosition.x < 0 || arrayPosition.y < 0) {
@@ -63,10 +69,6 @@ public class Grid extends GameObject {
     public Vector2<Integer> getArrayPos(int gridX, int gridY) {
         return new Vector2<Integer>(gridX, gridY);
         // TODO: remove when fully implemented
-        // return new Vector2<Integer>(
-        //     gridX + gridSize / 2, 
-        //     gridY + gridSize / 2
-        // );
     }
 
     /**
@@ -78,18 +80,26 @@ public class Grid extends GameObject {
     protected Vector2<Integer> getGridPos(int arrayX, int arrayY) {
         return new Vector2<Integer>(arrayX, arrayY);
         // TODO: remove when fully implemented
-        // return new Vector2<Integer>(
-        //     arrayX - gridSize / 2, 
-        //     arrayY - gridSize / 2
-        // );
     }
 
+    /**
+     * Sets a tile to a certain position.
+     * @param tile the tile to set it to
+     * @param arrayX the x position of the tile set
+     * @param arrayY the y position of the tile set
+     */
     public void setTile(GridItem tile, int arrayX, int arrayY) {
         children.remove(gridData[arrayX][arrayY]);
         gridData[arrayX][arrayY] = tile;
         children.add(tile);
     }
 
+    /**
+     * gets a tile.
+     * @param x the x cord of the tile
+     * @param y the y cord of the tile
+     * @return the tile
+     */
     public GridItem getTile(int x, int y) {
         if (x < 0 || x >= this.gridSize) {
             return null;

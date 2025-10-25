@@ -63,6 +63,11 @@ public class DijkstraPathfinding extends Pathfinding {
         return currentPosition.subtractVector(arrayPos.toDouble()).round();
     }
 
+    /**
+     * Calculates the costs of moving to each tile.
+     * @return the costs of moving to each tile
+     * @throws RuntimeException when reaching the target is impossible
+     */
     public int[][] calculateCost() throws RuntimeException {
         int gridSize = level.gridSize;
         int[][] costs = new int[gridSize][gridSize];
@@ -105,6 +110,12 @@ public class DijkstraPathfinding extends Pathfinding {
         return costs;
     }
 
+    /**
+     * Gets the x and y cords of the tile with the lowest value that is not checked.
+     * @param costs the grid of costs
+     * @param checked the grid of if the tiles are checked
+     * @return the position of the lowest value position
+     */
     public Vector2<Integer> getLowestValuePosition(int[][] costs, boolean[][] checked) {
         int lowestValue = Integer.MAX_VALUE;
         Vector2<Integer> lowestValuePosition = null;
