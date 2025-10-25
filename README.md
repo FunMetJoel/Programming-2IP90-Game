@@ -7,7 +7,9 @@ This project works and was tested with Java 24.0.2
 
 ## How to run
 1. Run the `main()` method in `Main.java` located in the `src` folder.
-2. The game window should open. Click "New Game" to start playing.
+2. The start menu window should open.
+3. Input a custom seed in the input box or play with random seed inputting nothing.
+4. Click "New Game" to launch the game or "Quit Game" to quit game.
 3. Use the W, A, S, D keys to move the player around the map.
 4. Try to avoid the enemies while collecting starts to extend your lifetime.
 5. The game ends when out of stars.

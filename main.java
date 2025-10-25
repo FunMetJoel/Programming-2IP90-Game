@@ -6,7 +6,7 @@ import menu.StartMenu;
 /**
  * Runs all the code.
  */
-public class Main {
+public class main {
     public static void main(String[] args) {
 
         StartMenuLauncher startMenu = new StartMenuLauncher();

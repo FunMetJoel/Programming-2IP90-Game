@@ -11,30 +11,29 @@
 
 ## Launching the game
 1. [ ] Start the application, click "New Game" button and the game field will launch and the game will start.
-2. [ ] If we have time, we can add different difficulties, difficulty menu will appear after pressing "New Game".
 
 ## Movement of the opponents
 1. [X] After the game launches, opponents try to catch the player and end the game, using a pathfinding algotithm.
-2. [ ] If we have time, we can also implement this: as the runtime advances, the bots should become faster and be able to catch up to the player with more ease.
+
 
 ## Movement of the player
-1. [X] After the game launches, the player is able to move in directions (NSWE) inside the game field using some key input (to be decided later).
+1. [X] After the game launches, the player is able to move in directions (NSWE) inside the game field using WSAD
 2. No remarks yet.
 
 ## Structural generation of the obstacles
 1. [X] After the launch of the game, obstacles are generated in the game field. These are barriers, impenetrable by any game entity. Each time there should be a different setting of them.
-2. [ ] If there is time, some special tiles with special properties should be created
+2. [X] If there is time, some special tiles with special properties should be created
 
 ## Generating the fuel canisters
-1. [X] After the game launches, there should be constantly generated fuel canisters in the game field in random tiles, which upon collection by the player extend the player's life length.
-2. [X] Fuel canisters should generate constantly, but there is a max cap of them in one moment. The fuel canisters should not generate on the obstacles.
+1. [X] After the game launches, there should be constantly generated stars in the game field in random tiles, which upon collection by the player extend the player's life length.
+2. [X] Stars should generate constantly, but there is a max cap of them in one moment. The stars should not generate on the obstacles.
 
 ## Player lifetime counter
 1. [ ] After the game launches, a Player lifetime counter should appear somewhere in the game field (without obstructing the field). It should be set to a default value (TBD).
 2. No remarks yet.
 
 ## End game screen
-1. [ ] After the player is caught by an enemy or runs out of time, the game should and and a short message with a score should be displayed
+1. [ ] After the player is caught by an enemy or runs out of time, the game should end and a short message with a score should be displayed
 2. [ ] We can also add an option to play again.
 
 ## Textures of the gamefield, player and enemies
