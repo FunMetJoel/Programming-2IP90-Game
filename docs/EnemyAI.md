@@ -17,7 +17,9 @@ Not much we learned from this code, except that Dijkstra studied at TU/e.
 Finally we implemented the A* algorithm, based on the the a* wikipedia article and the redblobgames article about pathfinding. 
 This algorithm is an improvement on Dijkstra's algorithm, as it uses heuristics to make an educated guess on which tiles to explore first.
 In this code, we also implemented a check for the walking speed of tiles, so the enemy would prioritize faster tiles over slower tiles. 
+In this article I learned about the **PriorityQueue** data structure, which was new to me, and seems useful for this situation.
+This article also used a more graph like structure than the Dijkstra code we made. This makes it more readable and easier to understand.
 
-## The problem with enemies with the same algorithms
-We noticed that when you have a lot of enemies using the same algoritm, they will stack and move as one:
-![Multiple enemies on top of each other](/docs/img/image.png)
+## Fourth code: Improvements on A* algorithm
+The RedBlobGames article also mentioned some improvements that could be made to the A* algorithm to create more natural routes. Tease are implemented in the fourth version of the code.
+(https://www.redblobgames.com/pathfinding/a-star/implementation.html#troubleshooting-ugly-path)

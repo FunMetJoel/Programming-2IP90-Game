@@ -3,6 +3,7 @@ package behaviors.managers;
 import gameEngine.Behavior;
 import gameEngine.Scene;
 import gameEngine.Vector2;
+import gameObjects.AstarEnemy;
 import gameObjects.DijkstraEnemy;
 import gameObjects.Enemy;
 import gameObjects.GameManager;
@@ -43,7 +44,7 @@ public class EnemySpawner extends Behavior {
             new DijkstraEnemy(getCornerPoint(-1, 1, points).toDouble(), (GameManager) gameObject)
         );
         scene.instantiate(
-            new GreedyEnemy(getCornerPoint(-1, -1, points).toDouble(), (GameManager) gameObject)
+            new AstarEnemy(getCornerPoint(-1, -1, points).toDouble(), (GameManager) gameObject)
         );
         scene.instantiate(
             new DijkstraEnemy(getCornerPoint(1, -1, points).toDouble(), (GameManager) gameObject)

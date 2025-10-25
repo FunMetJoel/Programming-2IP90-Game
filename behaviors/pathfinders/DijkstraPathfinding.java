@@ -16,11 +16,6 @@ public class DijkstraPathfinding extends Pathfinding {
     }
 
     @Override
-    public void setup() {
-        super.setup();
-    }
-
-    @Override
     public void move() {
         try {
             int[][] costs = calculateCost();
@@ -29,8 +24,6 @@ public class DijkstraPathfinding extends Pathfinding {
         } catch (RuntimeException e) {
             System.err.println(e);
         }
-        // calculateCost2();
-        // gridMovement.move(nextMove.x, nextMove.y);
     }
 
     public Vector2<Integer> getMovement(int[][] costs) {

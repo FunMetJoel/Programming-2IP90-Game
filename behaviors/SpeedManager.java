@@ -33,16 +33,10 @@ public class SpeedManager extends Behavior {
 
     @Override
     public void update() {
-        double speed = defaultMovementSpeed;
         Vector2<Integer> position = gridMovement.getPosition();
         GridItem gridItem = gridMovement.level.getTile(position.x, position.y);
-        // System.out.println(position + ", " + gridItem + ", " + gameObject.getClass().getName());
-        for (SpeedRule speedRule : rules) {
-            if (speedRule.tileClass == gridItem.getClass()) {
-                speed *= speedRule.multiplier;
-            }
-        }
-        gridMovement.movementSpeed = speed;
+        
+        gridMovement.movementSpeed = getSpeed(gridItem.getClass());
     }
 
     // TODO: Make this a dictionary?
@@ -50,5 +44,15 @@ public class SpeedManager extends Behavior {
 
     public void addRule(Class<? extends GridItem> tileClass, double multiplier) {
         this.rules.add(new SpeedRule(tileClass, multiplier));
+    }
+
+    public double getSpeed(Class<? extends GridItem> tileClass) {
+        double speed = defaultMovementSpeed;
+        for (SpeedRule speedRule : rules) {
+            if (speedRule.tileClass == tileClass) {
+                speed *= speedRule.multiplier;
+            }
+        }
+        return speed;
     }
 }

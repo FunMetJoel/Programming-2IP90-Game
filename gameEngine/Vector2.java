@@ -1,5 +1,7 @@
 package gameEngine;
 
+import java.util.HashMap;
+
 /**
  * A object with a x and a y.
  */
@@ -98,5 +100,23 @@ public class Vector2<T extends Number> {
 
     public boolean equals(Vector2<T> otherVector) {
         return ((this.x == otherVector.x) && (this.y == otherVector.y));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!this.getClass().isInstance(obj)) {
+            return false;
+        }
+
+        Vector2<?> other = (Vector2<?>) obj;
+        return ((this.x.equals(other.x)) && (this.y.equals(other.y)));
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) 12341 * x.hashCode() + y.hashCode();
     }
 }
