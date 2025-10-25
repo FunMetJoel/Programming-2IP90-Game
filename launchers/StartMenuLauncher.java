@@ -3,6 +3,9 @@ package launchers;
 import javax.swing.JFrame;
 import menu.StartMenu;
 
+/**Class for launching the start menu.
+ * 
+ */
 public class StartMenuLauncher {
     JFrame window = new JFrame();
     StartMenu menu = new StartMenu();
@@ -11,6 +14,9 @@ public class StartMenuLauncher {
         return menu;
     }
     
+    /**Creates the start menu.
+     * 
+     */
     public void createMenu() {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setTitle("Main menu testing");

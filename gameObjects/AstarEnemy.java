@@ -2,7 +2,7 @@ package gameObjects;
 
 import behaviors.GridMovement;
 import behaviors.pathfinders.AstarPathfinding;
-import behaviors.pathfinders.GreedyPathfinding;
+// import behaviors.pathfinders.GreedyPathfinding;
 import gameEngine.Vector2;
 import javax.swing.ImageIcon;
 

@@ -4,11 +4,18 @@ import gameEngine.Grid;
 import gameEngine.Vector2;
 import java.util.Random;
 
+/**Class for creating the gamefield.
+ * 
+ */
 public class Level extends Grid {
     public Level() {
         this(new Random().nextInt());
     }
 
+    /**Creates the board of the game.
+     * 
+     * @param seed seed of the structural generation
+     */
     public Level(int seed) {
         super();
         double frequency = 0.1;
@@ -18,7 +25,6 @@ public class Level extends Grid {
         String[][] visualOriginalPerlin = perlin.visualyRepresentedGrid(noiseAverage, noise);
         double[][] newMudNoise = noise;
 
-        // TODO: create level based on seed
         for (int i = 1; i < 3; i++) {
             PerlinGrid newPerlin = new PerlinGrid((seed * (i + 1)) % Integer.MAX_VALUE);
             double[][] newNoise = newPerlin.createGrid(gridSize, gridSize, frequency);
@@ -39,7 +45,6 @@ public class Level extends Grid {
                     (double) newGridPos.y
                 );
 
-                // TODO: Make this a better generator function
                 if (visualOriginalPerlin[i][j] != "*") {
                     if (newMudNoise[i][j] >= 0.7) {
                         setTile(
@@ -62,8 +67,6 @@ public class Level extends Grid {
                         j
                     );
                 }
-
-                // setTile(new PerlinTestTile(newPos, scale, newNoise[i][j]), i, j);
             }
         }
 

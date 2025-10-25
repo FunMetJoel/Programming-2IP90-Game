@@ -1,6 +1,6 @@
 package gameEngine;
 
-import java.util.HashMap;
+// import java.util.HashMap;
 
 /**
  * A object with a x and a y.

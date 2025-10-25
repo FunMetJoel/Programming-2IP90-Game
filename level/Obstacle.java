@@ -1,14 +1,15 @@
 package level;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
 import gameEngine.GridItem;
 import gameEngine.Vector2;
 import gameEngine.renderers.Ctm;
 import gameEngine.renderers.SpriteRenderer;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
+/**Class for manipulating obstacles on the map.
+ * 
+ */
 public class Obstacle extends GridItem  {
 
     static Image image = new ImageIcon("assets/obstacle.png").getImage();
@@ -22,6 +23,11 @@ public class Obstacle extends GridItem  {
     }
 
 
+    /**Creates an obstacle.
+     * 
+     * @param position position as a vector
+     * @param scale scale
+     */
     public Obstacle(Vector2<Double> position, Vector2<Double> scale) {
         super(position, scale);
         this.canEnter = false;
