@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import level.Level;
 
+/**
+ * Behavior of manager to spawn canisters around the map.
+ */
 public class CanisterSpawner extends Behavior {
 
     Level level;
@@ -17,6 +20,12 @@ public class CanisterSpawner extends Behavior {
     ArrayList<Canister> activeGameObjects = new ArrayList<Canister>();
     ScoreHolder scoreHolder;
 
+    /**
+     * Creates new spawner behavior.
+     * @param gameObject the game object to add the behavior to
+     * @param level the current level to know where to place the canisters
+     * @param playerMovement the player movement to pass to the canisters
+     */
     public CanisterSpawner(GameObject gameObject, Level level, GridMovement playerMovement) {
         super(gameObject);
         this.level = level;
@@ -26,9 +35,10 @@ public class CanisterSpawner extends Behavior {
     @Override
     public void setup() {
         this.scoreHolder = (ScoreHolder) gameObject.getBehavior(ScoreHolder.class);
-        // TODO Auto-generated method stub
         for (int i = 0; i < 5; i++) {
-            Canister newCanister = new Canister(playerMovement, new Vector2<Integer>(0, 0), scoreHolder);
+            Canister newCanister = new Canister(
+                playerMovement, new Vector2<Integer>(0, 0), scoreHolder
+            );
             activeGameObjects.add(newCanister);
             gameObject.addChild(newCanister);
             spawn(newCanister);
@@ -44,6 +54,10 @@ public class CanisterSpawner extends Behavior {
         }
     }
 
+    /**
+     * Spawns a canister.
+     * @param canister the canister to (re)spawn
+     */
     public void spawn(Canister canister) {
         int gridSize = level.gridSize;
         int x = Math.round(new Random().nextFloat() * (gridSize - 1));
@@ -57,6 +71,12 @@ public class CanisterSpawner extends Behavior {
         spawn(canister, x, y);
     }
 
+    /**
+     * Spawns a canister at a specific location.
+     * @param canister the canister to (re)spawn
+     * @param x the new x position of the canister
+     * @param y the new y position of the canister
+     */
     public void spawn(Canister canister, int x, int y) {
         canister.isActive = true;
         Edible edible = (Edible) canister.getBehavior(Edible.class);

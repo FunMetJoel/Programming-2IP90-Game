@@ -31,6 +31,12 @@ public class GridMovement extends Behavior {
         this.gridY = (int) Math.round(gameObject.getPosition().y);
     }
 
+    /**
+     * Creates a new GridMovement behavior.
+     * @param gameObject the game object to add the behavior to
+     * @param level the level to know if a tile is enterable
+     * @param pos the starting position
+     */
     public GridMovement(GameObject gameObject, level.Level level, Vector2<Integer> pos) {
         this(gameObject, level);
         gridX = pos.x;
@@ -40,7 +46,7 @@ public class GridMovement extends Behavior {
 
     @Override
     public void setup() {
-        // TODO Auto-generated method stub
+
     }
 
     @Override
@@ -55,8 +61,13 @@ public class GridMovement extends Behavior {
         interpolateMovement(movementSpeed * (deltaTime / 1000));
     }
 
+    /**
+     * Interpolates the movement between two points.
+     * @param percent at what point between the two tiles the object is
+     */
     public void interpolateMovement(double percent) {
-        Vector2<Double> movement = new Vector2<Integer>(gridX, gridY).subtractVector(lastPosition.toDouble());
+        Vector2<Double> movement = new Vector2<Integer>(gridX, gridY)
+                                        .subtractVector(lastPosition.toDouble());
         gameObject.setPosition(
             ((double) gridX - movement.x) + percent * movement.x, 
             ((double) gridY - movement.y) + percent * movement.y
@@ -114,8 +125,8 @@ public class GridMovement extends Behavior {
         moveTo(gridX + dx, gridY + dy);
     }
 
+
     public Vector2<Integer> getPosition() {
-        Vector2<Integer> position =  new Vector2<Integer>(gridX, gridY);
-        return position;
+        return new Vector2<Integer>(gridX, gridY);
     }
 }

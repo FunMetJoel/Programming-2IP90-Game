@@ -8,8 +8,20 @@ import gameEngine.Vector2;
 import gameEngine.renderers.SpriteRenderer;
 import javax.swing.ImageIcon;
 
-public class Canister extends GameObject{
-    public Canister(GridMovement playerMovement, Vector2<Integer> position, ScoreHolder scoreHolder){
+/**
+ * A thing that te player can pick up to gain energy.
+ */
+public class Canister extends GameObject {
+
+    /**
+     * Creates a new canister.
+     * @param playerMovement the movement behavior of the player
+     * @param position the position of the player
+     * @param scoreHolder the score holder to update the score
+     */
+    public Canister(
+        GridMovement playerMovement, Vector2<Integer> position, ScoreHolder scoreHolder
+    ) {
         super();
 
         GameObject canisterSpriteObject = new GameObject();
@@ -25,10 +37,5 @@ public class Canister extends GameObject{
         this.behaviors.add(
             new Edible(this, playerMovement, scoreHolder, canisterSpriteObject)
         );
-
-        // this.renderer = new RegularShapeRenderer(this);
-
-
-        
     }
 }

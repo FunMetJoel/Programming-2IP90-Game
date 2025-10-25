@@ -1,10 +1,9 @@
 package behaviors;
 
-import java.time.Duration;
-import java.time.Instant;
-
 import behaviors.managers.ScoreHolder;
 import gameEngine.GameObject;
+import java.time.Duration;
+import java.time.Instant;
 
 /**
  * A collider for the enemy.
@@ -42,7 +41,6 @@ public class EnemyCollider extends PlayerCollisionDetector {
 
     @Override
     void onCollisionExit() {
-        // TODO Auto-generated method stub
         
     }
 }

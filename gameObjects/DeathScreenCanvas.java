@@ -1,17 +1,21 @@
 package gameObjects;
 
-import java.awt.Color;
-
-import org.w3c.dom.Text;
-
 import behaviors.DeathScreenAnimator;
 import gameEngine.GameObject;
 import gameEngine.Vector2;
 import gameEngine.renderers.RegularShapeRenderer;
 import gameEngine.renderers.TextRenderer;
+import java.awt.Color;
 
+/**
+ * UI for the death screen.
+ */
 public class DeathScreenCanvas extends GameObject {
     
+    /**
+     * Creates the ui for the death screen.
+     * @param gameManager the game manager to check when te game is finished
+     */
     public DeathScreenCanvas(GameManager gameManager) {
         RegularShapeRenderer renderer = new RegularShapeRenderer(this);
         renderer.fillColor = new Color(0, 0, 0, 100);
@@ -34,6 +38,8 @@ public class DeathScreenCanvas extends GameObject {
 
         this.scale = new Vector2<Double>(0.0, 0.0);
 
-        this.behaviors.add(new DeathScreenAnimator(this, gameManager, (TextRenderer) scoreText.renderer));
+        this.behaviors.add(
+            new DeathScreenAnimator(this, gameManager, (TextRenderer) scoreText.renderer)
+        );
     }
 }

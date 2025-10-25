@@ -1,20 +1,22 @@
 package gameEngine.renderers;
 
+import gameEngine.Grid;
+import gameEngine.GridItem;
+import gameEngine.Vector2;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import gameEngine.Grid;
-import gameEngine.GridItem;
-import gameEngine.Vector2;
-
+/**
+ * A class that handles connected textures.
+ */
 public class Ctm {
     public Image[] images = new Image[47];
 
+    /**
+     * Creates a new Ctm with a spritesheet.
+     * @param spriteSheet the spritesheet with all the sprites for every situation
+     */
     public Ctm(Image spriteSheet) {
         BufferedImage bufferedImage = new BufferedImage(
             spriteSheet.getWidth(null), spriteSheet.getHeight(null), 

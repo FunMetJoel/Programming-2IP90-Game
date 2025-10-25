@@ -56,20 +56,16 @@ public class Scene implements Runnable {
 
     public void instantiate(GameObject object) {
         bufferedNewObjects.add(object);
-        System.out.println("Added " + object.getClass());
-        System.out.println(bufferedNewObjects);
     }
 
     private void handleBufferedNewObjects() {
-        ArrayList<GameObject> bufferedBufferedNewObjects = (ArrayList<GameObject>) bufferedNewObjects.clone();
+        ArrayList<GameObject> cloneBufferedObjects = new ArrayList<GameObject>(bufferedNewObjects);
         // System.out.print(bufferedNewObjects);
-        for (GameObject gameObject : bufferedBufferedNewObjects) {
+        for (GameObject gameObject : cloneBufferedObjects) {
             gameObjects.add(gameObject);
-            System.out.println("AddedToScene " + gameObject.getClass());
         }
-        for (GameObject gameObject: bufferedBufferedNewObjects) {
+        for (GameObject gameObject: cloneBufferedObjects) {
             gameObject.setupAll();
-            System.out.println("Setup " + gameObject.getClass());
         }
         bufferedNewObjects = new ArrayList<GameObject>();
     }

@@ -1,6 +1,5 @@
 package gameEngine;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -111,6 +110,11 @@ public class GameObject {
         this.position = position;
     }
 
+    /**
+     * Sets the scale of the object.
+     * @param x the horizontal scale
+     * @param y the vertical scale
+     */
     public void setScale(double x, double y) {
         this.scale.x = x;
         this.scale.y = y;
@@ -124,6 +128,11 @@ public class GameObject {
         return this.scale.copy();
     }
 
+    /**
+     * Gets a behavior with a certain class.
+     * @param searchClass the class to search
+     * @return the behavior of the object
+     */
     public Behavior getBehavior(Class<? extends Behavior> searchClass) {
         for (Behavior behavior : behaviors) {
             if (searchClass.isInstance(behavior)) {

@@ -1,7 +1,6 @@
 package launchers;
 
 import javax.swing.JFrame;
-
 import menu.StartMenu;
 
 public class StartMenuLauncher {

@@ -87,12 +87,11 @@ public class Edible extends PlayerCollisionDetector {
 
     @Override
     void onCollisionStay(double collisionTime) {
-        // TODO Auto-generated method stub
+
     }
 
     @Override
     void onCollisionExit() {
-        // TODO Auto-generated method stub
         
     }
 }
