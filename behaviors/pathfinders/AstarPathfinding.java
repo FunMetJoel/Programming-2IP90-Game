@@ -20,10 +20,11 @@ public class AstarPathfinding extends Pathfinding {
 
     @Override
     public void move() {
-        search(gridMovement.getPosition(), target.getPosition());
+        Vector2<Integer> movement = search(gridMovement.getPosition(), target.getPosition());
+        gridMovement.move(movement.x, movement.y);
     }
 
-    private void search(Vector2<Integer> start, Vector2<Integer> target) {
+    private Vector2<Integer> search(Vector2<Integer> start, Vector2<Integer> target) {
         PriorityQueue<PositionValuePair> frontier = new PriorityQueue<PositionValuePair>(
             new PositionValuePairComparator()
         );
@@ -55,8 +56,19 @@ public class AstarPathfinding extends Pathfinding {
                     frontier.add(new PositionValuePair(neighbor, priority));
                     cameFrom.put(neighbor, currPosition);
                 }
+
+                // System.out.println(neighbor + ", " + newCost + ", " + currPosition);
             }
         }
+
+        Vector2<Integer> cursor = target.copy();
+        Vector2<Integer> lastCursor = cursor;
+
+        while (!cursor.equals(start)) {
+            lastCursor = cursor;
+            cursor = cameFrom.get(cursor);
+        }
+        return lastCursor.subtractVector(start.toDouble()).round();
     }
 
     private static double heuristic(Vector2<Integer> pos1, Vector2<Integer> pos2) {
@@ -68,9 +80,9 @@ public class AstarPathfinding extends Pathfinding {
     private class PositionValuePairComparator implements Comparator<PositionValuePair> {  
         public int compare(PositionValuePair p1, PositionValuePair p2) {
             if (p1.value < p2.value) {
-                return 1;
-            } else if (p1.value > p2.value) {
                 return -1;
+            } else if (p1.value > p2.value) {
+                return 1;
             }
                 
             return 0;

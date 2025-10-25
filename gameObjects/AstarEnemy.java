@@ -21,7 +21,7 @@ public class AstarEnemy extends Enemy {
             position, 
             gameManager, 
             new ImageIcon("assets/GreenEnemy.png").getImage(),
-            7.5
+            5.0
         );
 
         this.behaviors.add(

@@ -32,6 +32,7 @@ public class GameScene extends Scene {
             new Vector2<Double>(0.8, 0.8),
             level
         );
+
         player.level = level;
 
         addObject(player);
