@@ -31,10 +31,10 @@ public class Noise {
         final int valueLowerRight = permutationArray[(permutationArray[indexX + 1] + indexY) % 256];
         final int valueLowerLeft = permutationArray[(permutationArray[indexX] + indexY) % 256];
 
-        final VectorCreator constantUpperRight = new ConstantVector().makeConstantVector(valueUpperRight);
-        final VectorCreator constantUpperLeft = new ConstantVector().makeConstantVector(valueUpperLeft);
-        final VectorCreator constantLowerRight = new ConstantVector().makeConstantVector(valueLowerRight);
-        final VectorCreator constantLowerLeft = new ConstantVector().makeConstantVector(valueLowerLeft);
+        final VectorCreator constantUpperRight = ConstantVector.makeConstantVector(valueUpperRight);
+        final VectorCreator constantUpperLeft = ConstantVector.makeConstantVector(valueUpperLeft);
+        final VectorCreator constantLowerRight = ConstantVector.makeConstantVector(valueLowerRight);
+        final VectorCreator constantLowerLeft = ConstantVector.makeConstantVector(valueLowerLeft);
 
         final double dotUpperRight = upperRightCorner.dotProductVector(constantUpperRight);
         final double dotUpperLeft = upperLeftCorner.dotProductVector(constantUpperLeft);
