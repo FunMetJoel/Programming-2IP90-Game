@@ -20,11 +20,10 @@ public class Grid extends GameObject {
      * @return if the tile is enterable
      */
     public boolean canEnter(int gridX, int gridY) {
-        Vector2<Integer> arrayPosition = getArrayPos(gridX, gridY);
         if (!inBounds(gridX, gridY)) {
             return false;
         }
-        return gridData[arrayPosition.x][arrayPosition.y].canEnter;
+        return gridData[gridX][gridY].canEnter;
     }
 
     /**
@@ -34,11 +33,10 @@ public class Grid extends GameObject {
      * @return if the position is in bounds
      */
     public boolean inBounds(int gridX, int gridY) {
-        Vector2<Integer> arrayPosition = getArrayPos(gridX, gridY);
-        if (arrayPosition.x < 0 || arrayPosition.y < 0) {
+        if (gridX < 0 || gridY < 0) {
             return false;
         }
-        if (arrayPosition.x >= gridSize || arrayPosition.y >= gridSize) {
+        if (gridX >= gridSize || gridY >= gridSize) {
             return false;
         }
         return true;
@@ -58,28 +56,6 @@ public class Grid extends GameObject {
             return false;
         }
         return gridData[arrayX][arrayY].canEnter;
-    }
-
-    /**
-     * Calculates the position in the grid array from the worldPosition of the tile.
-     * @param gridX the world pos X of the tile
-     * @param gridY the world pos Y of the tile
-     * @return The x and y of the array object
-     */
-    public Vector2<Integer> getArrayPos(int gridX, int gridY) {
-        return new Vector2<Integer>(gridX, gridY);
-        // TODO: remove when fully implemented
-    }
-
-    /**
-     * Gets the world position from a array element.
-     * @param arrayX the x in the array
-     * @param arrayY the y in the array
-     * @return The world x and y of the tile
-     */
-    protected Vector2<Integer> getGridPos(int arrayX, int arrayY) {
-        return new Vector2<Integer>(arrayX, arrayY);
-        // TODO: remove when fully implemented
     }
 
     /**

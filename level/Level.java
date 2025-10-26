@@ -39,10 +39,9 @@ public class Level extends Grid {
 
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
-                Vector2<Integer> newGridPos = getGridPos(i, j);
                 Vector2<Double> newPos = new Vector2<Double>(
-                    (double) newGridPos.x, 
-                    (double) newGridPos.y
+                    (double) i, 
+                    (double) j
                 );
 
                 if (visualOriginalPerlin[i][j] != "*") {

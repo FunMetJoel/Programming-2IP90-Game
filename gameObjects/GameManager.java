@@ -54,30 +54,4 @@ public class GameManager extends GameObject {
 
         this.behaviors.add(new ScoreHolder(this));
     }
-
-    // TODO: Can this go?
-    public void newLevel() {
-        newLevel(new Random().nextInt());
-    }
-
-    // TODO: CAN this go?
-    /**
-     * Creates a new level.
-     * @param seed the levels seed
-     */
-    public void newLevel(int seed) {
-        this.scene.removeObject(currentLevel);
-        this.currentLevel = new Level(seed);
-
-        // this.player.level = this.currentLevel;
-        // this.player.gridX = 0;
-        // this.player.gridY = 0;
-        GridMovement gridMovement = (GridMovement) this.getBehavior(GridMovement.class);
-        gridMovement.level = this.currentLevel;
-        gridMovement.moveTo(0, 0);
-
-
-        CameraManager cameraManager = (CameraManager) getBehavior(CameraManager.class);
-        cameraManager.levelStartedTime = Instant.now();
-    }
 }
