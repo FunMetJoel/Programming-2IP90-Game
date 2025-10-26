@@ -1,25 +1,41 @@
 package gameEngine.renderers;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.io.File;
 
 import gameEngine.GameObject;
 import gameEngine.Renderer;
 import gameEngine.Vector2;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.io.File;
+import java.io.IOException;
 
+/**
+ * Renders text to the screen.
+ */
 public class TextRenderer extends Renderer {
 
     public String textToRender;
     public Color fillColor = Color.white;
 
+    /**
+     * Creates a new textRenderer.
+     * @param gameObject the object to add the renderer to
+     * @param textToRender the test to render
+     */
     public TextRenderer(GameObject gameObject, String textToRender) {
         super(gameObject);
         this.textToRender = textToRender;
     }
 
+    /**
+     * Creates a new textRenderer.
+     * @param gameObject the object to add the renderer to
+     * @param textToRender the test to render
+     * @param fillColor the color to fill the text with
+     */
     public TextRenderer(GameObject gameObject, String textToRender, Color fillColor) {
         this(gameObject, textToRender);
         this.fillColor = fillColor;
@@ -33,7 +49,9 @@ public class TextRenderer extends Renderer {
         try {
             File fontFile = new File("assets/RushDriver-Italic.otf");
             font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-        } catch(Exception e) {
+        } catch (FontFormatException e) {
+            font = new Font("Arial", Font.BOLD, 72);
+        } catch (IOException e) {
             font = new Font("Arial", Font.BOLD, 72);
         }
         font = font.deriveFont((float) screenScale.y.floatValue());
@@ -42,13 +60,22 @@ public class TextRenderer extends Renderer {
         int width = metrics.stringWidth(textToRender);
 
         if (width > screenScale.x) {
-            font = font.deriveFont((((float) screenScale.x.floatValue()) * ((float) screenScale.y.floatValue()) / width));
+            font = font.deriveFont((
+                (
+                    (float) screenScale.x.floatValue()) 
+                    * ((float) screenScale.y.floatValue()
+                ) / width
+            ));
             graphics[this.mainLayer].setFont(font);
             metrics = graphics[this.mainLayer].getFontMetrics();
             width = metrics.stringWidth(textToRender);
         }
 
 
-        graphics[this.mainLayer].drawString(textToRender, centerScreenCords.round().x - (width / 2), centerScreenCords.round().y);
+        graphics[this.mainLayer].drawString(
+            textToRender, 
+            centerScreenCords.round().x - (width / 2), 
+            centerScreenCords.round().y
+        );
     }
 }

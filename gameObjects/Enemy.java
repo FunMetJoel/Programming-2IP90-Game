@@ -28,7 +28,16 @@ public abstract class Enemy extends GameObject {
         this(position, gameManager, sprite, 5.0);
     }
 
-    public Enemy(Vector2<Double> position, GameManager gameManager, Image sprite, double defaultSpeed) {
+    /**
+     * Creates a new enemy.
+     * @param position the position of the enemy
+     * @param gameManager the game manager 
+     * @param sprite the sprite of the enemy
+     * @param defaultSpeed the default movement speed of the enemy
+     */
+    public Enemy(
+        Vector2<Double> position, GameManager gameManager, Image sprite, double defaultSpeed
+    ) {
         super(position);
         this.gameManager = gameManager;
 
@@ -51,7 +60,9 @@ public abstract class Enemy extends GameObject {
         );
         this.behaviors.add(collider);
 
-        GameStateManager gameStateManager = (GameStateManager) gameManager.getBehavior(GameStateManager.class);
+        GameStateManager gameStateManager = (GameStateManager) gameManager.getBehavior(
+            GameStateManager.class
+        );
         gameStateManager.enemies.add(this);
     }
 }

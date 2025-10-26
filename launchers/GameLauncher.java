@@ -6,8 +6,15 @@ import gameEngine.Scene;
 import gameObjects.GameScene;
 import javax.swing.JFrame;
 
+/**
+ * Frame with the game.
+ */
 public class GameLauncher {
 
+    /**
+     * Launces a frame with the game.
+     * @param seed the seed to launch te game width
+     */
     public void launchGame(int seed) {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

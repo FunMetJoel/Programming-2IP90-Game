@@ -38,6 +38,11 @@ public class Ctm {
         }
     }
 
+    /**
+     * Gets the texture for a certain situation.
+     * @param situation the situation around the object
+     * @return the texture to render on this tile
+     */
     public Image getTexture(byte situation) {
         final boolean NW = ((situation >> 0) & 1) == 1;
         final boolean N = ((situation >> 1) & 1) == 1;
@@ -182,6 +187,12 @@ public class Ctm {
         return images[0];
     }
 
+    /**
+     * Gets the situation of a certain tile in a grid.
+     * @param grid the grid to check the situation in
+     * @param tile the position of the tile to check the situation of
+     * @return a binary representation of the situation, given in format NW N NE E SE S SW W
+     */
     public static byte getSituation(Grid grid, Vector2<Integer> tile) {
         byte situation = (byte) 0;
         GridItem center = grid.getTile(tile.x, tile.y);
