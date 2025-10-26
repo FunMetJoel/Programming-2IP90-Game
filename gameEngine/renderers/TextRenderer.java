@@ -42,7 +42,9 @@ public class TextRenderer extends Renderer {
     }
 
     @Override
-    public void render(Graphics2D[] graphics, Vector2<Double> centerScreenCords, Vector2<Double> screenScale) {
+    public void render(
+        Graphics2D[] graphics, Vector2<Double> centerScreenCords, Vector2<Double> screenScale
+    ) {
         graphics[this.mainLayer].setColor(fillColor);
         
         Font font = new Font("Arial", Font.BOLD, 72);;

@@ -109,7 +109,7 @@ public class Ctm {
             return images[27];
         }
 
-        // Everything exept 4 diagonals
+        // Everything except 4 diagonals
         else if (N & E & S & W) {
             return images[46];
         }

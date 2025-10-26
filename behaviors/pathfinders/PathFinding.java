@@ -12,6 +12,7 @@ public abstract class Pathfinding extends Behavior {
     protected GridMovement target;
     protected GridMovement gridMovement;
     protected Level level;
+    
     /**
      * Creates new pathfinding behavior.
      * @param gameObject the gameobject to add the behavior to

@@ -27,8 +27,6 @@ public class PlayerController extends Behavior {
             return;
         }
 
-        
-        // TODO: This can be more neat right?
         if (horizontalFirst) {
             if (InputManager.isPressed(KeyEvent.VK_A) && gridMovement.canMoveBy(-1, 0)) {
                 gridMovement.move(-1, 0);

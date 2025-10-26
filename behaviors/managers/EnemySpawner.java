@@ -45,7 +45,7 @@ public class EnemySpawner extends Behavior {
             new AstarEnemy(getCornerPoint(-1, -1, points).toDouble(), (GameManager) gameObject)
         );
         scene.instantiate(
-            new DijkstraEnemy(getCornerPoint(1, -1, points).toDouble(), (GameManager) gameObject)
+            new GreedyEnemy(getCornerPoint(1, -1, points).toDouble(), (GameManager) gameObject)
         );
     }
 

@@ -28,7 +28,11 @@ public class PerlinGrid {
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                double noiseValue = noise.calculateNoise(permutations, i * frequency, j * frequency);
+                double noiseValue = noise.calculateNoise(
+                    permutations, 
+                    i * frequency, 
+                    j * frequency
+                );
                 // double noiseValue = noise.calculateNoise(permutations, i, j);
                 noiseValue += 1.0;
                 noiseValue /= 2;

@@ -39,7 +39,6 @@ public class SpeedManager extends Behavior {
         gridMovement.movementSpeed = getSpeed(gridItem.getClass());
     }
 
-    // TODO: Make this a dictionary?
     private record SpeedRule(Class<? extends GridItem> tileClass, double multiplier) { }
 
     public void addRule(Class<? extends GridItem> tileClass, double multiplier) {

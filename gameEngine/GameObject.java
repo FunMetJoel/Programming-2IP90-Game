@@ -149,10 +149,4 @@ public class GameObject {
     public void addChild(GameObject gameObject) {
         this.children.add(gameObject);
     }
-
-    // TODO: make this safe
-    public void removeChild(GameObject gameObject) {
-        this.children.remove(gameObject);
-    }
-
 }

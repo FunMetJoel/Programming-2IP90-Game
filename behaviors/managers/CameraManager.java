@@ -42,8 +42,12 @@ public class CameraManager extends Behavior {
         if (millisSinceStart < 3e9) {
             player.renderer.renderInCenter = false;
             double fixedTime = ((double) millisSinceStart - 2e9) / 1e9;
-            if (millisSinceStart > 2e9) { //TODO: Can I / should I simplify this function?
-                camera.zoom =  0.9 * (Math.pow(fixedTime, 4) - 3.75 * Math.pow(fixedTime, 3) + 3.625 * Math.pow(fixedTime, 2) + 0.125) + 0.1;
+            if (millisSinceStart > 2e9) {
+                camera.zoom =  0.9 * (
+                        Math.pow(fixedTime, 4) 
+                        - 3.75 * Math.pow(fixedTime, 3) 
+                        + 3.625 * Math.pow(fixedTime, 2) + 0.125
+                    ) + 0.1;
                 camera.cameraPosition = new Vector2<Double>(25.0, 25.0)
                     .addVector(
                         player.getPosition()
@@ -63,7 +67,11 @@ public class CameraManager extends Behavior {
                 long nanosSinceEnd = Duration.between(levelFinishedTime, Instant.now()).toNanos();
                 double normalizedTime = 1.0 - ((double) nanosSinceEnd) / 1e9;
                 if (nanosSinceEnd < 1e9) {
-                    camera.zoom =  0.9 * (Math.pow(normalizedTime, 4) - 3.75 * Math.pow(normalizedTime, 3) + 3.625 * Math.pow(normalizedTime, 2) + 0.125) + 0.1;
+                    camera.zoom =  0.9 * (
+                            Math.pow(normalizedTime, 4) 
+                            - 3.75 * Math.pow(normalizedTime, 3) 
+                            + 3.625 * Math.pow(normalizedTime, 2) + 0.125
+                        ) + 0.1;
                     camera.cameraPosition = new Vector2<Double>(25.0, 25.0)
                         .addVector(
                             player.getPosition()

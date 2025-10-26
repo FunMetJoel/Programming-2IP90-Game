@@ -54,7 +54,11 @@ public abstract class Renderer {
 
         Vector2<Double> totalScreenScale = screenCenter.newScaledVector(2.0);
         Vector2<Double> newScale = totalScreenScale.newScaledVector(gameObject.getScale());
-        Vector2<Double> newPosition = screenCenter.addVector(totalScreenScale.newScaledVector(gameObject.getPosition()));
+        Vector2<Double> newPosition = screenCenter.addVector(
+            totalScreenScale.newScaledVector(
+                gameObject.getPosition()
+            )
+        );
         this.render(graphics, newPosition, newScale);
     }
 

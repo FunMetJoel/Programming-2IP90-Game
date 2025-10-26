@@ -3,6 +3,7 @@ package behaviors.pathfinders;
 import behaviors.GridMovement;
 import behaviors.SpeedManager;
 import gameEngine.GameObject;
+import gameEngine.GridItem;
 import gameEngine.Vector2;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -37,7 +38,9 @@ public class AstarPathfinding extends Pathfinding {
      * @param target the target position
      * @return the next move that should be made
      */
-    private Vector2<Integer> search(Vector2<Integer> start, Vector2<Integer> target) {
+    private Vector2<Integer> search(
+        Vector2<Integer> start, Vector2<Integer> target
+    ) {
         PriorityQueue<PositionValuePair> frontier = new PriorityQueue<PositionValuePair>(
             new PositionValuePairComparator()
         );
@@ -60,8 +63,9 @@ public class AstarPathfinding extends Pathfinding {
             }
 
             for (Vector2<Integer> neighbor : getNeighbors(currPosition)) {
-                double newCost = currentCost.get(currPosition) 
-                    + (100.0 / speedManager.getSpeed(level.getTile(neighbor.x, neighbor.y).getClass()));
+                Class<? extends GridItem> tile = level.getTile(neighbor.x, neighbor.y).getClass();
+                double speed = speedManager.getSpeed(tile);
+                double newCost = currentCost.get(currPosition) + (100.0 / speed);
 
                 if ((!currentCost.containsKey(neighbor)) || (newCost < currentCost.get(neighbor))) {
                     currentCost.put(neighbor, newCost);
@@ -69,8 +73,6 @@ public class AstarPathfinding extends Pathfinding {
                     frontier.add(new PositionValuePair(neighbor, priority));
                     cameFrom.put(neighbor, currPosition);
                 }
-
-                // System.out.println(neighbor + ", " + newCost + ", " + currPosition);
             }
         }
 

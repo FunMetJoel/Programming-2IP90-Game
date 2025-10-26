@@ -52,7 +52,6 @@ public class ScoreBarManager extends Behavior {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
         double filled = Math.floor(scoreHolder.getScore());
         double filledPercent = scoreHolder.getScore() % 1.0;
         for (int i = 0; i < partElements.length; i++) { 

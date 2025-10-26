@@ -47,7 +47,8 @@ public class GameCanvas extends JPanel {
             if (i < TOTAL_LAYERS - UI_LAYERS) {
                 graphicsLayers[i] = bufferedImages[i].createGraphics();
             } else {
-                graphicsUiLayers[i - (TOTAL_LAYERS - UI_LAYERS)] = bufferedImages[i].createGraphics();
+                int layer = i - (TOTAL_LAYERS - UI_LAYERS);
+                graphicsUiLayers[layer] = bufferedImages[i].createGraphics();
             }
             
         }

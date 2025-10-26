@@ -3,7 +3,6 @@ package gameEngine.renderers;
 import gameEngine.GameObject;
 import gameEngine.Renderer;
 import gameEngine.Vector2;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
