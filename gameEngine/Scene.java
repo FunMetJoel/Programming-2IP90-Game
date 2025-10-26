@@ -20,6 +20,9 @@ public class Scene implements Runnable {
         }
     }
 
+    /**
+     * Runs the setup function on every element in the scene.
+     */
     public void setup() {
         for (GameObject gameObject: gameObjects) {
             gameObject.setupAll();

@@ -9,6 +9,10 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
+/**
+ * Renders a grid to screen.
+ * bakes the map to safe resources when rendering
+ */
 public class GridRenderer extends Renderer {
     public Image sprite;
 
@@ -32,7 +36,6 @@ public class GridRenderer extends Renderer {
             hashedMap = hashCurrentMap();
         }
 
-        // TODO: Do not hardcode grid size
         Vector2<Integer> upperCorner = getUpperCorner(centerScreenCords, screenScale).round();
         Vector2<Integer> lowerCorner = screenScale.newScaledVector(51.0).round();
         graphics[1].drawImage(
@@ -45,6 +48,9 @@ public class GridRenderer extends Renderer {
         );
     }
 
+    /**
+     * Bakes the map to a image file by looping trough all tiles and adding it to image.
+     */
     public void bakeMap() {
         bakedMap = new BufferedImage[2];
         Graphics2D[] layers = new Graphics2D[bakedMap.length];

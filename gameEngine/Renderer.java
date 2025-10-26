@@ -29,6 +29,13 @@ public abstract class Renderer {
         Vector2<Double> screenScale
     );
 
+    /**
+     * Renders the gameObject.
+     * @param graphics the graphics contexts of the layers.
+     * @param centerScreenCords the pixel coordinates of the center of the object.
+     * @param screenScale the relative scale of the object (in pixels)
+     * @param screenCenter the cords of the center of the screen
+     */
     public void render(
         Graphics2D[] graphics, 
         Vector2<Double> centerScreenCords,
