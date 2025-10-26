@@ -2,7 +2,6 @@ import launchers.GameLauncher;
 import launchers.StartMenuLauncher;
 import menu.StartMenu;
 
-
 /**
  * Runs all the code.
  */

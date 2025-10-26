@@ -9,8 +9,6 @@ import behaviors.managers.ScoreHolder;
 import gameEngine.GameCanvas;
 import gameEngine.GameObject;
 import gameEngine.Scene;
-import java.time.Instant;
-import java.util.Random;
 import level.Level;
 
 /**
